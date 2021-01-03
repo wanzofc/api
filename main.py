@@ -1031,7 +1031,7 @@ def zotaku():
             query = request.args.get('q')
             data = []
             url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            for rafly in url.find_all('div',class_='venser'):
+            for rafly in url.findAll('div', class_='venser'):
                 image = "{}".format(str(rafly.find('img')['src']))
                 link = "{}".format(str(rafly.find('a')['href']))
                 data = bsoup(link)
@@ -1051,7 +1051,7 @@ def zotaku():
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
                 rafli2 = info2.findAll('p')
                 sinopsis = rafli2[0].text
-                hasil = hasilnya.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
+                hasil = data.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
             return {
 				'status': 200,
 				'creator':'Tobz',
