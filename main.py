@@ -38,6 +38,11 @@ def convert_size(size_bytes):
     p = math.pow(1024, i)
     s = round(size_bytes / p, 2)
     return '%s %s' % (s, size_name[i])
+def bsoup(link,hdr=True):
+    CustomHeader = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"}
+    if hdr == False:return BeautifulSoup(requests.get(link).content, "html.parser")
+    else:return BeautifulSoup(requests.get(link,headers=CustomHeader).content, "html.parser")
+def shorturl(link):return get("https://tinyurl.com/api-create.php?url="+link).text
 #========[INFO (Router List)]========#
 
 def convert_size(size_bytes):
@@ -70,10 +75,6 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.dropwater(text)
                 return result
-            elif theme.lower() == 'sadwriting1':
-                text = request.args.get('text')
-                result = tp.sandwriting1(text)
-                return result
             elif theme.lower() == 'jokerlogo':
                 text = request.args.get('text')
                 result = tp.jokerlogo(text)
@@ -102,9 +103,9 @@ def textpro():
                 text2 = request.args.get('text2')
                 result = tp.ninjalogo(text, text2)
                 return result
-            else:return {'error': 'Themma tersebut tidak ditemukan'}
-        else:return {'error': 'Themma tersebut tidak ditemukan'}
-    else:return {'message': 'Anda belum memasukan parameter : theme'}
+            else:return {'error': 'Theme tersebut tidak ditemukan'}
+        else:return {'error': 'Theme tersebut tidak ditemukan'}
+    else:return {'message': 'Anda belum memasukan parameter theme'}
 
 
 @app.route('/tts/<path:filename>', methods=['GET','POST'])
@@ -517,33 +518,6 @@ def kusonime():
 			'status': False,
 			'msg': '[!] Masukkan parameter q'
 		}
-
-@app.route('/api/otakudesu')
-def otakudesuu():
-    if request.args.get('q'):
-        try:
-            q = request.args.get('q')
-            he=search_otakudesu(quote(q))
-            if he != '':
-                otaku=scrap_otakudesu(he)
-                return {
-                    'status': 200,
-                    'sinopsis': otaku['sinopsis'],
-                    'thumb': otaku['thumb'],
-                    'info': otaku['info'],
-                    'title': otaku['title']
-                }
-        except Exception as e:
-            print(e)
-            return {
-                'status': False,
-                'error': 'Anime %s Tidak di temukan' % unquote(q)
-            }
-    else:
-        return {
-            'status': False,
-            'msg': '[!] Masukkan parameter q'
-        }
             
 @app.route('/api/brainly', methods=['GET','POST'])
 def brainly_scraper():
@@ -1050,6 +1024,51 @@ def short():
             'msg': 'input parameter url'
         }
 
+@app.route('/api/otakudesu', methods=['GET','POST'])
+def zotaku():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            data = []
+            url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
+            desc = tbz.find('span', {'class': 'ttx'}).text
+            for Tobz in tbz.find_all('div',class_='item episode-home'):
+                image = "{}".format(str(rafly.find('img')['src']))
+                imagez = shorturl(image)
+                link = "{}".format(str(rafly.find('a')['href']))
+                data = bsoup(link)
+                info = data.findAll('div', attrs={'class':'infozingle'})[0]
+                title = info.findAll('p')[0].text.replace("Judul: ","")
+                title2 = info.findAll('p')[1].text.replace("Japanese: ","")
+                rating = info.findAll('p')[2].text.replace("Skor: ","")
+                produser = info.findAll('p')[3].text.replace("Produser: ","")
+                tipe = info.findAll('p')[4].text.replace("Tipe: ","")
+                stat = info.findAll('p')[5].text.replace("Status: ","")
+                episode = info.findAll('p')[6].text.replace("Total Episode: ","")
+                durasi = info.findAll('p')[7].text.replace("Durasi: ","")
+                rilis = info.findAll('p')[8].text.replace("Tanggal Rilis: ","")
+                studio = info.findAll('p')[9].text.replace("Studio: ","")
+                genre = info.findAll('p')[10].text.replace("Genre: ","")
+                info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
+                sinopsis = info2.findAll('p')[0].text
+                hasil = hasilnya.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":imagez,"link":link})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result':data
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 @app.route('/api/neolast', methods=['GET','POST'])
 def zneolast():
     data = []
@@ -1066,6 +1085,37 @@ def zneolast():
         'creator': 'Tobz',
         'result': data
     }
+
+@app.route('/api/neonime', methods=['GET','POST'])
+def zneonime():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            data = []
+            url = requests.get("https://neonime.vip/?s={}".format(query))
+            tbz = BeautifulSoup(url.content,'html.parser')
+            desc = tbz.find('span', {'class': 'ttx'}).text
+            for Tobz in tbz.find_all('div',class_='item episode-home'):
+                link = "{}".format(str(Tobz.find('a')['href']))
+                title = "{}".format(str(Tobz.find('img')['alt']))
+                image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
+                hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result':data
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
 
 @app.route('/api/anolast', methods=['GET','POST'])
 def zanolast():
@@ -1099,37 +1149,6 @@ def zanoboy():
                 image = "{}".format(str(rafly.find('amp-img')['src']))
                 date = "{}".format(str(rafly.find('div',class_='jamup').text))
                 hasil = data.append({"title":title,"image":image,"link":link,"date":date})
-            return {
-				'status': 200,
-				'creator':'Tobz',
-				'result':data
-			}
-        except Exception as e:
-            print(e)
-            return {
-                'status': False,
-                'error': 'Anime %s Tidak di temukan!' % unquote(query)
-            }
-    else:
-        return {
-            'status': False,
-            'msg': 'input parameter q'
-        }
-
-@app.route('/api/neonime', methods=['GET','POST'])
-def zneonime():
-    if request.args.get('q'):
-        try:
-            query = request.args.get('q')
-            data = []
-            url = requests.get("https://neonime.vip/?s={}".format(query))
-            tbz = BeautifulSoup(url.content,'html.parser')
-            desc = tbz.find('span', {'class': 'ttx'}).text
-            for Tobz in tbz.find_all('div',class_='item episode-home'):
-                link = "{}".format(str(Tobz.find('a')['href']))
-                title = "{}".format(str(Tobz.find('img')['alt']))
-                image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-                hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
             return {
 				'status': 200,
 				'creator':'Tobz',
