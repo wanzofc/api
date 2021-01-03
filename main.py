@@ -1035,7 +1035,7 @@ def zotaku():
                 image = "{}".format(str(rafly.find('img')['src']))
                 link = "{}".format(str(rafly.find('a')['href']))
                 data = bsoup(link)
-                info = data.findAll('div', attrs={'class':'infozingle'})[0]
+            for info in data.findAll('div', class_='infozingle'):
                 rafli = info.findAll('p')
                 title = rafli[0].text.replace("Judul: ","")
                 title2 = rafli[1].text.replace("Japanese: ","")
@@ -1048,7 +1048,7 @@ def zotaku():
                 rilis = rafli[8].text.replace("Tanggal Rilis: ","")
                 studio = rafli[9].text.replace("Studio: ","")
                 genre = rafli[10].text.replace("Genre: ","")
-                info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
+            for info2 in data.findAll('div', class_='sinopc'):
                 rafli2 = info2.findAll('p')
                 sinopsis = rafli2[0].text
                 hasil = data.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
