@@ -62,6 +62,10 @@ def textpro():
                 text2 = request.args.get('text2')
                 result = tp.glitchz(text, text2)
                 return result
+            elif theme.lower() == 'blood':
+                text = request.args.get('text')
+                result = tp.blood(text)
+                return result
             elif theme.lower() == 'jokerlogo':
                 text = request.args.get('text')
                 result = tp.jokerlogo(text)
