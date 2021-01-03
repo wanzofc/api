@@ -66,33 +66,13 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.blood(text)
                 return result
+             elif theme.lower() == 'dropwater':
+                text = request.args.get('text')
+                result = tp.dropwater(text)
+                return result
             elif theme.lower() == 'jokerlogo':
                 text = request.args.get('text')
                 result = tp.jokerlogo(text)
-                return result
-            elif theme.lower() == 'cloudtext1':
-                text = request.args.get('text')
-                result = tp.cloud1(text)
-                return result
-            elif theme.lower() == 'cloudtext2':
-                text = request.args.get('text')
-                result = tp.cloud2(text)
-                return result
-            elif theme.lower() == 'sandwriting1':
-                text = request.args.get('text')
-                result = tp.sand1(text)
-                return result
-            elif theme.lower() == 'sandwriting2':
-                text = request.args.get('text')
-                result = tp.sand2(text)
-                return result
-            elif theme.lower() == 'sandwriting3':
-                text = request.args.get('text')
-                result = tp.sand3(text)
-                return result
-            elif theme.lower() == 'sandwriting4':
-                text = request.args.get('text')
-                result = tp.sand4(text)
                 return result
             elif theme.lower() == 'neon_light':
                 text = request.args.get('text')
