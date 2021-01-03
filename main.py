@@ -1024,14 +1024,15 @@ def short():
             'msg': 'input parameter url'
         }
 
+# ERROR
 @app.route('/api/otakudesu', methods=['GET','POST'])
 def zotaku():
     if request.args.get('q'):
         try:
             query = request.args.get('q')
-            hasilnya = []
+            result = []
             url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            for rafly in url.findAll('div', class_='venser'):
+            for rafly in url.findAll('div', attrs={'class':'venser'}):
                 image = "{}".format(str(rafly.find('img')['src']))
                 link = "{}".format(str(rafly.find('a')['href']))
                 data = bsoup(link)
@@ -1051,11 +1052,11 @@ def zotaku():
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
                 rafli2 = info2.findAll('p')
                 sinopsis = rafli2[0].text
-                hasil = hasilnya.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
+                hasil = result.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
             return {
 				'status': 200,
 				'creator':'Tobz',
-				'result':hasilnya
+				'result':result
 			}
         except Exception as e:
             print(e)
