@@ -66,7 +66,7 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.blood(text)
                 return result
-             elif theme.lower() == 'dropwater':
+            elif theme.lower() == 'dropwater':
                 text = request.args.get('text')
                 result = tp.dropwater(text)
                 return result
