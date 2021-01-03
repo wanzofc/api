@@ -1031,8 +1031,7 @@ def zotaku():
             query = request.args.get('q')
             data = []
             url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            desc = tbz.find('span', {'class': 'ttx'}).text
-            for Tobz in tbz.find_all('div',class_='item episode-home'):
+            for rafly in url.find_all('div',class_='item episode-home'):
                 image = "{}".format(str(rafly.find('img')['src']))
                 imagez = shorturl(image)
                 link = "{}".format(str(rafly.find('a')['href']))
