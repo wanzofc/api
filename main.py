@@ -1036,19 +1036,21 @@ def zotaku():
                 link = "{}".format(str(rafly.find('a')['href']))
                 data = bsoup(link)
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
-                title = info.findAll('p')[0].text.replace("Judul: ","")
-                title2 = info.findAll('p')[1].text.replace("Japanese: ","")
-                rating = info.findAll('p')[2].text.replace("Skor: ","")
-                produser = info.findAll('p')[3].text.replace("Produser: ","")
-                tipe = info.findAll('p')[4].text.replace("Tipe: ","")
-                stat = info.findAll('p')[5].text.replace("Status: ","")
-                episode = info.findAll('p')[6].text.replace("Total Episode: ","")
-                durasi = info.findAll('p')[7].text.replace("Durasi: ","")
-                rilis = info.findAll('p')[8].text.replace("Tanggal Rilis: ","")
-                studio = info.findAll('p')[9].text.replace("Studio: ","")
-                genre = info.findAll('p')[10].text.replace("Genre: ","")
+                rafli = info.findAll('p')
+                title = rafli[0].text.replace("Judul: ","")
+                title2 = rafli[1].text.replace("Japanese: ","")
+                rating = rafli[2].text.replace("Skor: ","")
+                produser = rafli[3].text.replace("Produser: ","")
+                tipe = rafli[4].text.replace("Tipe: ","")
+                stat = rafli[5].text.replace("Status: ","")
+                episode = rafli[6].text.replace("Total Episode: ","")
+                durasi = rafli[7].text.replace("Durasi: ","")
+                rilis = rafli[8].text.replace("Tanggal Rilis: ","")
+                studio = rafli[9].text.replace("Studio: ","")
+                genre = rafli[10].text.replace("Genre: ","")
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
-                sinopsis = info2.findAll('p')[0].text
+                rafli2 = info2.findAll('p')
+                sinopsis = rafli2[0].text
                 hasil = hasilnya.append({"judul":title,"judul_jepang":title2,"rating":rating,"produser":produser,"tipe":tipe,"status":stat,"total_episode":episode,"durasi":durasi,"tanggal_rilis":rilis,"studio":studio,"genre":genre,"sinopsis":sinopsis,"thumbnail":image,"link":link})
             return {
 				'status': 200,
