@@ -70,6 +70,10 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.dropwater(text)
                 return result
+            elif theme.lower() == 'sadwriting1':
+                text = request.args.get('text')
+                result = tp.sandwriting1(text)
+                return result
             elif theme.lower() == 'jokerlogo':
                 text = request.args.get('text')
                 result = tp.jokerlogo(text)
