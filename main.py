@@ -1038,7 +1038,8 @@ def zkomik():
             url = bsoup("https://bacakomik.co/?s={}".format(query))
             tobz = url.findAll('div', class_='animepost')
             title = tobz.img['title']
-            img = tobz.img.get('src')
+            imgz = tobz.find("div",class_="limit")
+            img = imgz.img['src']
             image = shorturl(img)
             link = tobz.a['href']
             soup = bsoup(link)
