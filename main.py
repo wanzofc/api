@@ -1041,21 +1041,23 @@ def zkomik2():
                 img = tobz.img['src']
                 image = shorturl(img)
                 txt = tobz.findAll('span')
-                status = txt[1].text.replace('Status: ','')
-                format = txt[2].text.replace('Format: ','')
-                rilis = txt[3].text.replace('Dirilis: ','')
-                pengarang = txt[4].text.replace('Pengarang: ','')
-                jenis = txt[5].text.replace('Jenis Komik: ','')
-                umur = txt[6].text.replace('Umur Pembaca: ','')
-                cara = txt[7].text.replace('Cara Baca ','')
-                konsep = txt[8].text.replace('Konsep Cerita: ','')
-                update = txt[9].text.replace('Update Terakhir: ','')
-                dilihat = txt[10].text.replace('Dilihat: ','')
+                info = url.find('div', class_='infox')
+                txt = info.findAll('span')
+                status = txt[0].text.replace('Status: ','')
+                formatz = txt[1].text.replace('Format: ','')
+                rilis = txt[2].text.replace('Dirilis: ','')
+                pengarang = txt[3].text.replace('Pengarang: ','')
+                jenis = txt[4].text.replace('Jenis Komik: ','')
+                umur = txt[5].text.replace('Umur Pembaca: ','')
+                cara = txt[6].text.replace('Cara Baca ','')
+                konsep = txt[7].text.replace('Konsep Cerita: ','')
+                update = txt[8].text.replace('Update Terakhir: ','')
+                dilihat = txt[9].text.replace('Dilihat: ','')
             for tobz2 in url.findAll('div', class_='genre-info'):
                 genres = tobz2.text.replace('\n',', ')
             for tobz3 in url.findAll('div', class_='entry-content entry-content-single'):
                 sinopsis = tobz3.find('p').text
-                hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+                hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":formatz,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
             return {
 				'status': 200,
 				'creator':'Tobz',
