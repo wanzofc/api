@@ -1095,6 +1095,7 @@ def zotaku():
             return {
 				'status': 200,
 				'creator':'Tobz',
+				'source':'bacakomik.co'
 				'result': {
 					"judul":rafli[0].text.replace("Judul: ",""),
 					"judul_jepang":rafli[1].text.replace("Japanese: ",""),
