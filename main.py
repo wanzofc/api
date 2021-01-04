@@ -1035,11 +1035,11 @@ def zotaku():
         try:
             query = request.args.get('q')
             url = bs(get('https://otakudesu.tv/?s=%s&post_type=anime' % query, headers=usr_agent).text, 'html.parser')
-            for rafly in url.findAll('div', class_='page'):
+            for rafly in url.findAll('div', class_='venser'):
                 image = rafly.img['src']
                 imagez = shorturl(image)
                 link = rafly.a['href']
-                data = bsoup(link)
+                data = bs(get(link).text, 'html.parser')
                 info = data.find('div', class_='infozingle')
                 rafli = info.findAll('p')
                 info2 = data.find('div', class_='sinopc')
