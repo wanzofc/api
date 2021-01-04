@@ -1036,29 +1036,30 @@ def zkomik():
             hasilnya = []
             result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("https://bacakomik.co/?s={}".format(query))
-            for tobz in url.findAll('div', class_='animepost'):
-                title = tobz.a['alt']
-                link = tobz.a['href']
-                soup = bsoup(link)
-            for info in soup.findAll("div",class_="infoanime"):
-                img = info.img['src']
+            tobz = url.findAll('div', class_='postbody')
+            title = tobz.img['title']
+            link = tobz.a['href']
+            soup = bsoup(link)
+            info = soup.find("div",class_="postbody")
+            txt = info.findAll('span')
+            status = txt[0].text.replace('Status: ','')
+            format = txt[1].text.replace('Format: ','')
+            rilis = txt[2].text.replace('Dirilis: ','')
+            pengarang = txt[3].text.replace('Pengarang: ','')
+            jenis = txt[4].text.replace('Jenis Komik: ','')
+            umur = txt[5].text.replace('Umur Pembaca: ','')
+            cara = txt[6].text.replace('Cara Baca ','')
+            konsep = txt[7].text.replace('Konsep Cerita: ','')
+            update = txt[8].text.replace('Update Terakhir: ','')
+            diihat = txt[9].text.replace('Dilihat: ','')
+            genres = soup.find('div', class_='genre-info').text.replace('\n',', ')
+            rat = tobz.find('div', class_='rating')
+            rate = rat.findAll('i')
+            rating = rate[0].text
+            for imgz in url.findAll('div', class_='postbody'):
+                img = imgz.img['src']
                 image = shorturl(img)
-                txt = info.findAll('span')
-                status = txt[0].text.replace('Status: ','')
-                format = txt[1].text.replace('Format: ','')
-                rilis = txt[2].text.replace('Dirilis: ','')
-                pengarang = txt[3].text.replace('Pengarang: ','')
-                jenis = txt[4].text.replace('Jenis Komik: ','')
-                umur = txt[5].text.replace('Umur Pembaca: ','')
-                cara = txt[6].text.replace('Cara Baca ','')
-                konsep = txt[7].text.replace('Konsep Cerita: ','')
-                update = txt[8].text.replace('Update Terakhir: ','')
-                dilihat = txt[9].text.replace('Dilihat: ','')
-                genres = soup.find('div', class_='genre-info').text.replace('\n',', ')
-                rat = tobz.find('div', class_='rating')
-                rate = rat.findAll('i')
-                rating = rate[0].text
-                hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+            hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
             return {
 				'status': 200,
 				'creator':'Tobz',
