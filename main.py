@@ -1038,12 +1038,12 @@ def zkomik():
             url = bsoup("https://bacakomik.co/?s={}".format(query))
             tobz = url.findAll('div', class_='animepost')
             title = tobz.img['title']
+            img = tobz.img.get('src')
+            image = shorturl(img)
             link = tobz.a['href']
             soup = bsoup(link)
             info = soup.find("div",class_="infoanime")
             txt = info.findAll('span')
-            img = info.img.get('src')
-            image = shorturl(img)
             status = txt[0].text.replace('Status: ','')
             format = txt[1].text.replace('Format: ','')
             rilis = txt[2].text.replace('Dirilis: ','')
