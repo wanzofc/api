@@ -1058,7 +1058,7 @@ def zkomik():
             rat = tobz.find('div', class_='rating')
             rate = rat.findAll('i')
             rating = rate[0].text
-            hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+            hasil = hasilnya.append({"judul":title,"thumb":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
             return {
 				'status': 200,
 				'creator':'Tobz',
