@@ -1036,10 +1036,9 @@ def zotaku():
             for rafly in rtb.findAll('div', attrs={'class':'venser'}):
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
+                print(imagez)
                 link = "{}".format(str(rafly.find('a')['href']))
-                print(rafly)
-                dataz = requests.get(link)
-                data = BeautifulSoup(dataz.content,'html5lib')
+                data = bsoup(link)
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
                 rafli = info.findAll('p')
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
