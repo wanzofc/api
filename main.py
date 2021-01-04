@@ -1037,6 +1037,7 @@ def zotaku():
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
                 link = "{}".format(str(rafly.find('a')['href']))
+                print(link)
                 dataz = requests.get(link)
                 data = BeautifulSoup(dataz.content,'html5lib')
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
