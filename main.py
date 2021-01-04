@@ -1036,7 +1036,7 @@ def zkomik2():
             hasilnya = []
             result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("{}".format(query))
-            for tobz in url.findAll('div', class_='postbody'):
+            for tobz in url.findAll('div', class_='infoanime'):
                 title = tobz.h1.text
                 img = tobz.img['src']
                 image = shorturl(img)
@@ -1051,8 +1051,10 @@ def zkomik2():
                 konsep = txt[8].text.replace('Konsep Cerita: ','')
                 update = txt[9].text.replace('Update Terakhir: ','')
                 dilihat = txt[10].text.replace('Dilihat: ','')
-                genres = tobz.find('div', class_='genre-info').text.replace('\n',', ')
-                sinopsis = tobz.find('div', class_='entry-content entry-content-single').find('p').text
+            for tobz2 in url.findAll('div', class_='genre-info'):
+                genres = tobz2.text.replace('\n',', ')
+            for tobz3 in url.findAll('div', class_='entry-content entry-content-single'):
+                sinopsis = tobz3.find('p').text
                 hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
             return {
 				'status': 200,
