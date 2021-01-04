@@ -1028,6 +1028,54 @@ def short():
             'msg': 'input parameter url'
         }
 
+@app.route('/api/bacakomik', methods=['GET','POST'])
+def zkomik():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            hasilnya = []
+            result = {"creator":"Tobz","result": hasilnya}
+            url = bsoup("https://bacakomik.co/?s={}".format(query))
+            for tobz in url.findAll('div', class_='animepost'):
+                title = tobz.img['title']
+                img = tobz.img['src']
+                image = shorturl(img)
+                link = tobz.a['href']
+                soup = bsoup(link)
+                info = soup.find("div",class_="infox")
+                txt = info.findAll('span')
+                status = txt[0].text.replace('Status: ','')
+                format = txt[1].text.replace('Format: ','')
+                rilis = txt[2].text.replace('Dirilis: ','')
+                pengarang = txt[3].text.replace('Pengarang: ','')
+                jenis = txt[4].text.replace('Jenis Komik: ','')
+                umur = txt[5].text.replace('Umur Pembaca: ','')
+                cara = txt[6].text.replace('Cara Baca ','')
+                konsep = txt[7].text.replace('Konsep Cerita: ','')
+                update = txt[8].text.replace('Update Terakhir: ','')
+                dilihat = txt[9].text.replace('Dilihat: ','')
+                genres = soup.find('div', class_='genre-info').text.replace('\n',', ')
+                rat = tobz.find('div', class_='rating')
+                rate = rat.findAll('i')
+                rating = rate[0].text
+                hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result': hasilnya
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 # ERROR
 @app.route('/api/otakudesu', methods=['GET','POST'])
 def zotaku():
