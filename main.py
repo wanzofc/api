@@ -1039,36 +1039,24 @@ def zotaku():
                 data = bsoup(link)
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
                 rafli = info.findAll('p')
-                title = rafli[0].text.replace("Judul: ","")
-                title2 = rafli[1].text.replace("Japanese: ","")
-                rating = rafli[2].text.replace("Skor: ","")
-                produser = rafli[3].text.replace("Produser: ","")
-                tipe = rafli[4].text.replace("Tipe: ","")
-                stat = rafli[5].text.replace("Status: ","")
-                episode = rafli[6].text.replace("Total Episode: ","")
-                durasi = rafli[7].text.replace("Durasi: ","")
-                rilis = rafli[8].text.replace("Tanggal Rilis: ","")
-                studio = rafli[9].text.replace("Studio: ","")
-                genre = rafli[10].text.replace("Genre: ","")
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
                 rafli2 = info2.findAll('p')
-                sinopsis = rafli2[0].text
             return {
 				'status': 200,
 				'creator':'Tobz',
 				'result': {
-					"judul":title,
-					"judul_jepang":title2,
-					"rating":rating,
-					"produser":produser,
-					"tipe":tipe,
-					"status":stat,
-					"total_episode":episode,
-					"durasi":durasi,
-					"tanggal_rilis":rilis,
-					"studio":studio,
-					"genre":genre,
-					"sinopsis":sinopsis,
+					"judul":rafli[0].text.replace("Judul: ",""),
+					"judul_jepang":rafli[1].text.replace("Japanese: ",""),
+					"rating":rafli[2].text.replace("Skor: ",""),
+					"produser":rafli[3].text.replace("Produser: ",""),
+					"tipe":rafli[4].text.replace("Tipe: ",""),
+					"status":rafli[5].text.replace("Status: ",""),
+					"total_episode":rafli[6].text.replace("Total Episode: ",""),
+					"durasi":rafli[7].text.replace("Durasi: ",""),
+					"tanggal_rilis":rafli[8].text.replace("Tanggal Rilis: ",""),
+					"studio":rafli[9].text.replace("Studio: ",""),
+					"genre":rafli[10].text.replace("Genre: ",""),
+					"sinopsis":rafli2[0].text,
 					"thumbnail":imagez,
 					"link":link
 				}
