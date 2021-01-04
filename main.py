@@ -1035,7 +1035,7 @@ def zotaku():
             for rafly in url.findAll('div', attrs={'class':'venser'}):
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
-                link = rafly.a.get('href')
+                link = rafly.a['href']
                 data = bsoup(link)
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
                 rafli = info.findAll('p')
