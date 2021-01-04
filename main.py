@@ -1030,9 +1030,9 @@ def zotaku():
     if request.args.get('q'):
         try:
             query = request.args.get('q')
-            result = []
-            url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            for rafly in url.findAll('ul', class_='chivsrc'):
+            url = f"https://otakudesu.tv/?s={query}&post_type=anime"
+            urlz = request.get(url)
+            for rafly in urlz.findAll('div', class_='page'):
                 image = rafly.img['src']
                 imagez = shorturl(image)
                 link = rafly.a['href']
