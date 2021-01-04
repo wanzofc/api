@@ -1041,7 +1041,7 @@ def zkomik():
                 link = tobz.a['href']
                 soup = bsoup(link)
             for info in soup.findAll("div",class_="infoanime"):
-            	img = info.img['src']
+                img = info.img['src']
                 image = shorturl(img)
                 txt = info.findAll('span')
                 status = txt[0].text.replace('Status: ','')
