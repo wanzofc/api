@@ -1037,7 +1037,7 @@ def zkomik():
             result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("https://bacakomik.co/?s={}".format(query))
             tobz = url.findAll('div', class_='animepost')
-            title = tobz.img['title']
+            title = tobz.a['alt']
             link = tobz.a['href']
             soup = bsoup(link)
             info = soup.find("div",class_="infox")
