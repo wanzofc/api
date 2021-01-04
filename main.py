@@ -1031,12 +1031,14 @@ def zotaku():
         try:
             query = request.args.get('q')
             result = []
-            url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            for rafly in url.findAll('div', attrs={'class':'venser'}):
+            url = requests.get("https://otakudesu.tv/?s={}&post_type=anime".format(query))
+            rtb = BeautifulSoup(dataz.content,'html5lib')
+            for rafly in rtb.findAll('div', attrs={'class':'venser'}):
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
                 link = rafly.a['href']
-                data = bsoup(link)
+                dataz = requests.get(link)
+                data = BeautifulSoup(dataz.content,'html5lib')
                 info = data.findAll('div', attrs={'class':'infozingle'})[0]
                 rafli = info.findAll('p')
                 info2 = data.findAll('div', attrs={'class':'sinopc'})[0]
