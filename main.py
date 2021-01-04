@@ -1028,6 +1028,49 @@ def short():
             'msg': 'input parameter url'
         }
 
+@app.route('/api/detailbacakomik', methods=['GET','POST'])
+def zkomik2():
+    if request.args.get('url'):
+        try:
+            query = request.args.get('url')
+            hasilnya = []
+            result = {"creator":"Tobz","result": hasilnya}
+            url = bsoup("{}".format(query))
+            for tobz in url.findAll('div', class_='postbody'):
+                title = tobz.h1.text
+                img = tobz.img['src']
+                image = shorturl(img)
+                txt = tobz.findAll('span')
+                status = txt[1].text.replace('Status: ','')
+                format = txt[2].text.replace('Format: ','')
+                rilis = txt[3].text.replace('Dirilis: ','')
+                pengarang = txt[4].text.replace('Pengarang: ','')
+                jenis = txt[5].text.replace('Jenis Komik: ','')
+                umur = txt[6].text.replace('Umur Pembaca: ','')
+                cara = txt[7].text.replace('Cara Baca ','')
+                konsep = txt[8].text.replace('Konsep Cerita: ','')
+                update = txt[9].text.replace('Update Terakhir: ','')
+                dilihat = txt[10].text.replace('Dilihat: ','')
+                genres = tobz.find('div', class_='genre-info').text.replace('\n',', ')
+                sinopsis = tobz.find('div', class_='entry-content entry-content-single').find('p').text
+                hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result': hasilnya
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Komik %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter url'
+        }
+
 @app.route('/api/bacakomik', methods=['GET','POST'])
 def zkomik():
     if request.args.get('q'):
@@ -1054,7 +1097,7 @@ def zkomik():
             print(e)
             return {
                 'status': False,
-                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+                'error': 'Komik %s Tidak di temukan!' % unquote(query)
             }
     else:
         return {
