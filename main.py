@@ -1042,7 +1042,7 @@ def zkomik():
             soup = bsoup(link)
             info = soup.find("div",class_="infoanime")
             txt = info.findAll('span')
-           	img = info.img['src']
+            img = info.img.get('src')
             image = shorturl(img)
             status = txt[0].text.replace('Status: ','')
             format = txt[1].text.replace('Format: ','')
