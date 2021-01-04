@@ -1036,11 +1036,11 @@ def zkomik():
             hasilnya = []
             result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("https://bacakomik.co/?s={}".format(query))
-            tobz = url.findAll('div', class_='postbody')
+            tobz = url.findAll('div', class_='animepost')
             title = tobz.img['title']
             link = tobz.a['href']
             soup = bsoup(link)
-            info = soup.find("div",class_="postbody")
+            info = soup.find("div",class_="infox")
             txt = info.findAll('span')
             status = txt[0].text.replace('Status: ','')
             format = txt[1].text.replace('Format: ','')
@@ -1056,7 +1056,7 @@ def zkomik():
             rat = tobz.find('div', class_='rating')
             rate = rat.findAll('i')
             rating = rate[0].text
-            for imgz in url.findAll('div', class_='postbody'):
+            for imgz in url.findAll('div', class_='animepost'):
                 img = imgz.img['src']
                 image = shorturl(img)
             hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
