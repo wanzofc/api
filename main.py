@@ -1032,7 +1032,7 @@ def zotaku():
             query = request.args.get('q')
             result = []
             url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            for rafly in url.findAll('div', attrs={'class':'venser'}):
+            for rafly in url.findAll('ul', class_='chivsrc'):
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
                 print(imagez)
@@ -1046,6 +1046,7 @@ def zotaku():
 				'status': 200,
 				'creator':'Tobz',
 				'result': {
+					"judul":rafli[0].text.replace("Judul: ",""),
 					"judul_jepang":rafli[1].text.replace("Japanese: ",""),
 					"rating":rafli[2].text.replace("Skor: ",""),
 					"produser":rafli[3].text.replace("Produser: ",""),
