@@ -1033,10 +1033,9 @@ def zotaku():
             result = []
             url = bsoup("https://otakudesu.tv/?s={}&post_type=anime".format(query))
             for rafly in url.findAll('ul', class_='chivsrc'):
-                image = image = rafly.img.get('src')
+                image = rafly.img['src']
                 imagez = shorturl(image)
-                print(imagez)
-                link = "{}".format(str(rafly.find('a')['href']))
+                link = rafly.a['href']
                 data = bsoup(link)
                 info = data.find('div', class_='infozingle')
                 rafli = info.findAll('p')
