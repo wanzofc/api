@@ -1057,7 +1057,7 @@ def zkomik2():
                 genres = tobz2.text.replace('\n',', ')
             for tobz3 in url.findAll('div', class_='entry-content entry-content-single'):
                 sinopsis = tobz3.find('p').text
-                hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":formatz,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+                hasil = hasilnya.append({"judul":title,"image":image,"sinopsis":sinopsis,"status":status,"format":formatz,"dirilis":rilis,"pengarang":pengarang,"jeniskomik":jenis,"umurpembaca":umur,"carabaca":cara,"konsepcerita":konsep,"updateterakhir":update,"genre":genres})
             return {
 				'status': 200,
 				'creator':'Tobz',
