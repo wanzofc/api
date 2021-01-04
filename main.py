@@ -1032,7 +1032,7 @@ def zotaku():
             query = request.args.get('q')
             result = []
             url = requests.get("https://otakudesu.tv/?s={}&post_type=anime".format(query))
-            rtb = BeautifulSoup(dataz.content,'html5lib')
+            rtb = BeautifulSoup(url.content,'html5lib')
             for rafly in rtb.findAll('div', attrs={'class':'venser'}):
                 image = image = rafly.img.get('src')
                 imagez = shorturl(image)
