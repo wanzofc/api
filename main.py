@@ -1036,13 +1036,13 @@ def zkomik():
             hasilnya = []
             result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("https://bacakomik.co/?s={}".format(query))
-            for tobz in url.findAll('div', class_='animepost')[0]:
-                title = tobz.img['title']
-                img = tobz.img['src']
-                image = shorturl(img)
+            for tobz in url.findAll('div', class_='animepost'):
+                title = tobz.a['alt']
                 link = tobz.a['href']
                 soup = bsoup(link)
-                info = soup.find("div",class_="infox")
+            for info in soup.findAll("div",class_="infoanime"):
+            	img = info.img['src']
+                image = shorturl(img)
                 txt = info.findAll('span')
                 status = txt[0].text.replace('Status: ','')
                 format = txt[1].text.replace('Format: ','')
