@@ -1046,7 +1046,6 @@ def zotaku():
 				'status': 200,
 				'creator':'Tobz',
 				'result': {
-					"judul":rafli[0].text.replace("Judul: ",""),
 					"judul_jepang":rafli[1].text.replace("Japanese: ",""),
 					"rating":rafli[2].text.replace("Skor: ",""),
 					"produser":rafli[3].text.replace("Produser: ",""),
