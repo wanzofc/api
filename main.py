@@ -980,10 +980,15 @@ def zcuaca():
 	if request.args.get('wilayah'):
 		try:
 			query = request.args.get('wilayah')
-			url = url = f'https://rest.farzain.com/api/cuaca.php?id={q}&apikey=fckveza'
+			url = url = f'https://rest.farzain.com/api/cuaca.php?id={query}&apikey=fckveza'
 			cuc = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
 			print(sim)
-			if weather['respon']['deskripsi'] == 'null' or weather['respon']['deskripsi'] == None:return {'creator':'RaflyRTB','status': 404,'error': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'}
+			if weather['respon']['deskripsi'] == 'null' or weather['respon']['deskripsi'] == None:
+				return {
+					'creator':'Tobz',
+					'status': 404,
+					'error': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'
+				}
 			else:
 				return {
 					'creator':'Tobz',
