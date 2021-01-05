@@ -1220,19 +1220,25 @@ def zneonime():
     if request.args.get('q'):
         try:
             query = request.args.get('q')
-            data = []
-            url = requests.get("https://neonime.vip/?s={}".format(query))
-            tbz = BeautifulSoup(url.content,'html.parser')
-            desc = tbz.find('span', {'class': 'ttx'}).text
-            for Tobz in tbz.find_all('div',class_='item episode-home'):
+            hasilnya = []
+            url = bsoup("https://neonime.vip/?s={}".format(query))
+            desc = url.find('span', {'class': 'ttx'}).text
+            for Tobz in url.find_all('div',class_='item episode-home'):
                 link = "{}".format(str(Tobz.find('a')['href']))
                 title = "{}".format(str(Tobz.find('img')['alt']))
                 image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-                hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
+                data = bsoup(link)
+                info = data.find('div', class_='ladoA')
+                upload = info.find('div', class_='meta-a').text
+                data2 = info.find('div', class_='meta-b')
+                info2 = data2.findAll('span', class_='metx')
+                season = info2[0].text.replace(' Season ','')
+                episode = info2[1].text.replace(' Episode ','')
+                hasil = hasilnya.append({"title":title,"desc": desc,"image":image,"link":link,'diupload':upload,'season':season,'episode':episode})
             return {
 				'status': 200,
 				'creator':'Tobz',
-				'result':data
+				'result':hasilnya
 			}
         except Exception as e:
             print(e)
