@@ -843,6 +843,7 @@ def kbbz():
 			query = request.args.get('kata')
 			auth = AutentikasiKBBI(Lokasi_kuki='./coki.txt')
 			data = str(KBBI(query, auth))
+			print(data)
 			return {
 				'creator': 'Tobz',
 				'status': 200,
