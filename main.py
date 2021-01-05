@@ -1034,29 +1034,24 @@ def zfilm():
         try:
             query = request.args.get('q')
             hasilnya = []
-            result = {"creator":"Tobz","result": hasilnya}
+            result = {"creator":"Tobz","result": {"data_movie":[]}}
             url = bsoup("http://149.56.24.226/?s={}".format(query))
-            for tobz in url.findAll('div', class_='search-item'):
-                title = tobz.a['title']
-                img = tobz.img['src']
-                image = shorturl(img)
-                link = tobz.a['href']
-                info = tobz.findAll('p')
-                sutradara = info[1].text.replace('Sutradara: ','')
-                bintang = info[2].text.replace('Bintang: ','')
-                data = bsoup(link)
-                info2 = data.find('div', class_='col-xs-10 content')
-                txt = info2.findAll('div')
-                kualitas = txt[0].text.replace('Kualitas','')
-                negara = txt[1].text.replace('Negara','')
-                genre = txt[4].text.replace('Genre','')
-                imdb = txt[5].findAll('h3')
-                imdb0 = imdb[0].text+'/'
-                imdb1 = imdb[1].text+' from '
-                imdb2 = imdb[2].text+' users'
-                terbit = txt[6].text.replace('Diterbitkan','')
-                penerjemah = txt[7].text.replace('Penerjemah','').replace('Oleh','')
-                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah})
+            for rafly in url.findAll('div', attrs={'class':'search-item'}):
+                link = rafly.a['href']
+                img = "http:{}".format(str(rafly.find('img')['src']))
+                title = rafly.a['title']
+                rtb2 = bsoup(link)
+                rafly2 = rtb2.find("div",class_="col-xs-10 content")
+                mendetail = rafly2.findAll('div')
+                Kualitas = mendetail[0].find('h3').text
+                negara = mendetail[1].find('h3').text
+                bintang_film = mendetail[2].find('h3').text
+                sutradara = mendetail[3].find('h3').text
+                genre = mendetail[4].find('h3').text
+                imdb = mendetail[5].find('h3').text+'/10'
+                diterbitkan = mendetail[6].find('h3').text
+                penerjemah = mendetail[7].find('h3').text
+                result['result']["data_movie"].append({"title":title,'img':img,"link":link,'Kualitas':Kualitas,'negara':negara,'bintang_film':bintang_film,'sutradara':sutradara,'genre':genre,'imdb':imdb,'diterbitkan':diterbitkan,'penerjemah':penerjemah})
             return {
 				'status': 200,
 				'creator':'Tobz',
