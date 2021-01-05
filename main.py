@@ -1044,21 +1044,7 @@ def zfilm():
                 info = tobz.findAll('p')
                 sutradara = info[1].text.replace('Sutradara: ','')
                 bintang = info[2].text.replace('Bintang: ','')
-                data = bsoup(link)
-                info2 = data.find('div', class_='col-xs-10 content')
-                txt = info2.findAll('div')
-                kualitas = txt[0].text.replace('Kualitas','')
-                negara = txt[1].text.replace('Negara','')
-                genre = txt[4].text.replace('Genre','')
-                imdb = txt[5].findAll('h3')
-                imdb0 = imdb[0].text+'/'
-                imdb1 = imdb[1].text+' from '
-                imdb2 = imdb[2].text+' users'
-                terbit = txt[6].text.replace('Diterbitkan','')
-                penerjemah = txt[7].text.replace('Penerjemah','').replace('Oleh','')
-                dl = data.find('div', class_='download-movie')
-                download = dl.a['href']
-                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah,"download":download})
+                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang})
             return {
 				'status': 200,
 				'creator':'Tobz',
