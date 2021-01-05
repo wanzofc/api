@@ -1232,9 +1232,10 @@ def zneonime():
         try:
             query = request.args.get('q')
             hasilnya = []
-            url = bsoup("https://neonime.vip/?s={}".format(query))
-            desc = url.find('span', {'class': 'ttx'}).text
-            for Tobz in url.find_all('div',class_='item episode-home'):
+            url = requests.get("https://neonime.vip/?s={}".format(query))
+            tbz = BeautifulSoup(url.content,'html.parser')
+            desc = tbz.find('span', {'class': 'ttx'}).text
+            for Tobz in tbz.findAll('div',class_='item episode-home'):
                 link = "{}".format(str(Tobz.find('a')['href']))
                 title = "{}".format(str(Tobz.find('img')['alt']))
                 image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
