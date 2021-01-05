@@ -840,11 +840,12 @@ def kbbz():
 	if request.args.get('kata'):
 		try:
 			query = request.args.get('kata')
-			url = get('https://mnazria.herokuapp.com/api/kbbi?search={}'.format(query)).json()['result']
+			auth = AutentikasiKBBI(path='./coki.txt')
+			data = str(KBBI(query, auth))
 			return {
+				'creator': 'Tobz',
 				'status': 200,
-				'result': url,
-				'creator': 'Tobz'
+				'result': data
 			}
 		except:
 			return {
