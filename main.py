@@ -1028,6 +1028,54 @@ def short():
             'msg': 'input parameter url'
         }
 
+@app.route('/api/film', methods=['GET','POST'])
+def zkomik():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            hasilnya = []
+            result = {"creator":"Tobz","result": hasilnya}
+            url = bsoup("http://149.56.24.226/?s={}".format(query))
+            for tobz in url.findAll('div', class_='search-item'):
+                title = tobz.a['title']
+                img = tobz.img['src']
+                image = shorturl(img)
+                link = tobz.a['href']
+                info = tobz.findAll('p')
+                sutradara = info[1].text.replace('Sutradara: ','')
+                bintang = info[2].text.replace('Bintang: ','')
+                data = bsoup(link)
+                info2 = data.find('div', class_='col-xs-10 content')
+                txt = info2.findAll('div')
+                kualitas = txt[0].text.replace('Kualitas','')
+                negara = txt[1].text.replace('Negara','')
+                genre = txt[4].text.replace('Genre','')
+                imdb = txt[5].findAll('h3')
+                imdb0 = imdb[0].text+'/'
+                imdb1 = imdb[1].text+' from '
+                imdb2 = imdb[2].text+' users'
+                terbit = txt[6].text.replace('Diterbitkan','')
+                penerjemah = txt[7].text.replace('Penerjemah','').replace('Oleh','')
+                dl = data.find('div', class_='download-movie')
+                download = dl.a['href']
+                hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah,"download":download})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result': hasilnya
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Komik %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 @app.route('/api/bacakomik', methods=['GET','POST'])
 def zkomik():
     if request.args.get('q'):
