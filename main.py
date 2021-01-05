@@ -1056,9 +1056,7 @@ def zfilm():
                 imdb2 = imdb[2].text+' users'
                 terbit = txt[6].text.replace('Diterbitkan','')
                 penerjemah = txt[7].text.replace('Penerjemah','').replace('Oleh','')
-                dl = data.find('div', class_='download-movie')
-                download = dl.a['href']
-                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah,"download":download})
+                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah})
             return {
 				'status': 200,
 				'creator':'Tobz',
