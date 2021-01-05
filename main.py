@@ -322,7 +322,7 @@ def tts():
 					'msg': '[❗] Maaf teks terlalu panjang!!',
 				}
 			else:
-				url = f'https://rest.farzain.com/api/tts.php?id={teks}&apikey='
+				url = f'https://rest.farzain.com/api/tts.php?id={teks}&apikey=fckveza'
 				if os.path.isfile('./tts/tts.mp3') == True:
 					os.remove('./tts/tts.mp3')
 					Tts = get(f'{url}{apiKey}').content
@@ -1070,8 +1070,7 @@ def zfilm():
         try:
             query = request.args.get('q')
             hasilnya = []
-            result = {"creator":"Tobz","result": hasilnya}
-            url = bsoup("http://149.56.24.226/?s={}#gsc.tab=0&gsc.q=frozen&gsc.page=1".format(query))
+            url = bsoup("http://149.56.24.226/?s={}".format(query))
             for tobz in url.findAll('div', class_='search-item'):
                 title = tobz.a['title']
                 img = tobz.img['src']
@@ -1118,7 +1117,6 @@ def zkomik():
         try:
             query = request.args.get('q')
             hasilnya = []
-            result = {"creator":"Tobz","result": hasilnya}
             url = bsoup("https://bacakomik.co/?s={}".format(query))
             tobz = url.find('div', class_='animepost')
             link = tobz.a['href']
