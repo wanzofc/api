@@ -982,7 +982,7 @@ def zcuaca():
 			query = request.args.get('wilayah')
 			url = url = f'https://rest.farzain.com/api/cuaca.php?id={query}&apikey=fckveza'
 			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
-			if weather['respon']['deskripsi'] == 'null' or weather['respon']['deskripsi'] == None:
+			if data['respon']['deskripsi'] == 'null' or data['respon']['deskripsi'] == None:
 				return {
 					'creator':'Tobz',
 					'status': 404,
@@ -993,13 +993,13 @@ def zcuaca():
 					'creator':'Tobz',
 					'status': 200,
 					'result': {
-						'tempat': weather['respon']['tempat'],
-						'cuaca': weather['respon']['cuaca'],
-						'desk': weather['respon']['deskripsi'],
-						'suhu': weather['respon']['suhu'],
-						'kelembapan': weather['respon']['kelembapan'],
-						'udara': weather['respon']['udara'],
-						'angin': weather['respon']['angin']
+						'tempat': data['respon']['tempat'],
+						'cuaca': data['respon']['cuaca'],
+						'desk': data['respon']['deskripsi'],
+						'suhu': data['respon']['suhu'],
+						'kelembapan': data['respon']['kelembapan'],
+						'udara': data['respon']['udara'],
+						'angin': data['respon']['angin']
 					}
 				}
 		except Exception as e:
