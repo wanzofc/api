@@ -1003,7 +1003,32 @@ def zcuaca():
 			'msg': '[!] Masukkan parameter text'
 		}
 
-@app.route('/api/shorturl', methods=['GET','POST'])
+@app.route('/api/bitly', methods=['GET','POST'])
+def short2():
+    if request.args.get('url'):
+        try:
+            query = request.args.get('url')
+            url = get("https://api-ssl.bitly.com/v3/shorten?access_token=eeed32b267a6f473e0e824aa685527cf1e18a5e6&longUrl={}".format(query)).json()
+            data = url['data']['url']
+            print(data)
+            return {
+            	'status': 200,
+	            'creator':'Tobz',
+	            'result': data
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Url %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter url'
+        }
+
+@app.route('/api/tinyurl', methods=['GET','POST'])
 def short():
     if request.args.get('url'):
         try:
