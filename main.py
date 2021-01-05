@@ -1241,7 +1241,7 @@ def zneonime():
                 image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
                 data = bsoup(link)
                 info = data.find('div', class_='ladoA')
-                upload = info.findAll('div', class_='meta-a').text
+                upload = info.find('div', class_='meta-a').text
                 data2 = info.find('div', class_='meta-b')
                 info2 = data2.findAll('span', class_='metx')
                 season = info2[0].text.replace(' Season ','')
