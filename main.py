@@ -1240,13 +1240,11 @@ def zneonime():
                 title = "{}".format(str(Tobz.find('img')['alt']))
                 image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
                 data = bsoup(link)
-                upz = data.find('div', class_='meta-a').find('p')
-                upload = upz[0].text
                 data2 = data.find('div', class_='meta-b')
                 info2 = data2.findAll('span', class_='metx')
                 season = info2[0].text.replace(' Season ','')
                 episode = info2[1].text.replace(' Episode ','')
-                hasil = hasilnya.append({"title":title,"desc": desc,"image":image,"link":link,'diupload':upload,'season':season,'episode':episode})
+                hasil = hasilnya.append({"title":title,"desc": desc,"image":image,"link":link,'season':season,'episode':episode})
             return {
 				'status': 200,
 				'creator':'Tobz',
