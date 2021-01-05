@@ -997,12 +997,12 @@ def zcuaca():
 					'angin': weather['respon']['angin']
 				}
 			}
-		except Exception as e:
-			print(e);
-			return {
-				'status': False,
-				'message': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'
-			}
+	except Exception as e:
+		print(e);
+		return {
+			'status': False,
+			'message': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'
+		}
 	else:
 		return {
 			'status': False,
