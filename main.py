@@ -978,24 +978,30 @@ def simi():
 @app.route('/api/cuaca', methods=['GET','POST'])
 def zcuaca():
 	if request.args.get('wilayah'):
-		try:
-			query = request.args.get('wilayah')
-			url = f'http://tobz-cuaca.herokuapp.com/?menu=cuaca&wilayah={query}'
-			cuc = get(url).json()
-			print(sim)
-			return {
-				'status': 200,
-				'creator': 'Tobz',
-				'kota': cuc[0]['Kota'],
-				'malam': cuc[0]['Malam'],
-				'siang': cuc[0]['Dini Hari'],
-				'suhu': cuc[0]['Suhu'],
-				'kelembapan': cuc[0]['Kelembaban']
-			}
-		except:
+		query = request.args.get('wilayah')
+		url = url = f'https://rest.farzain.com/api/cuaca.php?id={q}&apikey=fckveza'
+		cuc = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+		print(sim)
+		if weather['respon']['deskripsi'] == 'null' or weather['respon']['deskripsi'] == None:return {'creator':'RaflyRTB','status': 404,'error': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'}
+			else:
+				return {
+					'creator':'Tobz',
+					'status': 200,
+					'result': {
+						'tempat': weather['respon']['tempat'],
+						'cuaca': weather['respon']['cuaca'],
+						'desk': weather['respon']['deskripsi'],
+						'suhu': weather['respon']['suhu'],
+						'kelembapan': weather['respon']['kelembapan'],
+						'udara': weather['respon']['udara'],
+						'angin': weather['respon']['angin']
+					}
+				}
+		except Exception as e:
+			print(e);
 			return {
 				'status': False,
-				'error': '[❗] Maaf, Text yang anda masukan salah!'
+				'message': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'
 			}
 	else:
 		return {
