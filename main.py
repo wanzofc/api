@@ -11,12 +11,11 @@ from urllib.parse import *
 from urllib.request import *
 from flask import *
 from flask import Flask, request, abort, redirect, jsonify
-from kbbi import KBBI, AutentikasiKBBI
 from werkzeug.exceptions import *
 #from werkzeug.utils import *
 from bs4 import BeautifulSoup as bs
 from requests import get, post
-import os, math, json, random, re, html_text, pytesseract, base64, time, smtplib, html5lib, kbbi
+import os, math, json, random, re, html_text, pytesseract, base64, time, smtplib, html5lib
 
 ua_ig = 'Mozilla/5.0 (Linux; Android 10; Redmi Note 9 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.127 Mobile Safari/537.36'
 
@@ -841,13 +840,11 @@ def kbbz():
 	if request.args.get('kata'):
 		try:
 			query = request.args.get('kata')
-			auth = AutentikasiKBBI(Lokasi_kuki='./coki.txt')
-			data = str(KBBI(query, auth))
-			print(data)
+			url = get('https://mnazria.herokuapp.com/api/kbbi?search={}'.format(query)).json()['result']
 			return {
-				'creator': 'Tobz',
 				'status': 200,
-				'result': data
+				'result': url,
+				'creator': 'Tobz'
 			}
 		except:
 			return {
