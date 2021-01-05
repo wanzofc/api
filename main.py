@@ -1068,7 +1068,7 @@ def zfilm():
             print(e)
             return {
                 'status': False,
-                'error': 'Komik %s Tidak di temukan!' % unquote(query)
+                'error': 'Film %s Tidak di temukan!' % unquote(query)
             }
     else:
         return {
