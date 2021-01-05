@@ -1029,7 +1029,7 @@ def short():
         }
 
 @app.route('/api/film', methods=['GET','POST'])
-def zkomik():
+def zfilm():
     if request.args.get('q'):
         try:
             query = request.args.get('q')
