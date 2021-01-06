@@ -1078,7 +1078,7 @@ def zfilm():
                 image = shorturl(img)
                 rating = tobz.find('div', class_='gmr-rating-item').text.replace('Rating: ','')+'/10'
                 genre_negara = tobz.find('div', class_='gmr-movie-on').text
-                hasil = data.append({"judul":title,"thumb":image,"link":link,"rating":rating,"genre_negara":genre})
+                hasil = data.append({"judul":title,"thumb":image,"link":link,"rating":rating,"genre_negara":genre_negara})
             return {
 				'status': 200,
 				'creator':'Tobz',
