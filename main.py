@@ -1202,9 +1202,7 @@ def zstikline():
             return {
                 'creator': 'Tobz',
                 'status': 200,
-                'result': {
-                    'sticker': data
-                }
+                'result': data
             }
         except Exception as e:
             print(e)
