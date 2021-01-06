@@ -1064,6 +1064,39 @@ def short():
             'msg': 'input parameter url'
         }
 
+@app.route('/api/film2', methods=['GET','POST'])
+def zfilm2():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            data = []
+            url = bsoup("http://149.56.24.226/?s={}#gsc.tab=0&gsc.q=cars&gsc.page=1".format(query))
+            for tobz in url.findAll('div', class_='search-item'):
+                title = tobz.a['title']
+                link = tobz.a['href']
+                info = tobz.find('div', class_='col-xs-9 col-sm-10 search-content')
+                category = info.find('p', class_='cat-links').text
+                txt = info.findAll('p')
+                sutradara = txt[1].text.replace('Sutradara: ','')
+                bintang = txt[2].text.replace('Bintang: ','')
+                hasil = data.append({"judul":title,"link":link,"category":category,"sutradara":sutradara,"bintang":bintang})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result': data
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Film %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 @app.route('/api/film', methods=['GET','POST'])
 def zfilm():
     if request.args.get('q'):
