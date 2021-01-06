@@ -1072,22 +1072,13 @@ def zfilm():
             data = []
             url = bsoup("http://167.99.71.200/?s={}".format(query))
             for tobz in url.findAll('article', attrs={'itemscope':'itemscope'}):
+                title = tobz.a['title']
                 link = tobz.a['href']
-                info = bsoup(link)
-                titik = info.find('div', class_='gmr-movie-data-top')
-                title = titik.h1.text
-                test = titik.findAll('div', class_='gmr-movie-innermeta')[0]
-                tob = test.findAll('span')
-                genre = tob[0].text.replace('Genre: ','')
-                test2 = titik.findAll('div', class_='gmr-movie-innermeta')[1]
-                tob2 = test2.findAll('span')
-                kualitas = tob2[0].text.replace('Kualitas: ','')
-                dilihat = info.find('span', class_='gmr-movie-view').text.replace('Dilihat: ','')
-                rating = info.find('div', class_="gmr-meta-rating").text
-                sinopsis = info.find('div', class_='entry-content entry-content-single').find('p').text.replace('\u2019','').replace('\u2018','')
-                txtz = info.find('div', class_='entry-content entry-content-single')
-                rilis = txtz.find('time').text
-                hasil = data.append({"judul":title,"link":link,"genre":genre,"kualitas":kualitas,'rating':rating,"dilihat":dilihat,"sinopsis":sinopsis,"dirilis":rilis})
+                img = tobz.img['src']
+                image = shorturl(img)
+                rating = tobz.find('div', class_='gmr-rating-item').text.replace('Rating: ','')+'/10'
+                genre_negara = tobz.find('div', class_='gmr-movie-on').text
+                hasil = data.append({"judul":title,"thumb":image,"link":link,"rating":rating,"genre_negara":genre})
             return {
 				'status': 200,
 				'creator':'Tobz',
