@@ -1066,32 +1066,27 @@ def short():
 
 @app.route('/api/film2', methods=['GET','POST'])
 def zfilm2():
-    if request.args.get('q'):
-        try:
-            query = request.args.get('q')
-            data = []
-            url = bsoup("http://149.56.24.226/?s={}#gsc.tab=0&gsc.q=cars&gsc.page=1".format(query))
-            for tobz in url.findAll('div', class_='search-item'):
-                title = tobz.a['title']
-                link = tobz.a['href']
-                image = tobz.img['src']
-                hasil = data.append({"judul":title,"link":link,"image":image})
-            return {
-				'status': 200,
+	if request.args.get('wilayah'):
+		try:
+			query = request.args.get('wilayah')
+			url = url = f'https://rest.farzain.com/api/film.php?id={query}&apikey=fckveza'
+			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+			return {
 				'creator':'Tobz',
+				'status': 200,
 				'result': data
 			}
-        except Exception as e:
-            print(e)
-            return {
-                'status': False,
-                'error': 'Film %s Tidak di temukan!' % unquote(query)
-            }
-    else:
-        return {
-            'status': False,
-            'msg': 'input parameter q'
-        }
+		except Exception as e:
+			print(e);
+			return {
+				'status': False,
+				'message': 'Gagal mengambil informasi cuaca, mungkin tempat tidak terdaftar/salah!'
+			}
+	else:
+		return {
+			'status': False,
+			'msg': '[!] Masukkan parameter text'
+		}
 
 @app.route('/api/film', methods=['GET','POST'])
 def zfilm():
