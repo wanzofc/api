@@ -1070,7 +1070,7 @@ def zfilm():
         try:
             query = request.args.get('q')
             hasilnya = []
-            url = bsoup("http://149.56.24.226/?s={}".format(query))
+            url = bsoup("http://149.56.24.226/?s={}#gsc.tab=0&gsc.q=cars&gsc.page=1".format(query))
             for tobz in url.findAll('div', class_='search-item'):
                 title = tobz.a['title']
                 img = tobz.img['src']
