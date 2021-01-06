@@ -1085,13 +1085,8 @@ def zfilm():
                 dilihat = info.find('span', class_='gmr-movie-view').text.replace('Dilihat: ','')
                 rating = info.find('div', class_="gmr-meta-rating").text
                 sinopsis = info.find('div', class_='entry-content entry-content-single').find('p').text.replace('\u2019','').replace('\u2018','')
-                txtz = info.find('div', class_='entry-content entry-content-single')
-                txt = txtz.findAll('tr')
-                pemain = txt[1].text.replace('\n','').replace('Pemain:','')
-                direksi = txt[2].text.replace('\n','').replace('Direksi:','')
-                negara = txt[3].text.replace('\n','').replace('Negara:','')
                 rilis = txtz.find('time').text
-                hasil = data.append({"judul":title,"link":link,"genre":genre,"kualitas":kualitas,'rating':rating,"dilihat":dilihat,"direksi":direksi,"pemain":pemain,"negara":negara,"sinopsis":sinopsis,"dirilis":rilis})
+                hasil = data.append({"judul":title,"link":link,"genre":genre,"kualitas":kualitas,'rating':rating,"dilihat":dilihat,"sinopsis":sinopsis,"dirilis":rilis})
             return {
 				'status': 200,
 				'creator':'Tobz',
