@@ -1189,16 +1189,19 @@ def zjamdunia():
             'msg': 'input parameter lokasi'
         }
 
-@app.route('/api/stickerline', methods=['GET','POST'])
-def zstikline():
+@app.route('/api/nekopoi', methods=['GET','POST'])
+def zneko():
     if request.args.get('url'):
         try:
             query = request.args.get('url')
             data = []
-            url = bsoup("{}".format(query))
-            for tobz in url.findAll('li', class_='mdCMN09Li FnStickerPreviewItem'):
-                link = "{}".format(str(tobz.find('span')['style']).replace('background-image:url(','').replace(');',''))
-                hasil = data.append({"link": link})
+            url = bsoup("https://nekopoi.care/?s={}&post_type=anime".format(query))
+            for tobz in url.findAll('div', class_='top'):
+                title = tobz.h2.text
+                image = tobz.img['src']
+                link = tobz.a['href']
+                sinopsis = tobz.find('div', class_='desc').find('p').text
+                hasil = data.append({"title":title,"image":image,"link":link,"sinopsis":sinopsis})
             return {
                 'creator': 'Tobz',
                 'status': 200,
