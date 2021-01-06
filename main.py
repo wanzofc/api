@@ -43,7 +43,7 @@ def convert_size(size_bytes):
     s = round(size_bytes / p, 2)
     return '%s %s' % (s, size_name[i])
 def bsoup(link,hdr=True):
-    CustomHeader = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"}
+    CustomHeader = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"}
     if hdr == False:return BeautifulSoup(requests.get(link).content, "html.parser")
     else:return BeautifulSoup(requests.get(link,headers=CustomHeader).content, "html.parser")
 def shorturl(link):return get("https://tinyurl.com/api-create.php?url="+link).text
