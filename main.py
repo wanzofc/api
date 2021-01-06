@@ -1231,6 +1231,46 @@ def zneolast():
         'result': data
     }
 
+@app.route('/api/kiryuu', methods=['GET','POST'])
+def zkiryuu():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            data = []
+            url = bsoup("https://kiryuu.co/?s={}".format(query))
+            for Tobz in url.findAll('div',class_='bs'):
+                title = "{}".format(str(Tobz.find('a')['title']))
+                img = "{}".format(str(Tobz.find('img')['src']))
+                image = shorturl(img)
+                link = "{}".format(str(Tobz.find('a')['href']))
+                format = Tobz.find('div', class_='limit').text.replace('\n','').replace(' ','')
+                chapter = Tobz.find('div', class_='adds').text.replace('\n','')
+                rating = Tobz.find('div', class_='numscore').text
+                info = bsoup(link)
+                gen = info.find('span', class_='mgen').text.replace(' ',', ')
+                sinopsis = info.find('div', class_='entry-content entry-content-single').text.replace('\n','')
+                follow = info.find('div', class_='bmc').text
+                txtz = info.find('div', class_='tsinfo bixbox')
+                status = txtz.findAll('div')[0].text.replace('\n','').replace('Status ','').replace('\t','')
+                type = txtz.findAll('div')[1].text.replace('\n','').replace('Type ','').replace('\t','')
+                hasil = data.append({"title":title,"image":image,"link":link,"format":format,"chapter":chapter,"rating":rating,"follow":follow,"status":status,"type":type,"sinopsis":sinopsis,"genre":gen})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result':data
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 @app.route('/api/neonime', methods=['GET','POST'])
 def zneonime():
     if request.args.get('q'):
