@@ -1159,6 +1159,65 @@ def zkomik():
             'msg': 'input parameter q'
         }
 
+@app.route('/api/jamdunia', methods=['GET','POST'])
+def zjamdunia():
+    if request.args.get('lokasi'):
+        try:
+            query = request.args.get('lokasi')
+            data = []
+            url = bsoup("https://time.is/id/{}".format(query))
+            for Tobz in url.findAll('div', attrs={'id':'time_section'}):
+                title = Tobz.h1.text
+                time = Tobz.find('div', attrs={'id':'clock0_bg'}).text
+                date = Tobz.find('div', class_='w90 tr clockdate').text
+                sun = Tobz.find('span', class_='nw').text
+                hasil = data.append({"title":title,"time":time,"date":date,"sun":sun})
+            return {
+                'creator': 'Tobz',
+                'status': 200,
+                'result': data
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Lokasi %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter lokasi'
+        }
+
+@app.route('/api/stickerline', methods=['GET','POST'])
+def zstikline():
+    if request.args.get('url'):
+        try:
+            query = request.args.get('url')
+            data = []
+            link = bsoup("{}".format(query))
+            for tobz in url.findAll('div', class_='mdCMN09LiInner FnImage'):
+                link = "{}".format(str(tobz.find('span')['style']).replace('background-image:url(','').replace(');',''))
+                hasil = data.append({"link": link})
+            return {
+                'creator': 'Tobz',
+                'status': 200,
+                'result': {
+                    'sticker': data
+                }
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Sticker %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter url'
+        }
+
 # ERROR
 @app.route('/api/otakudesu', methods=['GET','POST'])
 def zotaku():
@@ -1263,7 +1322,7 @@ def zkiryuu():
             print(e)
             return {
                 'status': False,
-                'error': 'Anime %s Tidak di temukan!' % unquote(query)
+                'error': 'Komik %s Tidak di temukan!' % unquote(query)
             }
     else:
         return {
