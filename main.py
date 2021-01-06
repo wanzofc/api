@@ -1217,7 +1217,10 @@ def zneolast():
         link = "{}".format(str(Tobz.find('a')['href']))
         title = "{}".format(str(Tobz.find('img')['alt']))
         image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-        hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
+        info = bsoup(link)
+        res = info.find('div', class_='meta-a')
+        rilis = res.find('p').text
+        hasil = data.append({"title":title,"desc": desc,"image":image,"link":link,"dirilis":rilis})
     return {
         'status': 200,
         'creator': 'Tobz',
