@@ -1070,7 +1070,7 @@ def zfilm():
         try:
             query = request.args.get('q')
             data = []
-            url = bsoup("http://167.99.71.200/?s={}&post_type%5B%5D=post&post_type%5B%5D=tv".format(query))
+            url = bsoup("http://167.99.71.200/?s={}".format(query))
             for tobz in url.findAll('article', attrs={'itemscope':'itemscope'}):
                 link = tobz.a['href']
                 info = bsoup(link)
