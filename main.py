@@ -1069,35 +1069,33 @@ def zfilm():
     if request.args.get('q'):
         try:
             query = request.args.get('q')
-            hasilnya = []
-            url = bsoup("http://149.56.24.226/?s={}#gsc.tab=0&gsc.q=cars&gsc.page=1".format(query))
-            for tobz in url.findAll('div', class_='search-item'):
-                title = tobz.a['title']
-                img = tobz.img['src']
-                image = shorturl(img)
+            data = []
+            url = bsoup("http://167.99.71.200/?s={}&post_type%5B%5D=post&post_type%5B%5D=tv".format(query))
+            for tobz in url.findAll('article', attrs={'itemscope':'itemscope'}):
                 link = tobz.a['href']
-                info = tobz.findAll('p')
-                sutradara = info[1].text.replace('Sutradara: ','')
-                bintang = info[2].text.replace('Bintang: ','')
-                data = bsoup(link)
-                info2 = data.find('div', class_='col-xs-10 content')
-                txt = info2.findAll('div')
-                kualitas = txt[0].text.replace('Kualitas','')
-                negara = txt[1].text.replace('Negara','')
-                genre = txt[4].text.replace('Genre','')
-                imdb = txt[5].findAll('h3')
-                imdb0 = imdb[0].text+'/'
-                imdb1 = imdb[1].text+' from '
-                imdb2 = imdb[2].text+' users'
-                terbit = txt[6].text.replace('Diterbitkan','')
-                penerjemah = txt[7].text.replace('Penerjemah','').replace('Oleh','')
-                dl = data.find('div', class_='download-movie')
-                download = dl.a['href']
-                hasil = hasilnya.append({"judul":title,"image":image,"link":link,"sutradara":sutradara,"bintang_film":bintang,"kualitas":kualitas,"negara":negara,"genre":genre,"imdb":imdb0+imdb1+imdb2,"diterbitkan":terbit,"penerjemah":penerjemah,"download":download})
+                info = bsoup(link)
+                titik = info.find('div', class_='gmr-movie-data-top')
+                title = titik.h1.text
+                test = titik.findAll('div', class_='gmr-movie-innermeta')[0]
+                tob = test.findAll('span')
+                genre = tob[0].text.replace('Genre: ','')
+                test2 = titik.findAll('div', class_='gmr-movie-innermeta')[1]
+                tob2 = test2.findAll('span')
+                kualitas = tob2[0].text.replace('Kualitas: ','')
+                dilihat = info.find('span', class_='gmr-movie-view').text.replace('Dilihat: ','')
+                rating = info.find('div', class_="gmr-meta-rating").text
+                sinopsis = info.find('div', class_='entry-content entry-content-single').find('p').text
+                txtz = info.find('div', class_='entry-content entry-content-single')
+                txt = txtz.findAll('tr')
+                pemain = txt[0].text.replace('\n','').replace('Pemain:','')
+                direksi = txt[1].text.replace('\n','').replace('Direksi:','')
+                negara = txt[2].text.replace('\n','').replace('Negara:','')
+                rilis = txtz.find('time').text
+                hasil = data.append({"judul":title,"link":link,"genre":genre,"kualitas":kualitas,'rating':rating,"dilihat":dilihat,"direksi":direksi,"pemain":pemain,"negara":negara,"sinopsis":sinopsis,"dirilis":rilis})
             return {
 				'status': 200,
 				'creator':'Tobz',
-				'result': hasilnya
+				'result': data
 			}
         except Exception as e:
             print(e)
