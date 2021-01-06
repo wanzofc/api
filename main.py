@@ -1244,14 +1244,7 @@ def zneonime():
                 link = "{}".format(str(Tobz.find('a')['href']))
                 title = "{}".format(str(Tobz.find('img')['alt']))
                 image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-                info = bsoup(link)
-                res = info.find('div', class_='meta-a')
-                upload = res.find('p').text
-                seseps = info.find('div', class_='meta-b')
-                txt = seseps.findAll('span')
-                season = txt[0].text.replace(' Season ','')
-                episode = txt[1].text.replace(' Episode ','')
-                hasil = hasilnya.append({"title":title,"desc": desc,"image":image,"link":link,"diupload":upload,"season":season,"episode":episode})
+                hasil = hasilnya.append({"title":title,"desc": desc,"image":image,"link":link})
             return {
 				'status': 200,
 				'creator':'Tobz',
