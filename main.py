@@ -1074,12 +1074,8 @@ def zfilm2():
             for tobz in url.findAll('div', class_='search-item'):
                 title = tobz.a['title']
                 link = tobz.a['href']
-                info = tobz.find('div', class_='col-xs-9 col-sm-10 search-content')
-                category = info.find('p', class_='cat-links').text
-                txt = info.findAll('p')
-                sutradara = txt[1].text.replace('Sutradara: ','')
-                bintang = txt[2].text.replace('Bintang: ','')
-                hasil = data.append({"judul":title,"link":link,"category":category,"sutradara":sutradara,"bintang":bintang})
+                image = tobz.img['src']
+                hasil = data.append({"judul":title,"link":link,"image":image})
             return {
 				'status': 200,
 				'creator':'Tobz',
