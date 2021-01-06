@@ -1216,54 +1216,6 @@ def zstikline():
             'msg': 'input parameter url'
         }
 
-# ERROR
-@app.route('/api/otakudesu', methods=['GET','POST'])
-def zotaku():
-    if request.args.get('q'):
-        try:
-            query = request.args.get('q')
-            url = bs(get('https://otakudesu.tv/?s=%s&post_type=anime' % query, headers=usr_agent).text, 'html.parser')
-            for rafly in url.findAll('div', class_='venser'):
-                image = rafly.img['src']
-                imagez = shorturl(image)
-                link = rafly.a['href']
-                data = bs(get(link).text, 'html.parser')
-                info = data.find('div', class_='infozingle')
-                rafli = info.findAll('p')
-                info2 = data.find('div', class_='sinopc')
-                rafli2 = info2.findAll('p')
-            return {
-				'status': 200,
-				'creator':'Tobz',
-				'result': {
-					"judul":rafli[0].text.replace("Judul: ",""),
-					"judul_jepang":rafli[1].text.replace("Japanese: ",""),
-					"rating":rafli[2].text.replace("Skor: ",""),
-					"produser":rafli[3].text.replace("Produser: ",""),
-					"tipe":rafli[4].text.replace("Tipe: ",""),
-					"status":rafli[5].text.replace("Status: ",""),
-					"total_episode":rafli[6].text.replace("Total Episode: ",""),
-					"durasi":rafli[7].text.replace("Durasi: ",""),
-					"tanggal_rilis":rafli[8].text.replace("Tanggal Rilis: ",""),
-					"studio":rafli[9].text.replace("Studio: ",""),
-					"genre":rafli[10].text.replace("Genre: ",""),
-					"sinopsis":rafli2[0].text,
-					"thumbnail":imagez,
-					"link":link
-				}
-			}
-        except Exception as e:
-            print(e)
-            return {
-                'status': False,
-                'error': 'Anime %s Tidak di temukan!' % unquote(query)
-            }
-    else:
-        return {
-            'status': False,
-            'msg': 'input parameter q'
-        }
-
 @app.route('/api/neolast', methods=['GET','POST'])
 def zneolast():
     data = []
