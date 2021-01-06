@@ -1078,7 +1078,7 @@ def zfilm2():
 				'status': 200,
 				'result': {
 					'judul' : data['Title'],
-					'tahun' : data['Year']
+					'tahun' : data['Year'],
 					'aktor' : data['Actors'],
 					'penghargaan' : data['Awards'],
 					'boxoffice' : data['BoxOffice'],
