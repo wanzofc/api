@@ -1118,7 +1118,7 @@ def zfilm():
             data = []
             url = bsoup("http://167.99.71.200/?s={}&post_type%5B%5D=post&post_type%5B%5D=tv".format(query))
             for tobz in url.findAll('article', attrs={'itemscope':'itemscope'}):
-                title = tobz.a['title']
+                title = tobz.a['title'].replace('Permalink ke: ')
                 link = tobz.a['href']
                 img = tobz.img['src']
                 image = shorturl(img)
