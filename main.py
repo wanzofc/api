@@ -1195,7 +1195,7 @@ def zstikline():
         try:
             query = request.args.get('url')
             data = []
-            link = bsoup("{}".format(query))
+            url = bsoup("{}".format(query))
             for tobz in url.findAll('div', class_='mdCMN09LiInner FnImage'):
                 link = "{}".format(str(tobz.find('span')['style']).replace('background-image:url(','').replace(');',''))
                 hasil = data.append({"link": link})
