@@ -1071,10 +1071,32 @@ def zfilm2():
 			query = request.args.get('q')
 			url = url = f'https://rest.farzain.com/api/film.php?id={query}&apikey=fckveza'
 			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+			img = data['Plot']
+			image = shorturl(img)
 			return {
 				'creator':'Tobz',
 				'status': 200,
-				'result': data
+				'result': {
+					'judul' : data['Title'],
+					'tahun' : data['Year']
+					'aktor' : data['Actors'],
+					'penghargaan' : data['Awards'],
+					'boxoffice' : data['BoxOffice'],
+					'negara' : data['Country'],
+					'direktur' : data['Director'],
+					'kategori' : data['Genre'],
+					'bahasa' : data['Language'],
+					'metascore' : data['Metascore'],
+					'thumb' : image,
+					'produksi' : data['Production'],
+					'dirilis' : data['Released'],
+					'durasi' : data['Runtime'],
+					'sinopsis' : data['Plot'],
+					'tipe' : data['Type'],
+					'penulis' : data['Writer'],
+					'rating_imdb' : data['imdbRating'],
+					'rating_vote' : data['imdbVotes']
+				}
 			}
 		except Exception as e:
 			print(e);
