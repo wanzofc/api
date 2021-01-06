@@ -1085,6 +1085,7 @@ def zfilm():
                 dilihat = info.find('span', class_='gmr-movie-view').text.replace('Dilihat: ','')
                 rating = info.find('div', class_="gmr-meta-rating").text
                 sinopsis = info.find('div', class_='entry-content entry-content-single').find('p').text.replace('\u2019','').replace('\u2018','')
+                txtz = info.find('div', class_='entry-content entry-content-single')
                 rilis = txtz.find('time').text
                 hasil = data.append({"judul":title,"link":link,"genre":genre,"kualitas":kualitas,'rating':rating,"dilihat":dilihat,"sinopsis":sinopsis,"dirilis":rilis})
             return {
