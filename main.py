@@ -1066,9 +1066,9 @@ def short():
 
 @app.route('/api/film2', methods=['GET','POST'])
 def zfilm2():
-	if request.args.get('wilayah'):
+	if request.args.get('q'):
 		try:
-			query = request.args.get('wilayah')
+			query = request.args.get('q')
 			url = url = f'https://rest.farzain.com/api/film.php?id={query}&apikey=fckveza'
 			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
 			return {
