@@ -1219,8 +1219,12 @@ def zneolast():
         image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
         info = bsoup(link)
         res = info.find('div', class_='meta-a')
-        rilis = res.find('p').text
-        hasil = data.append({"title":title,"desc": desc,"image":image,"link":link,"dirilis":rilis})
+        upload = res.find('p').text
+        seseps = info.find('div', class_='meta-b')
+        txt = seseps.findAll('span')
+        season = txt[0].text.replace(' Season ','')
+        episode = txt[1].text.replace(' Episode ','')
+        hasil = data.append({"title":title,"desc": desc,"image":image,"link":link,"diupload":upload,"season":season,"episode":episode})
     return {
         'status': 200,
         'creator': 'Tobz',
