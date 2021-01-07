@@ -760,29 +760,6 @@ def igeh():
 			'msg': '[!] Masukkan parameter url'
 		}
 
-@app.route('/api/ttp', methods=['GET','POST'])
-def ttpz():
-	if request.args.get('text'):
-		try:
-			query = request.args.get('text')
-			link = f'https://api.areltiyan.site/sticker_maker?text={query}'
-			ttp = get(link).json()
-			return {
-				'status': 200,
-				'base64': ttp['base64'],
-				'creator': 'Tobz'
-			}
-		except:
-			return {
-				'status': False,
-				'error': '[❗] Maaf, Text yang anda masukan salah!'
-			}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter text'
-		}
-
 @app.route('/api/facebook', methods=['GET','POST'])
 def zfb():
 	if request.args.get('url'):
@@ -1109,31 +1086,38 @@ def zfilm2():
 			'msg': '[!] Masukkan parameter text'
 		}
 
-@app.route('/api/yt', methods=['GET','POST'])
-def zyt():
-    if request.args.get('q'):
+@app.route('/api/nhentai', methods=['GET','POST'])
+def znhentai():
+    if request.args.get('kode'):
         try:
-            query = request.args.get('q')
+            query = request.args.get('kode')
             data = []
-            url = requests.session().get("https://www.google.com/search?q=youtube+{}".format(str(query)))
-            data = BeautifulSoup(url.content, 'html5lib')
-            a = ("{}".format(str(data.select("a[href*=https://www.youtube.com/]")[0]['href']).split('&')[0])).split("%3D")[1]
-            hasil = data.append({"link":a})
+            url = f'https://kii-web.herokuapp.com/api/nhentai/tags?id={query}'
+			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
             return {
 				'status': 200,
 				'creator':'Tobz',
-				'result': data
+				'result': {
+					'title': data['result']['title']['pretty'],
+					'thumbnail': data['result']['images']['thumbnail'],
+					'id': data['result']['id'],
+					'images': data['result']['images']['pages'],
+					'pages': data['result']['num_pages'],
+					'favorite': data['result']['num_favorites'],
+					'tags': data['result']['tags'],
+					'upload_date': data['result']['upload_date']
+				}
 			}
         except Exception as e:
             print(e)
             return {
                 'status': False,
-                'error': 'Film %s Tidak di temukan!' % unquote(query)
+                'error': 'Nhentai %s Tidak di temukan!' % unquote(query)
             }
     else:
         return {
             'status': False,
-            'msg': 'input parameter q'
+            'msg': 'input parameter kode'
         }
 
 @app.route('/api/film', methods=['GET','POST'])
