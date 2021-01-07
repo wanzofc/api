@@ -986,6 +986,53 @@ def tinyurlz():
 
 #===[ANIME & MANGA]===#
 
+@app.route('/api/bacakomik', methods=['GET','POST'])
+def zbacakimik():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				hasilnya = []
+				result = {"creator":"Tobz","result": hasilnya}
+				url = bsoup("https://bacakomik.co/?s=dungeon")
+				tobz = url.find('div', class_='animepost')
+				link = tobz.a['href']
+				soup = bsoup(link)
+				info = soup.find("div",class_="infox")
+				txt = info.findAll('span')
+				status = txt[0].text.replace('Status: ','')
+				format = txt[1].text.replace('Format: ','')
+				rilis = txt[2].text.replace('Dirilis: ','')
+				pengarang = txt[3].text.replace('Pengarang: ','')
+				jenis = txt[4].text.replace('Jenis Komik: ','')
+				umur = txt[5].text.replace('Umur Pembaca: ','')
+				cara = txt[6].text.replace('Cara Baca ','')
+				konsep = txt[7].text.replace('Konsep Cerita: ','')
+				update = txt[8].text.replace('Update Terakhir: ','')
+				dilihat = txt[9].text.replace('Dilihat: ','')
+				genres = soup.find('div', class_='genre-info').text.replace('\n',', ')
+				rat = tobz.find('div', class_='rating')
+				rate = rat.findAll('i')
+				rating = rate[0].text
+				for imgz in url.findAll('div', class_='animepost'):
+					title = imgz.img['title']
+					img = imgz.img['src']
+					image = shorturl(img)
+					hasil = hasilnya.append({"judul":title,"thumbnail":image,"rating":rating,"link":link,"status":status,"format":format,"dirilis":rilis,"pengarang":pengarang,"jenis_komik":jenis,"umur_pembaca":umur,"cara_baca":cara,"konsep_cerita":konsep,"update_terakhir":update,"genre":genres})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':hasilnya
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
 @app.route('/api/kiryuu', methods=['GET','POST'])
 def zkiryuu():
 	if request.args.get('q'):
