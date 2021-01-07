@@ -273,9 +273,9 @@ def textpro():
 		if theme.lower() in tp.theme:
 			if theme.lower() == 'glitch':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.glitchz(text, text2)
@@ -283,54 +283,54 @@ def textpro():
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'jokerlogo':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.jokerlogo(text)
 					return result
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'blood':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.blood(text)
 					return result
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'snow':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.snow(text)
 					return result
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'neon_technology':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.neon_technology(text)
 					return result
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'neon_light':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.neon_light(text)
 					return result
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'lionlogo':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.lionlogo(text, text2)
@@ -338,9 +338,9 @@ def textpro():
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'wolflogo1':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.wolflogo1(text, text2)
@@ -348,9 +348,9 @@ def textpro():
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'wolflogo2':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.wolflogo2(text, text2)
@@ -358,9 +358,9 @@ def textpro():
 				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 			elif theme.lower() == 'ninjalogo':
 				if request.args.get('apiKey') in keyMe:
-                    key = request.args.get('apiKey')
-                    hee = arara(key)
-                    if hee['status'] != True:return hee
+					key = request.args.get('apiKey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.ninjalogo(text, text2)
@@ -674,17 +674,9 @@ def dewabatch():
 						'thumb': dewabatch['cover'],
 						'result': dewabatch['info']
 					}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Anime %s Tidak di temukan!' % unquote(q)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter q'
-		}
+			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/komiku', methods=['GET','POST'])
 def komiku():
@@ -708,17 +700,9 @@ def komiku():
 						'thumb': manga['thumb'],
 						'link_dl': manga['dl_link']
 					}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Manga %s Tidak di temukan' % unquote(q)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter q'
-		}
+			except Exception as e:print(e)return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/kuso', methods=['GET','POST'])
 def kusonime():
@@ -742,50 +726,9 @@ def kusonime():
 						'title': kuso['title'],
 						'link_dl': kuso['link_dl']
 					}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Anime %s Tidak di temukan' % unquote(q)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter q'
-		}
-
-@app.route('/api/otakudesu')
-def otakudesuu():
-	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
-			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				q = request.args.get('q')
-				he=search_otakudesu(quote(q))
-				if he != '':
-					otaku=scrap_otakudesu(he)
-					return {
-						'status': 200,
-						'sinopsis': otaku['sinopsis'],
-						'thumb': otaku['thumb'],
-						'info': otaku['info'],
-						'title': otaku['title']
-					}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Anime %s Tidak di temukan' % unquote(q)
-				}
-		else:
-			return {
-				'status': False,
-				'msg': '[!] Masukkan parameter q'
-			}
+			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/nekonime', methods=['GET','POST'])
 def nekonimek():
@@ -809,6 +752,7 @@ def nekonimek():
 				'status': 200,
 				'result': nimek
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/cry', methods=['GET','POST'])
 def crynime():
@@ -832,6 +776,7 @@ def crynime():
 				'status': 200,
 				'result': cryz
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/kiss', methods=['GET','POST'])
 def kissnime():
@@ -855,6 +800,7 @@ def kissnime():
 				'status': 200,
 				'result': nkiss
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/hug', methods=['GET','POST'])
 def hugnime():
@@ -878,6 +824,7 @@ def hugnime():
 				'status': 200,
 				'result': nhug
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/randomanime', methods=['GET','POST'])
 def randomanime():
@@ -903,6 +850,7 @@ def randomanime():
 				'status': 200,
 				'result': nimee
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/randomloli', methods=['GET','POST'])
 def randomloli():
@@ -924,27 +872,7 @@ def randomloli():
 				'status': 200,
 				'result': loli
 			}
-
-@app.route('/api/memes', methods=['GET','POST'])
-def rmemes():
-	if request.args.get('apiKey') in keyMe:
-		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			hehe = ['kawaii','neko']
-			loli = get('https://api.lolis.life/%s' % random.choice(hehe)).json()['url']
-			return {
-				'status': 200,
-				'result': loli
-			}
-		except:
-			return {
-				'status': 200,
-				'result': loli
-			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/nsfwblowjob', methods=['GET','POST'])
 def blowjob():
@@ -991,6 +919,7 @@ def hentaii():
 				'status': 200,
 				'result': bblow
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/nsfwneko', methods=['GET','POST'])
 def nsfwneko():
@@ -1014,6 +943,7 @@ def nsfwneko():
 				'status': 200,
 				'result': nekko
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/nsfwtrap', methods=['GET','POST'])
 def trapnime():
@@ -1037,6 +967,7 @@ def trapnime():
 				'status': 200,
 				'result': ntrap
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/ig', methods=['GET','POST'])
 def igeh():
@@ -1062,6 +993,7 @@ def igeh():
 						'result': result['descriptionc'],
 					}
 			except Exception as e:print(e)return {'status': False,'result': 'https://c4.wallpaperflare.com/wallpaper/976/117/318/anime-girls-404-not-found-glowing-eyes-girls-frontline-wallpaper-preview.jpg','error': True}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
 @app.route('/api/ttp', methods=['GET','POST'])
@@ -1084,6 +1016,7 @@ def ttpz():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/facebook', methods=['GET','POST'])
@@ -1109,6 +1042,7 @@ def zfb():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Url yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
 @app.route('/api/artinama', methods=['GET','POST'])
@@ -1131,6 +1065,7 @@ def artin():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/kbbi', methods=['GET','POST'])
@@ -1150,16 +1085,9 @@ def kbbz():
 					'result': url,
 					'creator': 'Tobz'
 				}
-			except:
-				return {
-					'status': False,
-					'error': '[❗] Maaf, Kata yang anda masukan salah!'
-				}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter kata'
-		}
+			except:return {'status': False,'error': '[❗] Maaf, Kata yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter kata'}
 
 @app.route('/api/jadwalshalat', methods=['GET','POST'])
 def jshalat():
@@ -1191,6 +1119,7 @@ def jshalat():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Daerah yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter daerah'}
 
 @app.route('/api/joox', methods=['GET','POST'])
@@ -1219,6 +1148,7 @@ def zjoox():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Query yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/lirik', methods=['GET','POST'])
@@ -1247,6 +1177,7 @@ def zlirik():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Query yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/simsimi', methods=['GET','POST'])
@@ -1269,6 +1200,7 @@ def simi():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/cuaca', methods=['GET','POST'])
@@ -1324,17 +1256,9 @@ def short():
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Url %s Tidak di temukan!' % unquote(query)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': 'input parameter url'
-		}
+			except Exception as e:print(e)return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': 'input parameter url'}
 
 @app.route('/api/neolast', methods=['GET','POST'])
 def zneolast():
@@ -1358,6 +1282,7 @@ def zneolast():
 			'creator': 'Tobz',
 			'result': data
 		}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/anolast', methods=['GET','POST'])
 def zanolast():
@@ -1380,6 +1305,7 @@ def zanolast():
 			'creator': 'Tobz',
 			'result': data
 		}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/anoboy', methods=['GET','POST'])
 def zanoboy():
@@ -1408,17 +1334,10 @@ def zanoboy():
 					'creator':'Tobz',
 					'result':data
 				}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Anime %s Tidak di temukan!' % unquote(query)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': 'input parameter q'
-		}
+			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
 
 @app.route('/api/neonime', methods=['GET','POST'])
 def zneonime():
@@ -1445,17 +1364,9 @@ def zneonime():
 					'creator':'Tobz',
 					'result':data
 				}
-			except Exception as e:
-				print(e)
-				return {
-					'status': False,
-					'error': 'Anime %s Tidak di temukan!' % unquote(query)
-				}
-	else:
-		return {
-			'status': False,
-			'msg': 'input parameter q'
-		}
+			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/screenshotweb', methods=['GET','POST'])
 def zssweb():
@@ -1479,6 +1390,7 @@ def zssweb():
 					}
 				}
 			except Exception as e:print(e)return {'status': False,'error': 'Website %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/githubprofile', methods=['GET','POST'])
@@ -1516,6 +1428,7 @@ def gprofile():
 					}
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
 @app.route('/api/stalk', methods=['GET','POST'])
@@ -1543,6 +1456,7 @@ def stalk():
 					'Profile_pic': thumb
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
+		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
 @app.route('/api/daerah', methods=['GET','POST'])
@@ -1586,6 +1500,7 @@ def waifu():
 				'image': result['image'],
 				'source': result['url']
 			}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/infogempa', methods=['GET','POST'])
 def infogempa():
@@ -1608,6 +1523,7 @@ def infogempa():
 			'lokasi': em[4].text,
 			'potensi': em[5].text
 		}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/randomquotes', methods=['GET','POST'])
 def quotes():
@@ -1625,6 +1541,7 @@ def quotes():
 			'author': result['author'],
 			'quotes': result['quotes']
 		}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.route('/api/quotesnime/random', methods=['GET','POST'])
 def quotesnimerandom():
@@ -1644,20 +1561,21 @@ def quotesnimerandom():
 				'anime': quotesnime['anime']
 			}
 		}
+	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
 
 @app.errorhandler(RequestURITooLarge)
 def cuihh(e):
-    """Return JSON instead of HTML for HTTP errors."""
-    # start with the correct headers and status code from the error
-    response = e.get_response()
-    # replace the body with JSON
-    response.data = json.dumps({
-        "code": e.code,
-        "name": e.name,
-        "description": e.description,
-    })
-    response.content_type = "application/json"
-    return response
+	"""Return JSON instead of HTML for HTTP errors."""
+	# start with the correct headers and status code from the error
+	response = e.get_response()
+	# replace the body with JSON
+	response.data = json.dumps({
+		"code": e.code,
+		"name": e.name,
+		"description": e.description,
+	})
+	response.content_type = "application/json"
+	return response
 @app.route('/', methods=['GET','POST'])
 
 @app.route('/', methods=['GET','POST'])
