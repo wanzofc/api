@@ -1092,11 +1092,11 @@ def znhentai():
         try:
             query = request.args.get('kode')
             url = f'https://kii-web.herokuapp.com/api/nhentai/tags?id={query}'
-			data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+            data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
             return {
-				'status': 200,
-				'creator':'Tobz',
-				'result': {
+                'status': 200,
+                'creator':'Tobz',
+                'result': {
 					'title': data['result']['title']['pretty'],
 					'thumbnail': data['result']['images']['thumbnail'],
 					'id': data['result']['id'],
