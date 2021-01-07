@@ -1110,6 +1110,33 @@ def zfilm2():
 			'msg': '[!] Masukkan parameter text'
 		}
 
+@app.route('/api/yt', methods=['GET','POST'])
+def zyt():
+    if request.args.get('q'):
+        try:
+            query = request.args.get('q')
+            data = []
+            url = requests.session().get("https://www.google.com/search?q=youtube+{}".format(str(query)))
+            data = BeautifulSoup(url.content, 'html5lib')
+            a = ("{}".format(str(data.select("a[href*=https://www.youtube.com/]")[0]['href']).split('&')[0])).split("%3D")[1]
+            hasil = data.append({"link":a})
+            return {
+				'status': 200,
+				'creator':'Tobz',
+				'result': data
+			}
+        except Exception as e:
+            print(e)
+            return {
+                'status': False,
+                'error': 'Film %s Tidak di temukan!' % unquote(query)
+            }
+    else:
+        return {
+            'status': False,
+            'msg': 'input parameter q'
+        }
+
 @app.route('/api/film', methods=['GET','POST'])
 def zfilm():
     if request.args.get('q'):
