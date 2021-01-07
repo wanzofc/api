@@ -912,7 +912,7 @@ def zcuaca():
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('wilayah')
-				url = f'http://tobz-cuaca.herokuapp.com/?menu=cuaca&wilayah={query}'
+				url = f'https://rest.farzain.com/api/cuaca.php?id={query}&apikey=fckveza'
 				cuc = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
 				print(sim)
 				return {
@@ -938,6 +938,34 @@ def zcuaca():
 			'status': False,
 			'msg': '[!] Masukkan parameter text'
 		}
+
+@app.route('/api/jamdunia', methods=['GET','POST'])
+def zjamdunia():
+	if request.args.get('url'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				data = []
+				result = {"creator":"Tobz","result": data}
+				url = bsoup("https://time.is/id/{}".format(query))
+				for Tobz in url.findAll('div', attrs={'id':'time_section'}):
+				    title = Tobz.h1.text
+				    time = Tobz.find('div', attrs={'id':'clock0_bg'}).text
+				    date = Tobz.find('div', class_='w90 tr clockdate').text
+				    sun = Tobz.find('span', class_='nw').text
+				    hasil = data.append({"title":title,"time":time,"date":date,"sun":sun})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter url'}
 
 @app.route('/api/bitly', methods=['GET','POST'])
 def bitzly():
@@ -1153,32 +1181,6 @@ def dewabatch():
 						'result': dewabatch['info']
 					}
 			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
-
-@app.route('/api/komiku', methods=['GET','POST'])
-def komiku():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				q = request.args.get('q')
-				komi = search_komiku(q)
-				if 'Tidak di temukan' not in komi:
-					manga = scrap_komiku(komi)
-					return {
-						'status': 200,
-						'info': manga['info'],
-						'genre': manga['genre'],
-						'sinopsis': manga['sinopsis'],
-						'thumb': manga['thumb'],
-						'link_dl': manga['dl_link']
-					}
-			except Exception as e:print(e);return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
