@@ -75,14 +75,6 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.blood(text)
                 return result
-            elif theme.lower() == 'snow':
-                text = request.args.get('text')
-                result = tp.snow(text)
-                return result
-            elif theme.lower() == 'neon_technology':
-                text = request.args.get('text')
-                result = tp.neon_technology(text)
-                return result
             elif theme.lower() == 'dropwater':
                 text = request.args.get('text')
                 result = tp.dropwater(text)
