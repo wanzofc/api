@@ -1103,7 +1103,6 @@ def znhentai():
 					'images': data['result']['images']['pages'],
 					'pages': data['result']['num_pages'],
 					'favorite': data['result']['num_favorites'],
-					'tags': data['result']['tags'],
 					'upload_date': data['result']['upload_date']
 				}
 			}
