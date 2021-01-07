@@ -913,8 +913,7 @@ def zcuaca():
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('wilayah')
 				url = f'https://rest.farzain.com/api/cuaca.php?id={query}&apikey=fckveza'
-				cuc = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
-				print(sim)
+				weather = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
 				return {
 					'status': 200,
 					'creator': 'Tobz',
@@ -939,9 +938,9 @@ def zcuaca():
 			'msg': '[!] Masukkan parameter wilayah'
 		}
 
-@app.route('/api/jamdunia', methods=['GET','POST'])
-def zjamdunia():
-	if request.args.get('lokasi'):
+@app.route('/api/film', methods=['GET','POST'])
+def zfilm():
+	if request.args.get('q'):
 		if request.args.get('apikey') in keyMe:
 			try:
 				kekeyi = request.args.get('apikey')
@@ -949,7 +948,7 @@ def zjamdunia():
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				query = request.args.get('lokasi')
+				query = request.args.get('q')
 				data = []
 				result = {"creator":"Tobz","result": data}
 				url = bsoup("http://167.99.71.200/?s={}&post_type%5B%5D=post&post_type%5B%5D=tv".format(query))
@@ -969,6 +968,57 @@ def zjamdunia():
 			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/film2', methods=['GET','POST'])
+def zfilm2():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				url = f'https://rest.farzain.com/api/film.php?id={query}&apikey=fckveza'
+				film2 = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+				thumb =  film2['Poster']
+				thumbnail = shorturl(thumb)
+				return {
+					'status': 200,
+					'creator': 'Tobz',
+					'result': {
+                            'judul': film2['Title'],
+                            'tahun': film2['Year'],
+                            'rating': film2['Rated'],
+                            'dirilis': film2['Released'],
+                            'durasi': film2['Runtime'],
+                            'kategori': film2['Genre'],
+                            'penulis': film2['Writer'],
+                            'aktor': film2['Actors'],
+                            'sinopsis': film2['Plot'],
+                            'bahasa': film2['Language'],
+                            'negara': film2['Country'],
+                            'penghargaan': film2['Awards'],
+                            'thumbnail': thumbnail,
+                            'metascore': film2['Metascore'],
+                            'rating_imdb': film2['imdbRating'],
+                            'voting_imdb': film2['imdbVotes'],
+                            'tipe': film2['Type'],
+                            'produksi': film2['Production'],
+                            'boxoffice': film2['BoxOffice']
+                        }
+                    }
+			except:
+				return {
+					'status': False,
+					'error': '[❗] Maaf, Text yang anda masukan salah!'
+				}
+	else:
+		return {
+			'status': False,
+			'msg': '[!] Masukkan parameter wilayah'
+		}
 
 @app.route('/api/jamdunia', methods=['GET','POST'])
 def zjamdunia():
