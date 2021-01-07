@@ -257,7 +257,6 @@ def deleto():
 def sendFile(filename):
 	return send_from_directory(app.config['MEDIA'], filename, as_attachment=True)
 
-
 def convert_size(size_bytes):
 	if size_bytes == 0:
 		return '0B'
@@ -1591,7 +1590,7 @@ def zssweb():
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('url')
-				link = get("https://screenshotapi.net/api/v1/screenshot?url={}&output=image".format(str(query)))
+				link = get("https://screenshotapi.net/api/v1/screenshot?url={}&output=image".format(query)).json()
 				data = ''.join(random.choice(abc) for _ in range(20)) + '.jpg'
 				open('result/%s' % data, 'wb').write(link.content)
 				return {
