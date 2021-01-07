@@ -1584,6 +1584,10 @@ def index():
 def api():
 	return render_template('api.html')
 
+@app.route('/ds', methods=['GET','POST'])
+def ds():
+	return render_template('dashboard.html')
+
 @app.errorhandler(404)
 def error(e):
 	return render_template('error.html'), 404
