@@ -8,6 +8,7 @@ class tp:
         self.BaseUrl = 'https://textpro.me{}'
         self.theme = {
             'neon_light': '/neon-light-text-effect-with-galaxy-style-981.html',
+            'neon_technology': '/create-a-futuristic-technology-neon-light-text-effect-1006.html',
             'glitch': '/create-glitch-text-effect-style-tik-tok-983.html',
             'jokerlogo': '/create-logo-joker-online-934.html',
             'lionlogo': '/create-lion-logo-mascot-online-938.html',
@@ -16,7 +17,25 @@ class tp:
             'wolflogo2': '/create-wolf-logo-galaxy-online-936.html',
             'blood': '/blood-text-on-the-frosted-glass-941.html',
             'dropwater': '/dropwater-text-effect-872.html',
-            'sandwriting1': '/write-in-sand-summer-beach-free-online-991.html'
+            'snow': '/create-snow-text-effects-for-winter-holidays-1005.html',
+            }
+
+    def snow(self, text):
+        '''
+        text = rainbow
+        '''
+        try:
+            url = self.BaseUrl.format(self.theme['snow'])
+            token = bs(r.get(url).text, 'html.parser').find('input', id='token')['value']
+            data = {u'text[]': [u'%s' % text], 'submit': 'Go', 'token': token}
+            result = self.BaseUrl.format(bs(r.post(url, data).text, 'html.parser').find('div', class_='btn-group').a['href'])
+            return {
+                'result': result
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'error': 'ERROR'
             }
 
     def neon_light(self, text):
@@ -25,6 +44,24 @@ class tp:
         '''
         try:
             url = self.BaseUrl.format(self.theme['neon_light'])
+            token = bs(r.get(url).text, 'html.parser').find('input', id='token')['value']
+            data = {u'text[]': [u'%s' % text], 'submit': 'Go', 'token': token}
+            result = self.BaseUrl.format(bs(r.post(url, data).text, 'html.parser').find('div', class_='btn-group').a['href'])
+            return {
+                'result': result
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'error': 'ERROR'
+            }
+
+    def neon_technology(self, text):
+        '''
+        text = rainbow
+        '''
+        try:
+            url = self.BaseUrl.format(self.theme['neon_technology'])
             token = bs(r.get(url).text, 'html.parser').find('input', id='token')['value']
             data = {u'text[]': [u'%s' % text], 'submit': 'Go', 'token': token}
             result = self.BaseUrl.format(bs(r.post(url, data).text, 'html.parser').find('div', class_='btn-group').a['href'])

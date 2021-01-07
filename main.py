@@ -75,6 +75,14 @@ def textpro():
                 text = request.args.get('text')
                 result = tp.blood(text)
                 return result
+            elif theme.lower() == 'snow':
+                text = request.args.get('text')
+                result = tp.snow(text)
+                return result
+            elif theme.lower() == 'neon_technology':
+                text = request.args.get('text')
+                result = tp.neon_technology(text)
+                return result
             elif theme.lower() == 'dropwater':
                 text = request.args.get('text')
                 result = tp.dropwater(text)
@@ -1583,10 +1591,6 @@ def index():
 @app.route('/api', methods=['GET','POST'])
 def api():
 	return render_template('api.html')
-
-@app.route('/ds', methods=['GET','POST'])
-def ds():
-	return render_template('dashboard.html')
 
 @app.errorhandler(404)
 def error(e):
