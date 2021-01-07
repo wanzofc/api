@@ -1582,7 +1582,7 @@ def index():
 
 @app.route('/api', methods=['GET','POST'])
 def api():
-	return render_template('dashboard.html')
+	return render_template('api.html')
 
 @app.errorhandler(404)
 def error(e):
