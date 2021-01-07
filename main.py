@@ -536,7 +536,7 @@ def wikipedia():
 					'status': 200,
 					'result': result
 				}
-			except Exception as e:print(e)return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan param q'}
 
@@ -576,7 +576,7 @@ def tts():
 							'msg': 'Success convert text to speech!',
 							'file': 'https://tobz-api.herokuapp.com/tts/tts.mp3'
 						}
-			except Exception as e:print(e)return {'status': False,'msg': '[!] Upss, terjadi kesalahan'}
+			except Exception as e:print(e);return {'status': False,'msg': '[!] Upss, terjadi kesalahan'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': 200,'msg': '[!] Masukkan parameter text'}
 
@@ -607,7 +607,7 @@ def ytv():
 					'filesize': filesize,
 					'ext': 'mp4'
 				}
-			except Exception as e:print('Error : %s ' % e)return {'status': False,'error': '[❗] Terjadi kesalahan, mungkin link yang anda kirim tidak valid!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Terjadi kesalahan, mungkin link yang anda kirim tidak valid!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'Masukkan parameter url'}
 
@@ -637,7 +637,7 @@ def yta():
 					'result': dl_link,
 					'ext': 'mp3'
 				}
-			except Exception as e:print('Error : %s' % e)return {'status': False,'error': '[❗] Terjadi kesalahan mungkin link yang anda kirim tidak valid!'}
+			except Exception as e:print('Error : %s' % e);return {'status': False,'error': '[❗] Terjadi kesalahan mungkin link yang anda kirim tidak valid!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
@@ -659,7 +659,7 @@ def chord():
 					'status': 200,
 					'result': result
 				}
-			except Exception as e:print(e)return {'status': False,'error': '[❗] Maaf chord yang anda cari tidak dapat saya temukan!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Maaf chord yang anda cari tidak dapat saya temukan!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
@@ -683,7 +683,7 @@ def dewabatch():
 						'thumb': dewabatch['cover'],
 						'result': dewabatch['info']
 					}
-			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
@@ -709,7 +709,7 @@ def komiku():
 						'thumb': manga['thumb'],
 						'link_dl': manga['dl_link']
 					}
-			except Exception as e:print(e)return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
+			except Exception as e:print(e);return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
@@ -735,7 +735,7 @@ def kusonime():
 						'title': kuso['title'],
 						'link_dl': kuso['link_dl']
 					}
-			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
@@ -1001,7 +1001,7 @@ def igeh():
 						'status': 200,
 						'result': result['descriptionc'],
 					}
-			except Exception as e:print(e)return {'status': False,'result': 'https://c4.wallpaperflare.com/wallpaper/976/117/318/anime-girls-404-not-found-glowing-eyes-girls-frontline-wallpaper-preview.jpg','error': True}
+			except Exception as e:print(e);return {'status': False,'result': 'https://c4.wallpaperflare.com/wallpaper/976/117/318/anime-girls-404-not-found-glowing-eyes-girls-frontline-wallpaper-preview.jpg','error': True}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
@@ -1265,7 +1265,7 @@ def short():
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as e:print(e)return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter url'}
 
@@ -1343,7 +1343,7 @@ def zanoboy():
 					'creator':'Tobz',
 					'result':data
 				}
-			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
@@ -1373,7 +1373,7 @@ def zneonime():
 					'creator':'Tobz',
 					'result':data
 				}
-			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
@@ -1398,7 +1398,7 @@ def zssweb():
 						'result': 'https://tobz-api.herokuapp.com/result/%s' % data
 					}
 				}
-			except Exception as e:print(e)return {'status': False,'error': 'Website %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Website %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
@@ -1436,7 +1436,7 @@ def gprofile():
 						'url': gitprof['url']
 					}
 				}
-			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Username salah!!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
@@ -1464,7 +1464,7 @@ def stalk():
 					'Biodata': igestalk.find('p').text.strip(),
 					'Profile_pic': thumb
 				}
-			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Username salah!!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
