@@ -49,11 +49,11 @@ def arere(kyun, limit):
 def arara(apikey):
 	ky = keyMe[apikey]
 	if ky['limit'] < 1:
-		return {'creator':'RaflyRTB','status': False, 'error': 'Apikey anda sudah mencapai batas maksimal'}
+		return {'creator':'Tobz','status': False, 'error': 'APIKEY LU DAH MAX HARI INI'}
 	else:
 		ntapz = {'limit': ky['limit'] -1,'from': ky['from'],'exp': ky['exp'],'status': ky['status']}
 		keyMe.update({apikey: ntapz})
-		return {'creator':'RaflyRTB','status': True}
+		return {'creator':'Tobz','status': True}
 def now_date():
 	l_bln = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Dec']
 	waktu = datetime.now(utc).astimezone(timezone('Asia/Jakarta'))
@@ -229,19 +229,19 @@ def addNewApi():
 		}
 @app.route('/api/apikeystatus', methods=['GET','POST'])
 def check_limit():
-	if request.args.get('apiKey'):
-		if request.args.get('apiKey') in keyMe:
-			key = keyMe[request.args.get('apiKey')]
+	if request.args.get('apikey'):
+		if request.args.get('apikey') in keyMe:
+			key = keyMe[request.args.get('apikey')]
 			return {
 				'status': 200,
-				'apiKey': request.args.get('apiKey'),
+				'apikey': request.args.get('apikey'),
 				'limit_count': key['limit'],
 				'created_date': key['from'],
 				'expired_date': key['exp'],
 				'apikey_status': key['status']
 			}
-		else:return {'status': False,'message': 'Upss your APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
-	else:return {'status': False,'message': 'Input param apiKey'}
+		else:return {'status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'message': 'Input param apikey'}
 
 @app.route('/deleto', methods=['GET','POST'])
 def deleto():
@@ -272,93 +272,102 @@ def textpro():
 		theme = request.args.get('theme')
 		if theme.lower() in tp.theme:
 			if theme.lower() == 'glitch':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.glitchz(text, text2)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'jokerlogo':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.jokerlogo(text)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'blood':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.blood(text)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'snow':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.snow(text)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+			elif theme.lower() == 'dropwater':
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
+					text = request.args.get('text')
+					result = tp.dropwater(text)
+					return result
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'neon_technology':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.neon_technology(text)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'neon_light':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
 					result = tp.neon_light(text)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'lionlogo':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.lionlogo(text, text2)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'wolflogo1':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.wolflogo1(text, text2)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'wolflogo2':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text1')
 					text2 = request.args.get('text2')
 					result = tp.wolflogo2(text, text2)
 					return result
-				else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			elif theme.lower() == 'ninjalogo':
-				if request.args.get('apiKey') in keyMe:
-					key = request.args.get('apiKey')
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text1')
@@ -378,7 +387,7 @@ def sendTts(filename):
 def spamgimel():
 	if request.args.get('target'):
 		if request.args.get('jum'):
-			if request.args.get('apiKey') in keyMe:
+			if request.args.get('apikey') in keyMe:
 				abece = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 				target_imel = request.args.get('target')
 				jumlah = int(request.args.get('jum'))
@@ -410,7 +419,7 @@ def spamgimel():
 						'status': False,
 						'logs': hasil
 					}
-			else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+			else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 		else:return {'status': False,'msg': 'Masukkan parameter jum'}
 	else:return {'status': False,'msg': 'Masukkan parameter target'}
 
@@ -419,10 +428,10 @@ def spamcall():
 	if request.args.get('no'):
 		no = request.args.get('no')
 		if str(no).startswith('8'):
-			if request.args.get('apiKey') in keyMe:
+			if request.args.get('apikey') in keyMe:
 				q = request.args.get('query')
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -437,7 +446,7 @@ def spamcall():
 					'status': 200,
 					'logs': hasil
 				}
-			else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+			else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 		else:return {'status': False,'msg': '[!] Tolong masukkan nomor dengan awalan 8'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter no' }
 
@@ -445,12 +454,12 @@ def spamcall():
 def spamming():
 	if request.args.get('no'):
 		if request.args.get('jum'):
-			if request.args.get('apiKey') in keyMe:
+			if request.args.get('apikey') in keyMe:
 				no = request.args.get('no')
 				jum = int(request.args.get('jum'))
 				q = request.args.get('query')
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -489,10 +498,10 @@ def spamming():
 def nulis_maker():
 	if request.args.get('text'):
 		text = request.args.get('text')
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -504,16 +513,16 @@ def nulis_maker():
 					"result": 'https://tobz-api.herokuapp.com/%s' % hihi
 					}
 			except Exception as e:print (e);return {'creator':'Tobz','status': False,'error': '[!] Upss, terjadi kesalahan'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'creator': 'Tobz','status': False,'message': '[!] Masukkan parameter text'}
 
 @app.route('/api/wiki', methods=['GET','POST'])
 def wikipedia():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -528,16 +537,16 @@ def wikipedia():
 					'result': result
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan param q'}
 
 @app.route('/api/tts', methods=['GET','POST'])
 def tts():
 	if request.args.get('text'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -552,7 +561,7 @@ def tts():
 					url = f'https://rest.farzain.com/api/tts.php?id={teks}&apikey='
 					if os.path.isfile('./tts/tts.mp3') == True:
 						os.remove('./tts/tts.mp3')
-						Tts = get(f'{url}{apiKey}').content
+						Tts = get(f'{url}{apikey}').content
 						open('tts/tts.mp3','wb').write(Tts)
 						return {
 							'status': 200,
@@ -560,7 +569,7 @@ def tts():
 							'file': 'https://tobz-api.herokuapp.com/tts/tts.mp3'
 						}
 					else:
-						Tts = get(f'{url}{apiKey}').content
+						Tts = get(f'{url}{apikey}').content
 						open('tts/tts.mp3','wb').write(Tts)
 						return {
 							'status': 200,
@@ -568,16 +577,16 @@ def tts():
 							'file': 'https://tobz-api.herokuapp.com/tts/tts.mp3'
 						}
 			except Exception as e:print(e)return {'status': False,'msg': '[!] Upss, terjadi kesalahan'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': 200,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/ytv', methods=['GET','POST'])
 def ytv():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -599,16 +608,16 @@ def ytv():
 					'ext': 'mp4'
 				}
 			except Exception as e:print('Error : %s ' % e)return {'status': False,'error': '[❗] Terjadi kesalahan, mungkin link yang anda kirim tidak valid!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'Masukkan parameter url'}
 
 @app.route('/api/yta', methods=['GET','POST'])
 def yta():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -629,16 +638,16 @@ def yta():
 					'ext': 'mp3'
 				}
 			except Exception as e:print('Error : %s' % e)return {'status': False,'error': '[❗] Terjadi kesalahan mungkin link yang anda kirim tidak valid!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
 @app.route('/api/chord', methods=['GET','POST'])
 def chord():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -651,16 +660,16 @@ def chord():
 					'result': result
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Maaf chord yang anda cari tidak dapat saya temukan!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/dewabatch', methods=['GET','POST'])
 def dewabatch():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -675,16 +684,16 @@ def dewabatch():
 						'result': dewabatch['info']
 					}
 			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/komiku', methods=['GET','POST'])
 def komiku():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -701,16 +710,16 @@ def komiku():
 						'link_dl': manga['dl_link']
 					}
 			except Exception as e:print(e)return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/kuso', methods=['GET','POST'])
 def kusonime():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -727,15 +736,15 @@ def kusonime():
 						'link_dl': kuso['link_dl']
 					}
 			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/nekonime', methods=['GET','POST'])
 def nekonimek():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -752,14 +761,14 @@ def nekonimek():
 				'status': 200,
 				'result': nimek
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/cry', methods=['GET','POST'])
 def crynime():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -776,14 +785,14 @@ def crynime():
 				'status': 200,
 				'result': cryz
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/kiss', methods=['GET','POST'])
 def kissnime():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -800,14 +809,14 @@ def kissnime():
 				'status': 200,
 				'result': nkiss
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/hug', methods=['GET','POST'])
 def hugnime():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -824,14 +833,14 @@ def hugnime():
 				'status': 200,
 				'result': nhug
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/randomanime', methods=['GET','POST'])
 def randomanime():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -850,14 +859,14 @@ def randomanime():
 				'status': 200,
 				'result': nimee
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/randomloli', methods=['GET','POST'])
 def randomloli():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -872,14 +881,14 @@ def randomloli():
 				'status': 200,
 				'result': loli
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/nsfwblowjob', methods=['GET','POST'])
 def blowjob():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -899,10 +908,10 @@ def blowjob():
 
 @app.route('/api/hentai', methods=['GET','POST'])
 def hentaii():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -919,14 +928,14 @@ def hentaii():
 				'status': 200,
 				'result': bblow
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/nsfwneko', methods=['GET','POST'])
 def nsfwneko():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -943,14 +952,14 @@ def nsfwneko():
 				'status': 200,
 				'result': nekko
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/nsfwtrap', methods=['GET','POST'])
 def trapnime():
-	if request.args.get('apiKey') in keyMe:
+	if request.args.get('apikey') in keyMe:
 		try:
-			kekeyi = request.args.get('apiKey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 			a = keyMe[kekeyi]['limit'] -1
 			wkwk = arere(kekeyi, a)
 			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -967,15 +976,15 @@ def trapnime():
 				'status': 200,
 				'result': ntrap
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/ig', methods=['GET','POST'])
 def igeh():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -993,16 +1002,16 @@ def igeh():
 						'result': result['descriptionc'],
 					}
 			except Exception as e:print(e)return {'status': False,'result': 'https://c4.wallpaperflare.com/wallpaper/976/117/318/anime-girls-404-not-found-glowing-eyes-girls-frontline-wallpaper-preview.jpg','error': True}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
 @app.route('/api/ttp', methods=['GET','POST'])
 def ttpz():
 	if request.args.get('text'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1016,16 +1025,16 @@ def ttpz():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/facebook', methods=['GET','POST'])
 def zfb():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1042,16 +1051,16 @@ def zfb():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Url yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter url'}
 
 @app.route('/api/artinama', methods=['GET','POST'])
 def artin():
 	if request.args.get('nama'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1065,16 +1074,16 @@ def artin():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/kbbi', methods=['GET','POST'])
 def kbbz():
 	if request.args.get('kata'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1086,16 +1095,16 @@ def kbbz():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Kata yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter kata'}
 
 @app.route('/api/jadwalshalat', methods=['GET','POST'])
 def jshalat():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1119,16 +1128,16 @@ def jshalat():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Daerah yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter daerah'}
 
 @app.route('/api/joox', methods=['GET','POST'])
 def zjoox():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1148,16 +1157,16 @@ def zjoox():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Query yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/lirik', methods=['GET','POST'])
 def zlirik():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1177,16 +1186,16 @@ def zlirik():
 					}
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Query yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
 @app.route('/api/simsimi', methods=['GET','POST'])
 def simi():
 	if request.args.get('text'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1200,16 +1209,16 @@ def simi():
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter text'}
 
 @app.route('/api/cuaca', methods=['GET','POST'])
 def zcuaca():
 	if request.args.get('wilayah'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1240,10 +1249,10 @@ def zcuaca():
 @app.route('/api/shorturl', methods=['GET','POST'])
 def short():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1257,14 +1266,14 @@ def short():
 					'result': data
 				}
 			except Exception as e:print(e)return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter url'}
 
 @app.route('/api/neolast', methods=['GET','POST'])
 def zneolast():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1282,13 +1291,13 @@ def zneolast():
 			'creator': 'Tobz',
 			'result': data
 		}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/anolast', methods=['GET','POST'])
 def zanolast():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1305,15 +1314,15 @@ def zanolast():
 			'creator': 'Tobz',
 			'result': data
 		}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/anoboy', methods=['GET','POST'])
 def zanoboy():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1335,17 +1344,17 @@ def zanoboy():
 					'result':data
 				}
 			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
 
 @app.route('/api/neonime', methods=['GET','POST'])
 def zneonime():
 	if request.args.get('q'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1365,16 +1374,16 @@ def zneonime():
 					'result':data
 				}
 			except Exception as e:print(e)return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/screenshotweb', methods=['GET','POST'])
 def zssweb():
 	if request.args.get('url'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1390,16 +1399,16 @@ def zssweb():
 					}
 				}
 			except Exception as e:print(e)return {'status': False,'error': 'Website %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/githubprofile', methods=['GET','POST'])
 def gprofile():
 	if request.args.get('username'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1428,16 +1437,16 @@ def gprofile():
 					}
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
 @app.route('/api/stalk', methods=['GET','POST'])
 def stalk():
 	if request.args.get('username'):
-		if request.args.get('apiKey') in keyMe:
+		if request.args.get('apikey') in keyMe:
 			try:
-				kekeyi = request.args.get('apiKey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1456,7 +1465,7 @@ def stalk():
 					'Profile_pic': thumb
 				}
 			except Exception as e:print(e)return {'status': False,'error': '[❗] Username salah!!'}
-		else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter username'}
 
 @app.route('/api/daerah', methods=['GET','POST'])
@@ -1474,9 +1483,9 @@ def daerah():
 
 @app.route('/api/waifu', methods=['GET','POST'])
 def waifu():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1500,13 +1509,13 @@ def waifu():
 				'image': result['image'],
 				'source': result['url']
 			}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/infogempa', methods=['GET','POST'])
 def infogempa():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1523,13 +1532,13 @@ def infogempa():
 			'lokasi': em[4].text,
 			'potensi': em[5].text
 		}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/randomquotes', methods=['GET','POST'])
 def quotes():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1541,13 +1550,13 @@ def quotes():
 			'author': result['author'],
 			'quotes': result['quotes']
 		}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.route('/api/quotesnime/random', methods=['GET','POST'])
 def quotesnimerandom():
-	if request.args.get('apiKey') in keyMe:
-		kekeyi = request.args.get('apiKey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'RaflyRTB','status': False,'error': 'Apikey anda sudah mencapai batas maksimal'}
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
@@ -1561,7 +1570,7 @@ def quotesnimerandom():
 				'anime': quotesnime['anime']
 			}
 		}
-	else:return {'creator': 'RaflyRTB','status': False,'message': 'APIkey tidak ditemukan, silahkan hubungi creator untuk membeli APIkey'}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
 @app.errorhandler(RequestURITooLarge)
 def cuihh(e):
