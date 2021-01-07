@@ -767,7 +767,6 @@ def ttpz():
 			query = request.args.get('text')
 			link = f'https://api.areltiyan.site/sticker_maker?text={query}'
 			ttp = get(link).json()
-			print(ttp)
 			return {
 				'status': 200,
 				'base64': ttp['base64'],
