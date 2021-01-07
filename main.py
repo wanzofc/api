@@ -1088,9 +1088,9 @@ def zfilm2():
 
 @app.route('/api/nhentai', methods=['GET','POST'])
 def znhentai():
-    if request.args.get('kode'):
+    if request.args.get('id'):
         try:
-            query = request.args.get('kode')
+            query = request.args.get('id')
             url = f'https://kii-web.herokuapp.com/api/nhentai/tags?id={query}'
             data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
             return {
@@ -1103,7 +1103,7 @@ def znhentai():
 					'images': data['result']['images']['pages'],
 					'pages': data['result']['num_pages'],
 					'favorite': data['result']['num_favorites'],
-					'tags': data['result']['tags'],
+					'tags': data['result']['tags'][0]['name'],
 					'upload_date': data['result']['upload_date']
 				}
 			}
@@ -1116,7 +1116,7 @@ def znhentai():
     else:
         return {
             'status': False,
-            'msg': 'input parameter kode'
+            'msg': 'input parameter id'
         }
 
 @app.route('/api/film', methods=['GET','POST'])
