@@ -17,7 +17,7 @@ class tp:
             'wolflogo2': '/create-wolf-logo-galaxy-online-936.html',
             'blood': '/blood-text-on-the-frosted-glass-941.html',
             'dropwater': '/dropwater-text-effect-872.html',
-            'snow': '/create-snow-text-effects-for-winter-holidays-1005.html',
+            'snow': '/create-snow-text-effects-for-winter-holidays-1005.html'
             }
 
     def snow(self, text):
