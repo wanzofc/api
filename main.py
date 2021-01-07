@@ -1093,14 +1093,16 @@ def znhentai():
             query = request.args.get('id')
             url = f'https://kii-web.herokuapp.com/api/nhentai/tags?id={query}'
             data = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+            thumb = data['result']['images']['thumbnail'].replace('https://external-content.duckduckgo.com/iu/?u=https://external-content.duckduckgo.com/iu/?u=','')
+            image = data['result']['images']['pages'].replace('https://external-content.duckduckgo.com/iu/?u=','')
             return {
                 'status': 200,
                 'creator':'Tobz',
                 'result': {
 					'title': data['result']['title']['pretty'],
-					'thumbnail': data['result']['images']['thumbnail'],
+					'thumbnail': thumb,
 					'id': data['result']['id'],
-					'images': data['result']['images']['pages'],
+					'images': image,
 					'pages': data['result']['num_pages'],
 					'favorite': data['result']['num_favorites'],
 					'upload_date': data['result']['upload_date']
