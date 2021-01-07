@@ -936,12 +936,12 @@ def zcuaca():
 	else:
 		return {
 			'status': False,
-			'msg': '[!] Masukkan parameter text'
+			'msg': '[!] Masukkan parameter wilayah'
 		}
 
 @app.route('/api/jamdunia', methods=['GET','POST'])
 def zjamdunia():
-	if request.args.get('url'):
+	if request.args.get('lokasi'):
 		if request.args.get('apikey') in keyMe:
 			try:
 				kekeyi = request.args.get('apikey')
@@ -949,6 +949,38 @@ def zjamdunia():
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('lokasi')
+				data = []
+				result = {"creator":"Tobz","result": data}
+				url = bsoup("http://167.99.71.200/?s={}&post_type%5B%5D=post&post_type%5B%5D=tv".format(query))
+				for tobz in url.findAll('article', attrs={'itemscope':'itemscope'}):
+					title = tobz.a['title']
+					link = tobz.a['href']
+					img = tobz.img['src']
+					image = shorturl(img)
+					rating = tobz.find('div', class_='gmr-rating-item').text.replace('Rating: ','')+'/10'
+					genre_negara = tobz.find('div', class_='gmr-movie-on').text
+					hasil = data.append({"judul":title,"thumb":image,"link":link,"rating":rating,"genre_negara":genre_negara})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/jamdunia', methods=['GET','POST'])
+def zjamdunia():
+	if request.args.get('lokasi'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('lokasi')
 				data = []
 				result = {"creator":"Tobz","result": data}
 				url = bsoup("https://time.is/id/{}".format(query))
@@ -965,7 +997,7 @@ def zjamdunia():
 				}
 			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': 'input parameter url'}
+	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/bitly', methods=['GET','POST'])
 def bitzly():
@@ -1027,7 +1059,7 @@ def zbacakimik():
 				query = request.args.get('q')
 				hasilnya = []
 				result = {"creator":"Tobz","result": hasilnya}
-				url = bsoup("https://bacakomik.co/?s=dungeon")
+				url = bsoup("https://bacakomik.co/?s={}".format(query))
 				tobz = url.find('div', class_='animepost')
 				link = tobz.a['href']
 				soup = bsoup(link)
@@ -1074,7 +1106,7 @@ def zkiryuu():
 				query = request.args.get('q')
 				data = []
 				result = {"creator":"Tobz","result": data}
-				url = bsoup("https://kiryuu.co/?s=demon")
+				url = bsoup("https://kiryuu.co/?s={}".format(query))
 				for Tobz in url.findAll('div',class_='bs'):
 				    title = "{}".format(str(Tobz.find('a')['title']))
 				    img = "{}".format(str(Tobz.find('img')['src']))
