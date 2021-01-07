@@ -1769,7 +1769,7 @@ def fml():
 		url = requests.get("https://www.fmylife.com/random/spicy")
 		tbz = BeautifulSoup(url.content, 'html.parser')
 		res = tbz.find('span', class_='spicy-hidden').text
-		data.append({"result":result})
+		data.append({"result":res})
 		return {
 			'status': 200,
 			'author': data
