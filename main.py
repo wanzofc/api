@@ -519,6 +519,40 @@ def nulis_maker():
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'creator': 'Tobz','status': False,'message': '[!] Masukkan parameter text'}
 
+@app.route('/api/katahilih', methods=['GET','POST'])
+def hilih():
+	if request.args.get('kata'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				kya = request.args.get('kata')
+				pesan=[]
+				for i in chat:
+					if i.lower() in ['a','u','e','o']:
+						if i.isupper():
+							pesan.append('I')
+						elif i.islower():
+							pesan.append('i')
+						else:
+							pesan.append(i)
+					else:
+						pesan.append(i)
+						result = ''.join(pesan)
+				return {
+					'creator': 'Tobz',
+					'status': 200,
+					'kata': result
+				}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': '[!] Masukkan param q'}
+
+
+
 @app.route('/api/wiki', methods=['GET','POST'])
 def wikipedia():
 	if request.args.get('q'):
@@ -536,6 +570,7 @@ def wikipedia():
 				hueh = re.findall(r'(\d+)', str(heuh_))
 				result = heuh_[hueh[0]]['extract']
 				return {
+					'creator': 'Tobz',
 					'status': 200,
 					'result': result
 				}
@@ -568,6 +603,7 @@ def tts():
 						open('tts/tts.mp3','wb').write(Tts)
 						return {
 							'status': 200,
+							'creator': 'Tobz',
 							'msg': 'Success convert text to speech!',
 							'file': 'https://tobz-api.herokuapp.com/tts/tts.mp3'
 						}
@@ -665,6 +701,57 @@ def chord():
 			except Exception as e:print(e);return {'status': False,'error': '[❗] Maaf chord yang anda cari tidak dapat saya temukan!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
+
+@app.route('/api/film2', methods=['GET','POST'])
+def zfilm2():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				url = f'https://rest.farzain.com/api/film.php?id={query}&apikey=fckveza'
+				film2 = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
+				thumb =  film2['Poster']
+				thumbnail = shorturl(thumb)
+				return {
+					'status': 200,
+					'creator': 'Tobz',
+					'result': {
+							'judul': film2['Title'],
+							'tahun': film2['Year'],
+							'rating': film2['Rated'],
+							'dirilis': film2['Released'],
+							'durasi': film2['Runtime'],
+							'kategori': film2['Genre'],
+							'penulis': film2['Writer'],
+							'aktor': film2['Actors'],
+							'sinopsis': film2['Plot'],
+							'bahasa': film2['Language'],
+							'negara': film2['Country'],
+							'penghargaan': film2['Awards'],
+							'thumbnail': thumbnail,
+							'metascore': film2['Metascore'],
+							'rating_imdb': film2['imdbRating'],
+							'voting_imdb': film2['imdbVotes'],
+							'tipe': film2['Type'],
+							'produksi': film2['Production'],
+							'boxoffice': film2['BoxOffice']
+						}
+					}
+			except:
+				return {
+					'status': False,
+					'error': '[❗] Maaf, Text yang anda masukan salah!'
+				}
+	else:
+		return {
+			'status': False,
+			'msg': '[!] Masukkan parameter wilayah'
+		}
 
 @app.route('/api/ig', methods=['GET','POST'])
 def igeh():
@@ -917,15 +1004,15 @@ def zcuaca():
 					'status': 200,
 					'creator': 'Tobz',
 					'result': {
-                            'tempat': weather['respon']['tempat'],
-                            'cuaca': weather['respon']['cuaca'],
-                            'desk': weather['respon']['deskripsi'],
-                            'suhu': weather['respon']['suhu'],
-                            'kelembapan': weather['respon']['kelembapan'],
-                            'udara': weather['respon']['udara'],
-                            'angin': weather['respon']['angin']
-                        }
-                    }
+							'tempat': weather['respon']['tempat'],
+							'cuaca': weather['respon']['cuaca'],
+							'desk': weather['respon']['deskripsi'],
+							'suhu': weather['respon']['suhu'],
+							'kelembapan': weather['respon']['kelembapan'],
+							'udara': weather['respon']['udara'],
+							'angin': weather['respon']['angin']
+						}
+					}
 			except:
 				return {
 					'status': False,
@@ -987,27 +1074,27 @@ def zfilm2():
 					'status': 200,
 					'creator': 'Tobz',
 					'result': {
-                            'judul': film2['Title'],
-                            'tahun': film2['Year'],
-                            'rating': film2['Rated'],
-                            'dirilis': film2['Released'],
-                            'durasi': film2['Runtime'],
-                            'kategori': film2['Genre'],
-                            'penulis': film2['Writer'],
-                            'aktor': film2['Actors'],
-                            'sinopsis': film2['Plot'],
-                            'bahasa': film2['Language'],
-                            'negara': film2['Country'],
-                            'penghargaan': film2['Awards'],
-                            'thumbnail': thumbnail,
-                            'metascore': film2['Metascore'],
-                            'rating_imdb': film2['imdbRating'],
-                            'voting_imdb': film2['imdbVotes'],
-                            'tipe': film2['Type'],
-                            'produksi': film2['Production'],
-                            'boxoffice': film2['BoxOffice']
-                        }
-                    }
+							'judul': film2['Title'],
+							'tahun': film2['Year'],
+							'rating': film2['Rated'],
+							'dirilis': film2['Released'],
+							'durasi': film2['Runtime'],
+							'kategori': film2['Genre'],
+							'penulis': film2['Writer'],
+							'aktor': film2['Actors'],
+							'sinopsis': film2['Plot'],
+							'bahasa': film2['Language'],
+							'negara': film2['Country'],
+							'penghargaan': film2['Awards'],
+							'thumbnail': thumbnail,
+							'metascore': film2['Metascore'],
+							'rating_imdb': film2['imdbRating'],
+							'voting_imdb': film2['imdbVotes'],
+							'tipe': film2['Type'],
+							'produksi': film2['Production'],
+							'boxoffice': film2['BoxOffice']
+						}
+					}
 			except:
 				return {
 					'status': False,
@@ -1034,11 +1121,11 @@ def zjamdunia():
 				result = {"creator":"Tobz","result": data}
 				url = bsoup("https://time.is/id/{}".format(query))
 				for Tobz in url.findAll('div', attrs={'id':'time_section'}):
-				    title = Tobz.h1.text
-				    time = Tobz.find('div', attrs={'id':'clock0_bg'}).text
-				    date = Tobz.find('div', class_='w90 tr clockdate').text
-				    sun = Tobz.find('span', class_='nw').text
-				    hasil = data.append({"title":title,"time":time,"date":date,"sun":sun})
+					title = Tobz.h1.text
+					time = Tobz.find('div', attrs={'id':'clock0_bg'}).text
+					date = Tobz.find('div', class_='w90 tr clockdate').text
+					sun = Tobz.find('span', class_='nw').text
+					hasil = data.append({"title":title,"time":time,"date":date,"sun":sun})
 				return {
 					'status': 200,
 					'creator':'Tobz',
@@ -1157,21 +1244,21 @@ def zkiryuu():
 				result = {"creator":"Tobz","result": data}
 				url = bsoup("https://kiryuu.co/?s={}".format(query))
 				for Tobz in url.findAll('div',class_='bs'):
-				    title = "{}".format(str(Tobz.find('a')['title']))
-				    img = "{}".format(str(Tobz.find('img')['src']))
-				    image = shorturl(img)
-				    link = "{}".format(str(Tobz.find('a')['href']))
-				    format = Tobz.find('div', class_='limit').text.replace('\n','').replace(' ','')
-				    chapter = Tobz.find('div', class_='adds').text.replace('\n','')
-				    rating = Tobz.find('div', class_='numscore').text
-				    info = bsoup(link)
-				    gen = info.find('span', class_='mgen').text.replace(' ',', ')
-				    sinopsis = info.find('div', class_='entry-content entry-content-single').text.replace('\n','')
-				    follow = info.find('div', class_='bmc').text
-				    txtz = info.find('div', class_='tsinfo bixbox')
-				    status = txtz.findAll('div')[0].text.replace('\n','').replace('Status ','').replace('\t','')
-				    type = txtz.findAll('div')[1].text.replace('\n','').replace('Type ','').replace('\t','')
-				    hasil = data.append({"title":title,"image":image,"link":link,"format":format,"chapter":chapter,"rating":rating,"follow":follow,"status":status,"type":type,"sinopsis":sinopsis,"genre":gen})
+					title = "{}".format(str(Tobz.find('a')['title']))
+					img = "{}".format(str(Tobz.find('img')['src']))
+					image = shorturl(img)
+					link = "{}".format(str(Tobz.find('a')['href']))
+					format = Tobz.find('div', class_='limit').text.replace('\n','').replace(' ','')
+					chapter = Tobz.find('div', class_='adds').text.replace('\n','')
+					rating = Tobz.find('div', class_='numscore').text
+					info = bsoup(link)
+					gen = info.find('span', class_='mgen').text.replace(' ',', ')
+					sinopsis = info.find('div', class_='entry-content entry-content-single').text.replace('\n','')
+					follow = info.find('div', class_='bmc').text
+					txtz = info.find('div', class_='tsinfo bixbox')
+					status = txtz.findAll('div')[0].text.replace('\n','').replace('Status ','').replace('\t','')
+					type = txtz.findAll('div')[1].text.replace('\n','').replace('Type ','').replace('\t','')
+					hasil = data.append({"title":title,"image":image,"link":link,"format":format,"chapter":chapter,"rating":rating,"follow":follow,"status":status,"type":type,"sinopsis":sinopsis,"genre":gen})
 				return {
 					'status': 200,
 					'creator':'Tobz',
