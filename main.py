@@ -1054,7 +1054,7 @@ def zfilm():
 	else:return {'status': False,'msg': 'input parameter q'}
 
 @app.route('/api/film2', methods=['GET','POST'])
-def zfilm2():
+def zfilmzs():
 	if request.args.get('q'):
 		if request.args.get('apikey') in keyMe:
 			try:
