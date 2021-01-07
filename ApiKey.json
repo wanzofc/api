@@ -1,11 +1,5 @@
 {
-	"administrator": {
-		"exp": "No Exp",
-		"from": "Now",
-		"limit": 9999999999999,
-		"status": "VVIP"
-	},
-	"rafly_rtb": {
+	"BotWeA": {
 		"exp": "No Exp",
 		"from": "Now",
 		"limit": 9999999999999,
@@ -17,10 +11,3 @@
 		"limit": 9999999999999,
 		"status": "VVIP"
 	},
-	"tobzzz": {
-		"exp": "No Exp",
-		"from": "Now",
-		"limit": 9999999999999,
-		"status": "VVIP"
-	}
-}
