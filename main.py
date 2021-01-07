@@ -10,20 +10,24 @@ from lib.textpro import tp
 from urllib.parse import *
 from urllib.request import *
 from flask import *
+from datetime import datetime
+from kbbi import KBBI, AutentikasiKBBI
+from wikipedia import wikipedia
 from flask import Flask, request, abort, redirect, jsonify
 from werkzeug.exceptions import *
 #from werkzeug.utils import *
 from bs4 import BeautifulSoup as bs
 from requests import get, post
-import os, math, json, random, re, html_text, pytesseract, base64, time, smtplib, html5lib
+import os, math, json, random, re, html_text, pytesseract, base64, time, smtplib, convertapi, kbbi
 
 ua_ig = 'Mozilla/5.0 (Linux; Android 10; Redmi Note 9 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.127 Mobile Safari/537.36'
 
-tp = tp()
-keyMe = json.loads(open('apiKey.json').read())
 app = Flask(__name__)
+keyMe = json.loads(open('apiKey.json').read())
 app.config['MEDIA'] = 'result'
 app.secret_key = b'BB,^z\x90\x88?\xcf\xbb'
+
+tp = tp()
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 User_Agent_Instagram = 'Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)'
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
