@@ -529,7 +529,7 @@ def hilih():
 				a = keyMe[kekeyi]['limit'] -1
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				kya = request.args.get('kata')
+				chat = request.args.get('kata')
 				pesan=[]
 				for i in chat:
 					if i.lower() in ['a','u','e','o']:
