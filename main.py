@@ -667,321 +667,6 @@ def chord():
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
 
-@app.route('/api/dewabatch', methods=['GET','POST'])
-def dewabatch():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				q = request.args.get('q')
-				he=search_dewabatch(quote(q))
-				dewabatch=cari(he)
-				if he != '':
-					return {
-						'status': 200,
-						'sinopsis': dewabatch['result'],
-						'thumb': dewabatch['cover'],
-						'result': dewabatch['info']
-					}
-			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
-
-@app.route('/api/komiku', methods=['GET','POST'])
-def komiku():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				q = request.args.get('q')
-				komi = search_komiku(q)
-				if 'Tidak di temukan' not in komi:
-					manga = scrap_komiku(komi)
-					return {
-						'status': 200,
-						'info': manga['info'],
-						'genre': manga['genre'],
-						'sinopsis': manga['sinopsis'],
-						'thumb': manga['thumb'],
-						'link_dl': manga['dl_link']
-					}
-			except Exception as e:print(e);return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
-
-@app.route('/api/kuso', methods=['GET','POST'])
-def kusonime():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				q = request.args.get('q')
-				he=search_kusonime(quote(q))
-				kuso=scrap_kusonime(he)
-				if he != '':
-					return {
-						'status': 200,
-						'sinopsis': kuso['sinopsis'],
-						'thumb': kuso['thumb'],
-						'info': kuso['info'],
-						'title': kuso['title'],
-						'link_dl': kuso['link_dl']
-					}
-			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
-
-@app.route('/api/nekonime', methods=['GET','POST'])
-def nekonimek():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			neko = get('https://waifu.pics/api/sfw/neko').json()
-			nimek = neko['url']
-			return {
-				'status': 200,
-				'result': nimek
-			}
-		except:
-			neko = get('https://waifu.pics/api/sfw/neko').json()
-			nimek = neko['url']
-			return {
-				'status': 200,
-				'result': nimek
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/cry', methods=['GET','POST'])
-def crynime():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			cryz = get('https://waifu.pics/api/sfw/cry').json()
-			ncry = cryz['url']
-			return {
-				'status': 200,
-				'result': ncry
-			}
-		except:
-			cryz = get('https://waifu.pics/api/sfw/cry').json()
-			ncry = cryz['url']
-			return {
-				'status': 200,
-				'result': cryz
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/kiss', methods=['GET','POST'])
-def kissnime():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			rkiss = get('https://waifu.pics/api/sfw/kiss').json()
-			nkiss = rkiss['url']
-			return {
-				'status': 200,
-				'result': nkiss
-			}
-		except:
-			rkiss = get('https://waifu.pics/api/sfw/kiss').json()
-			nkiss = rkiss['url']
-			return {
-				'status': 200,
-				'result': nkiss
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/hug', methods=['GET','POST'])
-def hugnime():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			hugz = get('https://waifu.pics/api/sfw/hug').json()
-			nhug = hugz['url']
-			return {
-				'status': 200,
-				'result': nhug
-			}
-		except:
-			hugz = get('https://waifu.pics/api/sfw/hug').json()
-			nhug = hugz['url']
-			return {
-				'status': 200,
-				'result': nhug
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/randomanime', methods=['GET','POST'])
-def randomanime():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			rnime = ['waifu','neko','shinobu','megumin']
-			nnimee = get('https://waifu.pics/api/sfw/%s' % random.choice(rnime)).json()
-			nimee = nnimee['url']
-			return {
-				'status': 200,
-				'result': nimee
-			}
-		except:
-			rnime = ['waifu','neko','shinobu','megumin']
-			nnimee = get('https://waifu.pics/api/sfw/%s' % random.choice(rnime)).json()
-			nimee = nnimee['url']
-			return {
-				'status': 200,
-				'result': nimee
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/randomloli', methods=['GET','POST'])
-def randomloli():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			hehe = ['kawaii','neko']
-			loli = get('https://api.lolis.life/%s' % random.choice(hehe)).json()['url']
-			return {
-				'status': 200,
-				'result': loli
-			}
-		except:
-			return {
-				'status': 200,
-				'result': loli
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/nsfwblowjob', methods=['GET','POST'])
-def blowjob():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			nblow = get('https://waifu.pics/api/nsfw/blowjob').json()
-			bblow = nblow['url']
-			return {
-				'status': 200,
-				'result': bblow
-			}
-		except:
-			nblow = get('https://waifu.pics/api/nsfw/blowjob').json()
-			bblow = nblow['url']
-			return {
-				'status': 200,
-				'result': bblow
-			}
-
-@app.route('/api/hentai', methods=['GET','POST'])
-def hentaii():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			nblow = get('https://waifu.pics/api/nsfw/waifu').json()
-			bblow = nblow['url']
-			return {
-				'status': 200,
-				'result': bblow
-			}
-		except:
-			nblow = get('https://waifu.pics/api/nsfw/waifu').json()
-			bblow = nblow['url']
-			return {
-				'status': 200,
-				'result': bblow
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/nsfwneko', methods=['GET','POST'])
-def nsfwneko():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			nneko = get('https://waifu.pics/api/nsfw/neko').json()
-			nekko = nneko['url']
-			return {
-				'status': 200,
-				'result': nekko
-			}
-		except:
-			nneko = get('https://waifu.pics/api/nsfw/neko').json()
-			nekko = nneko['url']
-			return {
-				'status': 200,
-				'result': nekko
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
-@app.route('/api/nsfwtrap', methods=['GET','POST'])
-def trapnime():
-	if request.args.get('apikey') in keyMe:
-		try:
-			kekeyi = request.args.get('apikey')
-			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-			a = keyMe[kekeyi]['limit'] -1
-			wkwk = arere(kekeyi, a)
-			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-			trap = get('https://waifu.pics/api/nsfw/trap').json()
-			ntrap = trap['url']
-			return {
-				'status': 200,
-				'result': ntrap
-			}
-		except:
-			trap = get('https://waifu.pics/api/nsfw/trap').json()
-			ntrap = trap['url']
-			return {
-				'status': 200,
-				'result': ntrap
-			}
-	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-
 @app.route('/api/ig', methods=['GET','POST'])
 def igeh():
 	if request.args.get('url'):
@@ -1299,6 +984,422 @@ def tinyurlz():
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter url'}
 
+#===[ANIME & MANGA]===#
+
+@app.route('/api/kiryuu', methods=['GET','POST'])
+def zkiryuu():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				result = {"creator":"Tobz","result": data}
+				url = bsoup("https://kiryuu.co/?s=demon")
+				for Tobz in url.findAll('div',class_='bs'):
+				    title = "{}".format(str(Tobz.find('a')['title']))
+				    img = "{}".format(str(Tobz.find('img')['src']))
+				    image = shorturl(img)
+				    link = "{}".format(str(Tobz.find('a')['href']))
+				    format = Tobz.find('div', class_='limit').text.replace('\n','').replace(' ','')
+				    chapter = Tobz.find('div', class_='adds').text.replace('\n','')
+				    rating = Tobz.find('div', class_='numscore').text
+				    info = bsoup(link)
+				    gen = info.find('span', class_='mgen').text.replace(' ',', ')
+				    sinopsis = info.find('div', class_='entry-content entry-content-single').text.replace('\n','')
+				    follow = info.find('div', class_='bmc').text
+				    txtz = info.find('div', class_='tsinfo bixbox')
+				    status = txtz.findAll('div')[0].text.replace('\n','').replace('Status ','').replace('\t','')
+				    type = txtz.findAll('div')[1].text.replace('\n','').replace('Type ','').replace('\t','')
+				    hasil = data.append({"title":title,"image":image,"link":link,"format":format,"chapter":chapter,"rating":rating,"follow":follow,"status":status,"type":type,"sinopsis":sinopsis,"genre":gen})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/neonime', methods=['GET','POST'])
+def zneonime():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				url = requests.get("https://neonime.vip/?s={}".format(query))
+				tbz = BeautifulSoup(url.content,'html.parser')
+				desc = tbz.find('span', {'class': 'ttx'}).text
+				for Tobz in tbz.find_all('div',class_='item episode-home'):
+					link = "{}".format(str(Tobz.find('a')['href']))
+					title = "{}".format(str(Tobz.find('img')['alt']))
+					image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
+					hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/anoboy', methods=['GET','POST'])
+def zanoboy():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				result = {"creator":"Tobz","result": data}
+				url = requests.get("https://anoboy.tube/?s={}".format(query))
+				rtb = BeautifulSoup(url.content,'html.parser')
+				for rafz in rtb.findAll('div', class_='column-content'):
+					link = rafz.a.get('href')
+				for rafly in rtb.findAll('div', class_='amv'):
+					title = "{}".format(str(rafly.find('h3', {'class':'ibox1'}).text))
+					image = "{}".format(str(rafly.find('amp-img')['src']))
+					date = "{}".format(str(rafly.find('div',class_='jamup').text))
+					hasil = data.append({"title":title,"image":image,"link":link,"date":date})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/dewabatch', methods=['GET','POST'])
+def dewabatch():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				q = request.args.get('q')
+				he=search_dewabatch(quote(q))
+				dewabatch=cari(he)
+				if he != '':
+					return {
+						'status': 200,
+						'sinopsis': dewabatch['result'],
+						'thumb': dewabatch['cover'],
+						'result': dewabatch['info']
+					}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(q)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
+
+@app.route('/api/komiku', methods=['GET','POST'])
+def komiku():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				q = request.args.get('q')
+				komi = search_komiku(q)
+				if 'Tidak di temukan' not in komi:
+					manga = scrap_komiku(komi)
+					return {
+						'status': 200,
+						'info': manga['info'],
+						'genre': manga['genre'],
+						'sinopsis': manga['sinopsis'],
+						'thumb': manga['thumb'],
+						'link_dl': manga['dl_link']
+					}
+			except Exception as e:print(e);return {'status': False,'error': 'Manga %s Tidak di temukan' % unquote(q)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
+
+@app.route('/api/kuso', methods=['GET','POST'])
+def kusonime():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				q = request.args.get('q')
+				he=search_kusonime(quote(q))
+				kuso=scrap_kusonime(he)
+				if he != '':
+					return {
+						'status': 200,
+						'sinopsis': kuso['sinopsis'],
+						'thumb': kuso['thumb'],
+						'info': kuso['info'],
+						'title': kuso['title'],
+						'link_dl': kuso['link_dl']
+					}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan' % unquote(q)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter q'}
+
+@app.route('/api/nekonime', methods=['GET','POST'])
+def nekonimek():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			neko = get('https://waifu.pics/api/sfw/neko').json()
+			nimek = neko['url']
+			return {
+				'status': 200,
+				'result': nimek
+			}
+		except:
+			neko = get('https://waifu.pics/api/sfw/neko').json()
+			nimek = neko['url']
+			return {
+				'status': 200,
+				'result': nimek
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/cry', methods=['GET','POST'])
+def crynime():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			cryz = get('https://waifu.pics/api/sfw/cry').json()
+			ncry = cryz['url']
+			return {
+				'status': 200,
+				'result': ncry
+			}
+		except:
+			cryz = get('https://waifu.pics/api/sfw/cry').json()
+			ncry = cryz['url']
+			return {
+				'status': 200,
+				'result': cryz
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/kiss', methods=['GET','POST'])
+def kissnime():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			rkiss = get('https://waifu.pics/api/sfw/kiss').json()
+			nkiss = rkiss['url']
+			return {
+				'status': 200,
+				'result': nkiss
+			}
+		except:
+			rkiss = get('https://waifu.pics/api/sfw/kiss').json()
+			nkiss = rkiss['url']
+			return {
+				'status': 200,
+				'result': nkiss
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/hug', methods=['GET','POST'])
+def hugnime():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			hugz = get('https://waifu.pics/api/sfw/hug').json()
+			nhug = hugz['url']
+			return {
+				'status': 200,
+				'result': nhug
+			}
+		except:
+			hugz = get('https://waifu.pics/api/sfw/hug').json()
+			nhug = hugz['url']
+			return {
+				'status': 200,
+				'result': nhug
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/randomanime', methods=['GET','POST'])
+def randomanime():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			rnime = ['waifu','neko','shinobu','megumin']
+			nnimee = get('https://waifu.pics/api/sfw/%s' % random.choice(rnime)).json()
+			nimee = nnimee['url']
+			return {
+				'status': 200,
+				'result': nimee
+			}
+		except:
+			rnime = ['waifu','neko','shinobu','megumin']
+			nnimee = get('https://waifu.pics/api/sfw/%s' % random.choice(rnime)).json()
+			nimee = nnimee['url']
+			return {
+				'status': 200,
+				'result': nimee
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/randomloli', methods=['GET','POST'])
+def randomloli():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			hehe = ['kawaii','neko']
+			loli = get('https://api.lolis.life/%s' % random.choice(hehe)).json()['url']
+			return {
+				'status': 200,
+				'result': loli
+			}
+		except:
+			return {
+				'status': 200,
+				'result': loli
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/nsfwblowjob', methods=['GET','POST'])
+def blowjob():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			nblow = get('https://waifu.pics/api/nsfw/blowjob').json()
+			bblow = nblow['url']
+			return {
+				'status': 200,
+				'result': bblow
+			}
+		except:
+			nblow = get('https://waifu.pics/api/nsfw/blowjob').json()
+			bblow = nblow['url']
+			return {
+				'status': 200,
+				'result': bblow
+			}
+
+@app.route('/api/hentai', methods=['GET','POST'])
+def hentaii():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			nblow = get('https://waifu.pics/api/nsfw/waifu').json()
+			bblow = nblow['url']
+			return {
+				'status': 200,
+				'result': bblow
+			}
+		except:
+			nblow = get('https://waifu.pics/api/nsfw/waifu').json()
+			bblow = nblow['url']
+			return {
+				'status': 200,
+				'result': bblow
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/nsfwneko', methods=['GET','POST'])
+def nsfwneko():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			nneko = get('https://waifu.pics/api/nsfw/neko').json()
+			nekko = nneko['url']
+			return {
+				'status': 200,
+				'result': nekko
+			}
+		except:
+			nneko = get('https://waifu.pics/api/nsfw/neko').json()
+			nekko = nneko['url']
+			return {
+				'status': 200,
+				'result': nekko
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
+@app.route('/api/nsfwtrap', methods=['GET','POST'])
+def trapnime():
+	if request.args.get('apikey') in keyMe:
+		try:
+			kekeyi = request.args.get('apikey')
+			if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+			a = keyMe[kekeyi]['limit'] -1
+			wkwk = arere(kekeyi, a)
+			keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+			trap = get('https://waifu.pics/api/nsfw/trap').json()
+			ntrap = trap['url']
+			return {
+				'status': 200,
+				'result': ntrap
+			}
+		except:
+			trap = get('https://waifu.pics/api/nsfw/trap').json()
+			ntrap = trap['url']
+			return {
+				'status': 200,
+				'result': ntrap
+			}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
 @app.route('/api/neolast', methods=['GET','POST'])
 def zneolast():
 	if request.args.get('apikey') in keyMe:
@@ -1311,7 +1412,7 @@ def zneolast():
 		url = requests.get("https://neonime.vip")
 		tbz = BeautifulSoup(url.content,'html.parser')
 		desc = tbz.find('span', {'class': 'ttx'}).text
-		for Tobz in tbz.find_all('div',class_='item episode-home'):
+		for Tobz in tbz.findAll('div',class_='item episode-home'):
 			link = "{}".format(str(Tobz.find('a')['href']))
 			title = "{}".format(str(Tobz.find('img')['alt']))
 			image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
@@ -1346,66 +1447,7 @@ def zanolast():
 		}
 	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
-@app.route('/api/anoboy', methods=['GET','POST'])
-def zanoboy():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				query = request.args.get('q')
-				data = []
-				result = {"creator":"Tobz","result": data}
-				url = requests.get("https://anoboy.tube/?s={}".format(query))
-				rtb = BeautifulSoup(url.content,'html.parser')
-				for rafz in rtb.findAll('div', class_='column-content'):
-					link = rafz.a.get('href')
-				for rafly in rtb.findAll('div', class_='amv'):
-					title = "{}".format(str(rafly.find('h3', {'class':'ibox1'}).text))
-					image = "{}".format(str(rafly.find('amp-img')['src']))
-					date = "{}".format(str(rafly.find('div',class_='jamup').text))
-					hasil = data.append({"title":title,"image":image,"link":link,"date":date})
-				return {
-					'status': 200,
-					'creator':'Tobz',
-					'result':data
-				}
-			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': 'input parameter q'}
-
-
-@app.route('/api/neonime', methods=['GET','POST'])
-def zneonime():
-	if request.args.get('q'):
-		if request.args.get('apikey') in keyMe:
-			try:
-				kekeyi = request.args.get('apikey')
-				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-				a = keyMe[kekeyi]['limit'] -1
-				wkwk = arere(kekeyi, a)
-				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-				query = request.args.get('q')
-				data = []
-				url = requests.get("https://neonime.vip/?s={}".format(query))
-				tbz = BeautifulSoup(url.content,'html.parser')
-				desc = tbz.find('span', {'class': 'ttx'}).text
-				for Tobz in tbz.find_all('div',class_='item episode-home'):
-					link = "{}".format(str(Tobz.find('a')['href']))
-					title = "{}".format(str(Tobz.find('img')['alt']))
-					image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-					hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
-				return {
-					'status': 200,
-					'creator':'Tobz',
-					'result':data
-				}
-			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
-		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
-	else:return {'status': False,'msg': 'input parameter q'}
+#===[ANIME & MANGA]===#
 
 @app.route('/api/screenshotweb', methods=['GET','POST'])
 def zssweb():
