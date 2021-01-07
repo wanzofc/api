@@ -547,7 +547,7 @@ def hilih():
 						'status': 200,
 						'kata': result
 					}
-				except Exception as e:print(e);return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
+			except Exception as e:print(e);return {'status': False,'error': '[❗] Yang anda cari tidak bisa saya temukan di wikipedia!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': '[!] Masukkan param q'}
 
