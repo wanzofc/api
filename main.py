@@ -1699,12 +1699,12 @@ def waifu():
 				'image': result['image'],
 				'source': result['url']
 			}
-		else:
-			return {
-				'creator': 'Tobz',
-				'status': False,
-				'message': 'APIKEY LU INVALID TOD'
-			}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
 
 @app.route('/api/infogempa', methods=['GET','POST'])
 def infogempa():
