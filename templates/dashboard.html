@@ -1,3 +1,14 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +18,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    TOBZ API's
+    Material Dashboard by Creative Tim
   </title>
   <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -27,1137 +38,544 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="https://tobz-api.herokuapp.com" class="simple-text logo-normal">
-          TOBZ API's
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Creative Tim
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item  ">
+          <li class="nav-item active  ">
             <a class="nav-link" href="./dashboard.html">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./user.html">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./tables.html">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./typography.html">
+              <i class="material-icons">library_books</i>
+              <p>Typography</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./icons.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Icons</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./map.html">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./notifications.html">
+              <i class="material-icons">notifications</i>
+              <p>Notifications</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="./rtl.html">
+              <i class="material-icons">language</i>
+              <p>RTL Support</p>
+            </a>
+          </li>
+          <li class="nav-item active-pro ">
+            <a class="nav-link" href="./upgrade.html">
+              <i class="material-icons">unarchive</i>
+              <p>Upgrade to PRO</p>
             </a>
           </li>
         </ul>
       </div>
     </div>
     <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="#">Another Notification</a>
+                  <a class="dropdown-item" href="#">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title "> Social Media</h4>
-                  <p class="card-category"> All APIs about Social Media & Downloader</p>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category">Used Space</p>
+                  <h3 class="card-title">49/50
+                    <small>GB</small>
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger">warning</i>
+                    <a href="javascript:;">Get More Space...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">store</i>
+                  </div>
+                  <p class="card-category">Revenue</p>
+                  <h3 class="card-title">$34,245</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Last 24 Hours
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">Fixed Issues</p>
+                  <h3 class="card-title">75</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Tracked from Github
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-twitter"></i>
+                  </div>
+                  <p class="card-category">Followers</p>
+                  <h3 class="card-title">+245</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="dailySalesChart"></div>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Name
-                        </th>
-                        <th>
-                          Information
-                        </th>
-                        <th>
-                          Parameter
-                        </th>
-                        <th>
-                          Status
-                        </th>
-                        <th>
-                          Type
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Github Profile
-                          </td>
-                          <td>
-                            Displays profile from github
-                          </td>
-                          <td>
-                            username
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/githubprofile?username=tobyg74">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Nhentai Downloader
-                          </td>
-                          <td>
-                            Download doujin from Nhentai
-                          </td>
-                          <td>
-                            id
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/nhentai?id=212121">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Facebook Downloader
-                          </td>
-                          <td>
-                            Download video from Facebook
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/facebook?url=https://www.facebook.com/watch/?v=1393572814172251">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Youtube MP4 Downloader
-                          </td>
-                          <td>
-                            Download video from Youtube
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/ytv?url=https://www.youtube.com/watch?v=BC6bHIbVP9I">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Youtube MP3 Downloader
-                          </td>
-                          <td>
-                            Download audio from Youtube
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/yta?url=https://www.youtube.com/watch?v=_vIDmHhIkqo">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            Display profile from Instagram
-                          </td>
-                          <td>
-                            Download audio from Youtube
-                          </td>
-                          <td>
-                            username
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/stalk?username=tobz2k19">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            7
-                          </td>
-                          <td>
-                            Wikipedia
-                          </td>
-                          <td>
-                            Displays the meaning of a word
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/wiki?q=jokowi">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            8
-                          </td>
-                          <td>
-                            KBBI
-                          </td>
-                          <td>
-                            Displays the meaning of a word
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/kbbi?q=kucing">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            9
-                          </td>
-                          <td>
-                            Dewabatch Scraper
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/dewabatch?q=naruto">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            10
-                          </td>
-                          <td>
-                            Kusonime Scraper
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/kuso?q=Kanojo+okarishimasu">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            11
-                          </td>
-                          <td>
-                            Neonime Scraper
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/neonime?q=Danmachi">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            12
-                          </td>
-                          <td>
-                            Anoboy Scraper
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/anoboy?q=Danmachi">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            13
-                          </td>
-                          <td>
-                            Bacakomik Scraper
-                          </td>
-                          <td>
-                            Displays information from Manga
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/bacakomik?q=Dungeon">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            14
-                          </td>
-                          <td>
-                            Kiryuu Scraper
-                          </td>
-                          <td>
-                            Displays information from Manga
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/bacakomik?q=Demon">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            15
-                          </td>
-                          <td>
-                            Neonime Last Updated
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/neolast">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            16
-                          </td>
-                          <td>
-                            Anoboy Last Updated
-                          </td>
-                          <td>
-                            Displays information from Anime
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/anolast">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            17
-                          </td>
-                          <td>
-                            Random Quotes
-                          </td>
-                          <td>
-                            Displays random quotes
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/randomquotes">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            18
-                          </td>
-                          <td>
-                            Random Loli
-                          </td>
-                          <td>
-                            Displays random loli pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/randomloli">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            19
-                          </td>
-                          <td>
-                            Random Waifu
-                          </td>
-                          <td>
-                            Displays random waifu pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/waifu">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            20
-                          </td>
-                          <td>
-                            Random Nekonime
-                          </td>
-                          <td>
-                            Displays random nekonime pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/nekonime">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            21
-                          </td>
-                          <td>
-                            Random Anime
-                          </td>
-                          <td>
-                            Displays random anime pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/randomanime">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            22
-                          </td>
-                          <td>
-                            Random Hentai
-                          </td>
-                          <td>
-                            Displays random hentai pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/hentai">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            23
-                          </td>
-                          <td>
-                            Random NSFW Neko
-                          </td>
-                          <td>
-                            Displays random nsfwneko pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/neolast">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            24
-                          </td>
-                          <td>
-                            Random NSFW Trap
-                          </td>
-                          <td>
-                            Displays random nsfw trap pictures
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/nsfwtrap">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            25
-                          </td>
-                          <td>
-                            Random NSFW Blowjob
-                          </td>
-                          <td>
-                            Displays random nsfw blowjob gif
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/nsfwblowjob">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            26
-                          </td>
-                          <td>
-                            Random Anime Hug
-                          </td>
-                          <td>
-                            Displays random anime hug gif
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/hug">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            27
-                          </td>
-                          <td>
-                            Random Anime Kiss
-                          </td>
-                          <td>
-                            Displays random anime kiss gif
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/kiss">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            28
-                          </td>
-                          <td>
-                            Random Anime Cry
-                          </td>
-                          <td>
-                            Displays random anime cry gif
-                          </td>
-                          <td>
-                            othing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/cry">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            29
-                          </td>
-                          <td>
-                            Writing in book
-                          </td>
-                          <td>
-                            Displays the results of writing in books
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/nulis?text=halo">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            30
-                          </td>
-                          <td>
-                            Text to Image
-                          </td>
-                          <td>
-                            Displays text to image conversion
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/ttp?text=halo">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            31
-                          </td>
-                          <td>
-                            Neon Light
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=neon_light&text=Tobz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            32
-                          </td>
-                          <td>
-                            Glitch
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text1 & teks2
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=glitch&text1=Tobz&text2=Ganz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            33
-                          </td>
-                          <td>
-                            Ninja Logo
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text1 & teks2
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=ninjalogo&text1=Tobz&text2=Ganz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            34
-                          </td>
-                          <td>
-                            Wolf Logo 1
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text1 & teks2
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=wolflogo1&text1=Tobz&text2=Ganz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            35
-                          </td>
-                          <td>
-                            Wolf Logo 2
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text1 & teks2
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=wolflogo2&text1=Tobz&text2=Ganz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            36
-                          </td>
-                          <td>
-                            Lion Logo
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text1 & teks2
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=lionlogo&text1=Tobz&text2=Ganz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            37
-                          </td>
-                          <td>
-                            Ninja Logo
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=jokerlogo&text=Tobz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            38
-                          </td>
-                          <td>
-                            Dropwater
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=dropwater&text=Tobz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            39
-                          </td>
-                          <td>
-                            Blood
-                          </td>
-                          <td>
-                            Create an image from Textpro
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/textpro?theme=blood&text=Tobz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            40
-                          </td>
-                          <td>
-                            Weather Information
-                          </td>
-                          <td>
-                            Displays information about the weather
-                          </td>
-                          <td>
-                            wilayah
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/cuaca?wilayah=jakarta">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            41
-                          </td>
-                          <td>
-                            Earthquake Information
-                          </td>
-                          <td>
-                            Displays information about earthquakes
-                          </td>
-                          <td>
-                            Nothing
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/infogempa">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            42
-                          </td>
-                          <td>
-                            Movie Information 1
-                          </td>
-                          <td>
-                            Displays information about movies
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/film?q=cars%203">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            43
-                          </td>
-                          <td>
-                            Movie Information 2
-                          </td>
-                          <td>
-                            Displays information about movies
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/film2?q=cars">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            44
-                          </td>
-                          <td>
-                            Spam Call
-                          </td>
-                          <td>
-                            Send a Call to someone
-                          </td>
-                          <td>
-                            no
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/spamcall?no=82111342213">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            45
-                          </td>
-                          <td>
-                            Spam Gmail
-                          </td>
-                          <td>
-                            Send Spam to gmail
-                          </td>
-                          <td>
-                            target & jum
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/spamgmail?target=hahaha@gmail.com&jum=5">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            46
-                          </td>
-                          <td>
-                            Webshite Sreenshot
-                          </td>
-                          <td>
-                            Take a photo view from the website
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/screenshotweb?url=https://github.com/TobyG74">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            47
-                          </td>
-                          <td>
-                            Guitar Chord
-                          </td>
-                          <td>
-                            Find the guitar chord
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/chord?q=semua%20tentang%20kita">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            48
-                          </td>
-                          <td>
-                            Prayer Schedule
-                          </td>
-                          <td>
-                            Displays information about prayer schedules
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/jadwalshalat?q=Jakarta">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            49
-                          </td>
-                          <td>
-                            Simsimi
-                          </td>
-                          <td>
-                            Chat with Simsimi
-                          </td>
-                          <td>
-                            text
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/simsimi?text=halo">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            50
-                          </td>
-                          <td>
-                            Joox
-                          </td>
-                          <td>
-                            Search music on Joox
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/joox?q=akad">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            50
-                          </td>
-                          <td>
-                            World Clock
-                          </td>
-                          <td>
-                            Displays World Clock
-                          </td>
-                          <td>
-                            lokasi
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/jamdunia?lokasi=jakarta">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            51
-                          </td>
-                          <td class="FF5000">
-                            The Meaning of the Name
-                          </td>
-                          <td>
-                            Displays the meaning of a name
-                          </td>
-                          <td>
-                            q
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/artinama?q=tobz">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            52
-                          </td>
-                          <td>
-                            BitLy
-                          </td>
-                          <td>
-                            Shortens Url in bitly
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/bitly?url=https://github.com/TobyG74/ElainaBOT">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                        <tr>
-                          <td>
-                            53
-                          </td>
-                          <td>
-                            Tinyurl
-                          </td>
-                          <td>
-                            Shortens Url in tinyurl
-                          </td>
-                          <td>
-                            url
-                          </td>
-                          <td class="text-online">
-                            Online
-                          </td>
-                          <td class="text-primary"><a href="https://tobz-api.herokuapp.com/api/tinyurl?url=https://github.com/TobyG74/ElainaBOT">
-                            <h4><small>Example</small><h4>
-                          </a></td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <h4 class="card-title">Daily Sales</h4>
+                  <p class="card-category">
+                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <div class="ct-chart" id="websiteViewsChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Email Subscriptions</h4>
+                  <p class="card-category">Last Campaign Performance</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <div class="ct-chart" id="completedTasksChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Completed Tasks</h4>
+                  <p class="card-category">Last Campaign Performance</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                  <div class="nav-tabs-navigation">
+                    <div class="nav-tabs-wrapper">
+                      <span class="nav-tabs-title">Tasks:</span>
+                      <ul class="nav nav-tabs" data-tabs="tabs">
+                        <li class="nav-item">
+                          <a class="nav-link active" href="#profile" data-toggle="tab">
+                            <i class="material-icons">bug_report</i> Bugs
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#messages" data-toggle="tab">
+                            <i class="material-icons">code</i> Website
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#settings" data-toggle="tab">
+                            <i class="material-icons">cloud</i> Server
+                            <div class="ripple-container"></div>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="profile">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                            </td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Create 4 Invisible User Experiences you Never Knew About</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="messages">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                            </td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="tab-pane" id="settings">
+                      <table class="table">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="">
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                            </td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                              </div>
+                            </td>
+                            <td>Sign contract for "What are conference organizers afraid of?"</td>
+                            <td class="td-actions text-right">
+                              <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                              <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Employees Stats</h4>
+                  <p class="card-category">New employees on 15th September, 2016</p>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Salary</th>
+                      <th>Country</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Dakota Rice</td>
+                        <td>$36,738</td>
+                        <td>Niger</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Minerva Hooper</td>
+                        <td>$23,789</td>
+                        <td>Curaçao</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Sage Rodriguez</td>
+                        <td>$56,142</td>
+                        <td>Netherlands</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Philip Chaney</td>
+                        <td>$38,735</td>
+                        <td>Korea, South</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -1169,8 +587,23 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://github.com/TobyG74">
-                  Copyright
+                <a href="https://www.creative-tim.com">
+                  Creative Tim
+                </a>
+              </li>
+              <li>
+                <a href="https://creative-tim.com/presentation">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="http://blog.creative-tim.com">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="https://www.creative-tim.com/license">
+                  Licenses
                 </a>
               </li>
             </ul>
@@ -1179,8 +612,8 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script>, Thanks <i class="material-icons">favorite</i>
-            <a href="https://www.creative-tim.com" target="_blank">MelodicXT</a> - Rafly, Nugra, MRHRTZ
+            </script>, made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
           </div>
         </div>
       </footer>
@@ -1228,30 +661,29 @@
           </a>
         </li>
         <li class="button-container">
-          <a href="https://github.com/TobyG74" target="_blank" class="btn btn-primary btn-block">Github</a>
-        </li>
-        <li class="button-container">
-          <a href="https://wa.me/6281311850715" target="_blank" class="btn btn-primary btn-block">Whatsapp</a>
-        </li>
-        <li class="button-container">
-          <a href="https://instagram.com/Tobz2k19" target="_blank" class="btn btn-primary btn-block">Instagram</a>
-        </li>
-        <li class="button-container">
-          <a href="https://facebook.com/Tobz2k19" target="_blank" class="btn btn-primary btn-block">Github</a>
+          <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
         </li>
         <!-- <li class="header-title">Want more components?</li>
             <li class="button-container">
                 <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
                   Get the pro version
                 </a>
-            </li>
+            </li> -->
+        <li class="button-container">
+          <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
+            View Documentation
+          </a>
+        </li>
+        <li class="button-container github-star">
+          <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+        </li>
         <li class="header-title">Thank you for 95 shares!</li>
         <li class="button-container text-center">
           <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
           <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
           <br>
           <br>
-        </li> -->
+        </li>
       </ul>
     </div>
   </div>
@@ -1268,13 +700,13 @@
   <script src="../assets/js/plugins/jquery.validate.min.js"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
   <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-  <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
   <script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
   <script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
-  <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
   <script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
@@ -1467,6 +899,13 @@
 
         });
       });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
     });
   </script>
 </body>
