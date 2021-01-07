@@ -1378,9 +1378,11 @@ def hugnime():
 @app.route('/api/randomanime', methods=['GET','POST'])
 def randomanime():
 	if request.args.get('apikey') in keyMe:
-		key = request.args.get('apikey')
-		hee = arara(key)
-		if hee['status'] != True:return hee
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 		rnime = ['waifu','neko','shinobu','megumin']
 		nnimee = get('https://waifu.pics/api/sfw/%s' % random.choice(rnime)).json()
 		nimee = nnimee['url']
@@ -1398,9 +1400,11 @@ def randomanime():
 @app.route('/api/randomloli', methods=['GET','POST'])
 def randomloli():
 	if request.args.get('apikey') in keyMe:
-		key = request.args.get('apikey')
-		hee = arara(key)
-		if hee['status'] != True:return hee
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 		hehe = ['kawaii','neko']
 		loli = get('https://api.lolis.life/%s' % random.choice(hehe)).json()['url']
 		return {
@@ -1417,9 +1421,11 @@ def randomloli():
 @app.route('/api/nsfwblowjob', methods=['GET','POST'])
 def blowjob():
 	if request.args.get('apikey') in keyMe:
-		key = request.args.get('apikey')
-		hee = arara(key)
-		if hee['status'] != True:return hee
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 		nblow = get('https://waifu.pics/api/nsfw/blowjob').json()
 		bblow = nblow['url']
 		return {
@@ -1434,7 +1440,7 @@ def blowjob():
 		}
 
 @app.route('/api/hentai', methods=['GET','POST'])
-def hentaii():
+def hentai():
 	if request.args.get('apikey') in keyMe:
 		kekeyi = request.args.get('apikey')
 		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
