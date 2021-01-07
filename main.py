@@ -35,7 +35,7 @@ abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 ip_ban_list = ['35.200.21.208']
 
 @app.before_request
-def block_method()
+def block_method():
     ip = request.environ.get('REMOTE_ADDR')
     if ip in ip_ban_list:
         abort(403)
