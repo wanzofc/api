@@ -1228,17 +1228,21 @@ def zcuaca():
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('wilayah')
 				url = f'http://tobz-cuaca.herokuapp.com/?menu=cuaca&wilayah={query}'
-				cuc = get(url).json()
+				cuc = get(url, headers={'User-Agent': 'Mozilla/5.0 (Linux; Android 8.1.0; CPH1909) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36'}).json()
 				print(sim)
 				return {
 					'status': 200,
 					'creator': 'Tobz',
-					'kota': cuc[0]['Kota'],
-					'malam': cuc[0]['Malam'],
-					'siang': cuc[0]['Dini Hari'],
-					'suhu': cuc[0]['Suhu'],
-					'kelembapan': cuc[0]['Kelembaban']
-				}
+					'result': {
+                            'tempat': weather['respon']['tempat'],
+                            'cuaca': weather['respon']['cuaca'],
+                            'desk': weather['respon']['deskripsi'],
+                            'suhu': weather['respon']['suhu'],
+                            'kelembapan': weather['respon']['kelembapan'],
+                            'udara': weather['respon']['udara'],
+                            'angin': weather['respon']['angin']
+                        }
+                    }
 			except:
 				return {
 					'status': False,
@@ -1250,8 +1254,30 @@ def zcuaca():
 			'msg': '[!] Masukkan parameter text'
 		}
 
-@app.route('/api/shorturl', methods=['GET','POST'])
-def short():
+@app.route('/api/bitly', methods=['GET','POST'])
+def bitzly():
+	if request.args.get('url'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('url')
+				url = get("https://api-ssl.bitly.com/v3/shorten?access_token=eeed32b267a6f473e0e824aa685527cf1e18a5e6&longUrl={}".format(query)).json()
+				data = url['data']['url']
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter url'}
+
+@app.route('/api/tinyurl', methods=['GET','POST'])
+def tinyurlz():
 	if request.args.get('url'):
 		if request.args.get('apikey') in keyMe:
 			try:
