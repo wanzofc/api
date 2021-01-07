@@ -1765,14 +1765,12 @@ def fml():
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		data = []
 		url = requests.get("https://www.fmylife.com/random/spicy")
 		tbz = BeautifulSoup(url.content, 'html.parser')
 		res = tbz.find('span', class_='spicy-hidden').text
-		data.append({"result":res})
 		return {
 			'status': 200,
-			'author': data
+			'author': res
 		}
 	else:
 		return {
