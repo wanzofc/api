@@ -1,14 +1,14 @@
 {
-	"BotWeA": {
-		"exp": "No Exp",
-		"from": "Now",
-		"limit": 9999999999999,
-		"status": "VVIP"
-	},
 	"Tobz2k19": {
 		"exp": "No Exp",
 		"from": "Now",
 		"limit": 9999999999999,
 		"status": "VVIP"
 	},
+	"BotWeA": {
+		"exp": "No Exp",
+		"from": "Now",
+		"limit": 9999999999999,
+		"status": "VVIP"
+	}
 }
