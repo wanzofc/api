@@ -1271,8 +1271,7 @@ def zneolast():
         title = "{}".format(str(Tobz.find('img')['alt']))
         image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
         info = bsoup(link)
-        res = info.find('div', class_='meta-a')
-        upload = res.find('p').text
+        upload = info.find('div', class_='meta-a').text
         seseps = info.find('div', class_='meta-b')
         txt = seseps.findAll('span')
         season = txt[0].text.replace(' Season ','')
@@ -1583,7 +1582,7 @@ def index():
 
 @app.route('/api', methods=['GET','POST'])
 def api():
-	return render_template('api.html')
+	return render_template('dashboard.html')
 
 @app.errorhandler(404)
 def error(e):
