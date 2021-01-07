@@ -1754,6 +1754,25 @@ def quotes():
 		}
 	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 
+@app.route('/api/randomfmylife', methods=['GET','POST'])
+def fml():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		data = []
+		url = requests.get("https://www.fmylife.com/random/spicy")
+		tbz = BeautifulSoup(url.content, 'html.parser')
+		res = tbz.find('span', class_='spicy-hidden').text
+		data.append({"result":result})
+		return {
+			'status': 200,
+			'author': data
+		}
+	else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+
 @app.route('/api/quotesnime/random', methods=['GET','POST'])
 def quotesnimerandom():
 	if request.args.get('apikey') in keyMe:
