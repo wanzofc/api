@@ -32,6 +32,14 @@ abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 User_Agent_Instagram = 'Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)'
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
+ip_ban_list = ['35.200.21.208']
+
+@app.before_request
+def block_method()
+    ip = request.environ.get('REMOTE_ADDR')
+    if ip in ip_ban_list:
+        abort(403)
+
 #========[INFO (Kumpulan Def)]========#
 def p(text):return text.rstrip('\n').lstrip('\n')
 def get_size(url):return convert_size(int(urlopen(url).headers['content-length']))
