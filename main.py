@@ -87,6 +87,12 @@ def next1_date():
 	bln = l_bln[waktu.month-11]
 	thn = waktu.year+1
 	return '%s - %s - %s' % (tgl, bln, thn)
+def bsoup(link,hdr=True):
+    CustomHeader = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"}
+    if hdr == False:
+        return BeautifulSoup(requests.get(link).content, "html.parser")
+    else:
+        return BeautifulSoup(requests.get(link,headers=CustomHeader).content, "html.parser")
 #========[INFO (Router List)]========#
 @app.route('/api/refresh')
 def refreshcvk():
