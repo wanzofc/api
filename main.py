@@ -1281,6 +1281,130 @@ def zkiryuu():
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
+@app.route('/api/nimegamingongoing', methods=['GET','POST'])
+def znimelast():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		data = []
+		result = {"creator":"Tobz","result": data}
+		url = bsoup("https://nimegami.com/")
+		tbz = url.find('div', class_='post-article')
+		for tobz in tbz.findAll('article'):
+			info = tobz.find('div', class_='info')
+			title = info.a['title']
+			link = info.a['href']
+			image = tobz.img['src']
+			hasil = info.findAll('li')
+			rating = tobz.find('div', class_='rating').text
+			posted = hasil[0].text.replace('Posted on:','')
+			episode = hasil[2].text.replace('Episode:','')
+			studio = hasil[4].text.replace('Studio:','').replace(',','')
+			tipe = tobz.find('div', class_='bot-post').text.replace(' ',', ')
+			dalem = bsoup(link)
+			data2 = dalem.find('div', class_='info2').findAll('tr')
+			alternatif_title = data2[1].text.replace('Judul Alternatif :','')
+			durasi_episode = data2[2].text.replace('Durasi Per Episode :','')
+			genre = data2[5].text.replace('Kategori :','')
+			season_release = data2[6].text.replace('Musim / Rilis :','')
+			series = data2[7].text.replace('Series :','')
+			subtitle = data2[8].text.replace('Bahasa :','')
+			download_batch = dalem.find('div', class_='download')
+			dl = download_batch.findAll('li')
+			_360p = dl[0].a['href']
+			_480p = dl[1].a['href']
+			_720p = dl[2].a['href']
+			data.append({"title":title,"alternatif_title":alternatif_title,"subtitle":subtitle,"image":image,"link":link,"rating":rating,"series":series,"posted_on":posted,"genre":genre,"episode":episode,"duration_episode":durasi_episode,"season_release":season_release,"studio":studio,"type":tipe,"download_episode":{'360p':_360p,'480p':_480p,'720p':_720p}})
+		return {
+			'status': 200,
+			'creator': 'Tobz',
+			'result': data
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
+
+@app.route('/api/nimegami', methods=['GET','POST'])
+def znimegami():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				result = {"creator":"Tobz","result": data}
+				url = bsoup("https://nimegami.com/?s={}&post_type=post".format(query))
+				tbz = url.find('div', class_='archive')
+				for tobz in tbz.findAll('article'):
+					info = tobz.find('h2', attrs={'itemprop':'name'})
+					title = info.a['title']
+					link = info.a['href']
+					image = tobz.img['src']
+					rating = tobz.find('div', class_='rating-archive').text.replace(' ','')
+					status = tobz.find('div', class_='term_tag-a').text.replace(' ','')
+					tipe = tobz.find('div', class_='terms_tag').text.replace(' ','')
+					dalem = bsoup(link)
+					data2 = dalem.find('div', class_='info2').findAll('tr')
+					alternatif_title = data2[1].text.replace('Judul Alternatif :','')
+					durasi_episode = data2[2].text.replace('Durasi Per Episode :','')
+					genre = data2[5].text.replace('Kategori :','')
+					season_release = data2[6].text.replace('Musim / Rilis :','')
+					series = data2[7].text.replace('Series :','')
+					subtitle = data2[8].text.replace('Bahasa :','')
+					download_batch = dalem.find('div', class_='batch-dlcuy')
+					dl = download_batch.findAll('li')
+					_360p = dl[0].a['href']
+					_480p = dl[1].a['href']
+					_720p = dl[2].a['href']
+					data.append({"title":title,"alternatif_title":alternatif_title,"subtitle":subtitle,"duration_episode":durasi_episode,"series":series,"season_release":season_release,"genre":genre,"image":image,"link":link,"rating":rating,"status":status,"type":tipe,"download_batch":{"360p":_360p,"460p":_480p,"720p":_720p}})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/neonimgongoing', methods=['GET','POST'])
+def zneolast():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		data = []
+		url = requests.get("https://neonime.vip")
+		tbz = BeautifulSoup(url.content,'html.parser')
+		desc = tbz.find('span', {'class': 'ttx'}).text
+		for Tobz in tbz.findAll('div',class_='item episode-home'):
+			link = "{}".format(str(Tobz.find('a')['href']))
+			title = "{}".format(str(Tobz.find('img')['alt']))
+			image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
+			hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
+		return {
+			'status': 200,
+			'creator': 'Tobz',
+			'result': data
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
+
 @app.route('/api/neonime', methods=['GET','POST'])
 def zneonime():
 	if request.args.get('q'):
@@ -1309,6 +1433,34 @@ def zneonime():
 			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/anoboyongoing', methods=['GET','POST'])
+def zanolast():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		data = []
+		url = requests.get("https://anoboy.tube/")
+		rtb = BeautifulSoup(url.content,'html.parser')
+		for rafly in rtb.findAll('div', class_='amv'):
+			title = "{}".format(str(rafly.find('h3', {'class':'ibox1'}).text))
+			image = "{}".format(str(rafly.find('amp-img')['src']))
+			date = "{}".format(str(rafly.find('div',class_='jamup').text))
+			hasil = data.append({"title":title,"image":image,"date":date})
+		return {
+			'status': 200,
+			'creator': 'Tobz',
+			'result': data
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
 
 @app.route('/api/anoboy', methods=['GET','POST'])
 def zanoboy():
@@ -1594,63 +1746,6 @@ def trapnime():
 		return {
 			'status': 200,
 			'result': ntrap
-		}
-	else:
-		return {
-			'creator': 'Tobz',
-			'status': False,
-			'message': 'APIKEY LU INVALID TOD'
-		}
-
-@app.route('/api/neolast', methods=['GET','POST'])
-def zneolast():
-	if request.args.get('apikey') in keyMe:
-		kekeyi = request.args.get('apikey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-		a = keyMe[kekeyi]['limit'] -1
-		wkwk = arere(kekeyi, a)
-		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		data = []
-		url = requests.get("https://neonime.vip")
-		tbz = BeautifulSoup(url.content,'html.parser')
-		desc = tbz.find('span', {'class': 'ttx'}).text
-		for Tobz in tbz.findAll('div',class_='item episode-home'):
-			link = "{}".format(str(Tobz.find('a')['href']))
-			title = "{}".format(str(Tobz.find('img')['alt']))
-			image = "{}".format(str(Tobz.find('img')['data-src'])).replace(' ',"")
-			hasil = data.append({"title":title,"desc": desc,"image":image,"link":link})
-		return {
-			'status': 200,
-			'creator': 'Tobz',
-			'result': data
-		}
-	else:
-		return {
-			'creator': 'Tobz',
-			'status': False,
-			'message': 'APIKEY LU INVALID TOD'
-		}
-
-@app.route('/api/anolast', methods=['GET','POST'])
-def zanolast():
-	if request.args.get('apikey') in keyMe:
-		kekeyi = request.args.get('apikey')
-		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
-		a = keyMe[kekeyi]['limit'] -1
-		wkwk = arere(kekeyi, a)
-		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		data = []
-		url = requests.get("https://anoboy.tube/")
-		rtb = BeautifulSoup(url.content,'html.parser')
-		for rafly in rtb.findAll('div', class_='amv'):
-			title = "{}".format(str(rafly.find('h3', {'class':'ibox1'}).text))
-			image = "{}".format(str(rafly.find('amp-img')['src']))
-			date = "{}".format(str(rafly.find('div',class_='jamup').text))
-			hasil = data.append({"title":title,"image":image,"date":date})
-		return {
-			'status': 200,
-			'creator': 'Tobz',
-			'result': data
 		}
 	else:
 		return {
