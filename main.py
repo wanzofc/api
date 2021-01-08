@@ -1217,7 +1217,7 @@ def tinyurlz():
 #===[ANIME & MANGA]===#
 
 @app.route('/api/bacakomik', methods=['GET','POST'])
-def zbacakimik():
+def zbaacakomik():
 	if request.args.get('q'):
 		if request.args.get('apikey') in keyMe:
 			try:
@@ -1276,15 +1276,15 @@ def zmangatoon():
 				query = request.args.get('q')
 				data = []
 				url = bsoup("https://mangatoon.mobi/en/search?word={}".format(query))
-				for tobz in url.findAll('div', class_='recommend-item'):
-					title = tobz.find('div', class_='recommend-comics-title').text.replace('\n                ','').replace('              ','')
-					link = "https://mangatoon.mobi" + tobz.a['href']
-					genre = tobz.find('div', class_='comics-type').text.replace('\n                ','').replace('/',', ')
-					info = bsoup(link)
-					star = info.find('div', class_='star').text.replace('\n\n        ','').replace('      ','/5')
-					information = info.find('div', class_='icon-wrap').text.replace('\n\n      ','').replace('      views','views').replace('      \n      ','\n').replace('      likes      \n','likes\n').replace('     \n','')
-					description = info.find('div', class_='description').text.replace('\n      ','')
-					data.append({"title":title,"link":link,"genre":genre,"star":star,"information":information,"description":description})
+				tobz = url.find('div', class_='recommend-item')
+				title = tobz.find('div', class_='recommend-comics-title').text.replace('\n                ','').replace('              ','')
+				link = "https://mangatoon.mobi" + tobz.a['href']
+				genre = tobz.find('div', class_='comics-type').text.replace('\n                ','').replace('/',', ')
+				info = bsoup(link)
+				star = info.find('div', class_='star').text.replace('\n\n        ','').replace('      ','/5')
+				information = info.find('div', class_='icon-wrap').text.replace('\n\n      ','').replace('      views','views').replace('      \n      ','\n').replace('      likes      \n','likes\n').replace('     \n','')
+				description = info.find('div', class_='description').text.replace('\n      ','')
+				data.append({"title":title,"link":link,"genre":genre,"star":star,"information":information,"description":description})
 				return {
 					'status': 200,
 					'creator':'Tobz',
