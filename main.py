@@ -1708,8 +1708,7 @@ def randomloli():
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		hehe = ['kawaii','neko']
-		loli = get('https://api.lolis.life/%s' % random.choice(hehe)).json()['url']
+		loli = get('http://tobz-js.herokuapp.com/randomloli').json()['result']['url']
 		return {
 			'status': 200,
 			'result': loli
@@ -2069,7 +2068,7 @@ def cuihh(e):
 @app.route('/', methods=['GET','POST'])
 def index():
 	return render_template('index.html')
-	
+
 @app.route('/api', methods=['GET','POST'])
 def api():
 	return render_template('api.html')
