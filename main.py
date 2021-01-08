@@ -29,6 +29,7 @@ app.config['MEDIA'] = 'result'
 app.secret_key = b'BB,^z\x90\x88?\xcf\xbb'
 
 tp = tp()
+ep = ep()
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 User_Agent_Instagram = 'Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)'
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -289,14 +290,14 @@ def convert_size(size_bytes):
 def ephoto():
 	if request.args.get('theme'):
 		theme = request.args.get('theme')
-		if theme.lower() in tp.theme:
+		if theme.lower() in ep.theme:
 			if theme.lower() == 'pubglogo':
 				if request.args.get('apikey') in keyMe:
 					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
-					result = tp.pubglogo(text)
+					result = ep.pubglogo(text)
 					return result
 				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			else:return {'error': 'Theme tersebut tidak ditemukan'}
