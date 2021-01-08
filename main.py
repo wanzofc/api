@@ -2070,10 +2070,6 @@ def cuihh(e):
 def index():
 	return render_template('index.html')
 
-@app.route('/test', methods=['GET','POST'])
-def zets():
-	return render_template('apikey.js')
-
 @app.route('/api', methods=['GET','POST'])
 def api():
 	return render_template('api.html')
