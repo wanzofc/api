@@ -1263,6 +1263,37 @@ def zbacakimik():
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
+@app.route('/api/mangatoon', methods=['GET','POST'])
+def zmangatoon():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				url = bsoup("https://mangatoon.mobi/en/search?word={}".format(query))
+				for tobz in url.findAll('div', class_='recommend-item'):
+					title = tobz.find('div', class_='recommend-comics-title').text.replace('\n                ','').replace('              ','')
+					link = "https://mangatoon.mobi" + tobz.a['href']
+					genre = tobz.find('div', class_='comics-type').text.replace('\n                ','').replace('/',', ')
+					info = bsoup(link)
+					star = info.find('div', class_='star').text.replace('\n\n        ','').replace('      ','/5')
+					information = info.find('div', class_='icon-wrap').text.replace('\n\n      ','').replace('      views','views').replace('      \n      ','\n').replace('      likes      \n','likes\n').replace('     \n','')
+					description = info.find('div', class_='description').text.replace('\n      ','')
+					data.append({"title":title,"link":link,"genre":genre,"star":star,"information":information,"description":description})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result':data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Anime %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
 @app.route('/api/kiryuu', methods=['GET','POST'])
 def zkiryuu():
 	if request.args.get('q'):
