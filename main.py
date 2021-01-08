@@ -93,6 +93,7 @@ def bsoup(link,hdr=True):
         return BeautifulSoup(requests.get(link).content, "html.parser")
     else:
         return BeautifulSoup(requests.get(link,headers=CustomHeader).content, "html.parser")
+def shorturl(link):return get("https://tinyurl.com/api-create.php?url="+link).text
 #========[INFO (Router List)]========#
 @app.route('/api/refresh')
 def refreshcvk():
