@@ -1311,7 +1311,7 @@ def znimelast():
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 		data = []
-		result = {"creator":"Tobz","result": data}
+		result = {"creator":"Tobz","result":{"data_searching":[]}}
 		url = bsoup("https://nimegami.com/")
 		tbz = url.find('div', class_='post-article')
 		for tobz in tbz.findAll('article'):
@@ -1338,7 +1338,7 @@ def znimelast():
 			_360p = dl[0].a['href']
 			_480p = dl[1].a['href']
 			_720p = dl[2].a['href']
-			data.append({"title":title,"alternatif_title":alternatif_title,"subtitle":subtitle,"image":image,"link":link,"rating":rating,"series":series,"posted_on":posted,"genre":genre,"episode":episode,"duration_episode":durasi_episode,"season_release":season_release,"studio":studio,"type":tipe,"download_episode":{'360p':_360p,'480p':_480p,'720p':_720p}})
+			data['result']['data_searching'].append({"title":title,"alternatif_title":alternatif_title,"subtitle":subtitle,"image":image,"link":link,"rating":rating,"series":series,"posted_on":posted,"genre":genre,"episode":episode,"duration_episode":durasi_episode,"season_release":season_release,"studio":studio,"type":tipe,"download_episode":{'360p':_360p,'480p':_480p,'720p':_720p}})
 		return {
 			'status': 200,
 			'creator': 'Tobz',
