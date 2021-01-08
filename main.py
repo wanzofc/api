@@ -7,6 +7,7 @@ from lib.resize import *
 from lib.search import *
 from lib.nulis import *
 from lib.textpro import tp
+from lib.ephoto360 import ep
 from urllib.parse import *
 from urllib.request import *
 from flask import *
@@ -284,6 +285,24 @@ def convert_size(size_bytes):
 #def allowed_file(filename):
 #	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSION
 
+@app.route('/api/ephoto360', methods=['GET','POST'])
+def ephoto():
+	if request.args.get('theme'):
+		theme = request.args.get('theme')
+		if theme.lower() in tp.theme:
+			if theme.lower() == 'pubglogo':
+				if request.args.get('apikey') in keyMe:
+					key = request.args.get('apikey')
+					hee = arara(key)
+					if hee['status'] != True:return hee
+					text = request.args.get('text')
+					result = tp.pubglogo(text)
+					return result
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+			else:return {'error': 'Theme tersebut tidak ditemukan'}
+		else:return {'error': 'Theme tersebut tidak ditemukan'}
+	else:return {'message': 'Anda belum memasukan parameter : theme'}
+
 @app.route('/api/textpro', methods=['GET','POST'])
 def textpro():
 	if request.args.get('theme'):
@@ -392,8 +411,9 @@ def textpro():
 					text2 = request.args.get('text2')
 					result = tp.ninjalogo(text, text2)
 					return result
-			else:return {'error': 'Themma tersebut tidak ditemukan'}
-		else:return {'error': 'Themma tersebut tidak ditemukan'}
+				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+			else:return {'error': 'Theme tersebut tidak ditemukan'}
+		else:return {'error': 'Theme tersebut tidak ditemukan'}
 	else:return {'message': 'Anda belum memasukan parameter : theme'}
 
 
