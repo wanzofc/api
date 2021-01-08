@@ -1700,6 +1700,26 @@ def randomanime():
 			'message': 'APIKEY LU INVALID TOD'
 		}
 
+@app.route('/api/randomshota', methods=['GET','POST'])
+def randomshota():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		loli = get('http://tobz-js.herokuapp.com/randomshota').json()['result']['url']
+		return {
+			'status': 200,
+			'result': loli
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
+
 @app.route('/api/randomloli', methods=['GET','POST'])
 def randomloli():
 	if request.args.get('apikey') in keyMe:
