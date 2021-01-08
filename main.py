@@ -2069,7 +2069,7 @@ def cuihh(e):
 @app.route('/', methods=['GET','POST'])
 def index():
 	return render_template('index.html')
-
+	
 @app.route('/api', methods=['GET','POST'])
 def api():
 	return render_template('api.html')
