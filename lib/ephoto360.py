@@ -7,7 +7,7 @@ class ep:
     def __init__(self):
         self.BaseUrl = 'https://ephoto360.com{}'
         self.theme = {
-            'pubglogo': '/tao-logo-pubg-truc-tuyen-nhieu-mau-sac-717.html',
+            'pubglogo': '/hieu-ung-tao-chu-ky-anh-sang-nhieu-mau-sac-686.html',
         }
 
     def pubglogo(self, text):
