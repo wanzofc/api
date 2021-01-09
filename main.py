@@ -1009,12 +1009,12 @@ def simi():
 				wkwk = arere(kekeyi, a)
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('text')
-				url = f'http://simsumi.herokuapp.com/api?text={query}&lang=id'
+				url = f'https://secureapp.simsimi.com/v1/simsimi/talkset?uid=297971048&av=6.9.3.4&lc=id&cc=ID&tz=Asia%2FJakarta&os=a&ak=quS%2FxiW%2Bb8ys5agzpljUdoPdLH8%3D&message_sentence={query}&normalProb=2&isFilter=1&talkCnt=6&talkCntTotal=6&reqFilter=0&session=nSt8PSSmKRbcR7quUkfhXYpmDYgErtBefVbkkri9CrGSVjm4Cj2e2zBFjvdxSijp56WjyK6g2EWTj3KxKz65DL22&traceSentenceLinkId=91165864&triggerKeywords=%5B%5D'
 				sim = get(url).json()
-				print(sim)
+				kata = sim['simsimi_talk_set']['message']['sentence']
 				return {
 					'status': 200,
-					'result': sim['success'],
+					'result': kata,
 					'creator': 'Tobz'
 				}
 			except:return {'status': False,'error': '[❗] Maaf, Text yang anda masukan salah!'}
