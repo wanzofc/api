@@ -1058,8 +1058,8 @@ def zcuaca():
 			'msg': '[!] Masukkan parameter wilayah'
 		}
 
-@app.route('/api/happymod', methods=['GET','POST'])
-def zhappymod():
+@app.route('/api/moddroid', methods=['GET','POST'])
+def zmoddroid():
 	if request.args.get('q'):
 		if request.args.get('apikey') in keyMe:
 			try:
@@ -1070,22 +1070,57 @@ def zhappymod():
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('q')
 				data = []
-				url = bsoup("https://www.happymod.com/search.html?q={}".format(query))
-				for tobz in url.findAll('div', class_='pdt-app-box'):
-					title = tobz.h3.text
-					link = "https://www.happymod.com"+tobz.a['href']
-					image = tobz.img['data-original']
-					url2 = bsoup(link)
-					dl = url2.find('div', class_='pdt-download')
-					download = "https://www.happymod.com"+dl.a['href']
-					dlshort = shorturl(download)
-					data.append({"title":title,"link":link,"image":image,"download":dlshort})
+				url = bsoup("https://moddroid.com/?s{}".format(query))
+				for tobz in url.findAll('div', class_='col-12 col-md-6 mb-4'):
+					title = tobz.a['title']
+					link = tobz.a['href']
+					image = tobz.img['src']
+					versi = tobz.find('div', class_='text-truncate text-muted d-flex align-items-center').text.replace('\n',' ')
+					hasil = data.append({"title":title,"link":link,"image":image,"versi":versi})
 				return {
 					'status': 200,
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as err:print(err);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/moddroiddl', methods=['GET','POST'])
+def zmoddroiddl():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				urlz = f"{query}"
+				url = bsoup(urlz)
+				for tobz in url.findAll('main', class_='col-12 col-lg-8 content-area'):
+					image = tobz.img['src']
+					txt = tobz.findAll('tr')
+					app_name = txt[0].text.replace('App Name','').replace('\n','')
+					publisher = txt[1].text.replace('Publisher','').replace('\n','')
+					genre = txt[2].text.replace('Genre','').replace('\n','')
+					size = txt[3].text.replace('Size','').replace('\n','')
+					latest_version = txt[4].text.replace('Latest Version','').replace('\n','')
+					mod_info = txt[5].text.replace('Mod Info','').replace('\n','')
+					ps_link = txt[6].text.replace('Get it On','').replace('\n','')+txt[6].a['href']
+					update = txt[7].text.replace('Update','').replace('\n','')
+					dl = tobz.find('a', class_='btn btn-secondary btn-block mb-3')['href']
+					dl2 = bsoup(dl)
+					download = dl2.find('div', class_='collapse').a['href']
+					hasil = data.append({"app_name":app_name,"image":image,"publisher":publisher,"genre":genre,"size":size,"latest_version":latest_version,"mod_info":mod_info,"ps_link":ps_link,"update":update,"download":download})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
