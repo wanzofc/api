@@ -7,7 +7,7 @@ from lib.resize import *
 from lib.search import *
 from lib.nulis import *
 from lib.textpro import tp
-from lib.ephoto360 import ep
+from lib.photofunia import px
 from urllib.parse import *
 from urllib.request import *
 from flask import *
@@ -29,7 +29,7 @@ app.config['MEDIA'] = 'result'
 app.secret_key = b'BB,^z\x90\x88?\xcf\xbb'
 
 tp = tp()
-ep = ep()
+px = px()
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 User_Agent_Instagram = 'Mozilla/5.0 (Linux; Android 9; SM-A102U Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.136 Mobile Safari/537.36 Instagram 155.0.0.37.107 Android (28/9; 320dpi; 720x1468; samsung; SM-A102U; a10e; exynos7885; en_US; 239490550)'
 abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -286,18 +286,18 @@ def convert_size(size_bytes):
 #def allowed_file(filename):
 #	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSION
 
-@app.route('/api/ephoto360', methods=['GET','POST'])
-def ephoto():
+@app.route('/api/photooxy', methods=['GET','POST'])
+def photooxy():
 	if request.args.get('theme'):
 		theme = request.args.get('theme')
-		if theme.lower() in ep.theme:
-			if theme.lower() == 'pubglogo':
+		if theme.lower() in px.theme:
+			if theme.lower() == 'shadow':
 				if request.args.get('apikey') in keyMe:
 					key = request.args.get('apikey')
 					hee = arara(key)
 					if hee['status'] != True:return hee
 					text = request.args.get('text')
-					result = ep.pubglogo(text)
+					result = px.shadow(text)
 					return result
 				else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 			else:return {'error': 'Theme tersebut tidak ditemukan'}

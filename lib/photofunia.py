@@ -1,15 +1,29 @@
-from requests import Session, get, post
-from urllib.parse import urlencode
+from requests import Session
+from bs4 import BeautifulSoup as bs
+
 r = Session()
- 
-class PF:
+
+class px:
     def __init__(self):
-            self.host = 'https://api.photofunia.com{}?access_key=e3084acf282e8323181caa61fa305b2a&lang=en'
-                    self.effects = {
-                                'sand_writing': '/2.0/effects/sand_writing',
-                                        }
-    def sand_writing(self, text):
-            url = self.host.format(self.effects['sand_writing'])
-                    data = {'text': text}
-                            result = post(url, data=data).json()
-                                    return result['response']
+        self.BaseUrl = 'https://photooxy.com{}'
+        self.theme = {
+            'shadow': '/logo-and-text-effects/shadow-text-effect-in-the-sky-394.html',
+        }
+
+    def shadow(self, text):
+        '''
+        text = rainbow
+        '''
+        try:
+            url = self.BaseUrl.format(self.theme['shadow'])
+            login = bs(r.get(url).text, 'html.parser').find('input', id='login')['value']
+            data = {u'text[]': [u'%s' % text], 'submit': 'OK', 'login': login}
+            result = self.BaseUrl.format(bs(r.post(url, data).text, 'html.parser').find('div', class_='btn-group').a['href'])
+            return {
+                'result': result
+            }
+        except Exception as e:
+            print(e)
+            return {
+                'error': 'ERROR'
+            }
