@@ -1097,11 +1097,15 @@ def zhappymoddl():
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('url')
 				data = []
-				url = bsoup("".format(query))
+				urlz = f"{query}"
+				url = bsoup(urlz)
 				info = url.find('div', class_='pdt-app-box')
 				title = info.h1.text
 				dl = url.find('div', class_='pdt-download')
-				download = "https://www.happymod.com"+dl.a['href']
+				dl1 = "https://www.happymod.com"+dl.a['href']
+				dl2 = bsoup(dl1)
+				download = "https://www.happymod.com"+dl2.find('div', class_='new-down-title-box').a['href']
+				dlshort = shorturl(download)
 				tobz = url.find('div', class_='new-div-box new-pdt-bg-box')
 				txt = tobz.findAll('li')
 				version = txt[0].text.replace('- Version: ','')
@@ -1115,7 +1119,7 @@ def zhappymoddl():
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as e:print(e);return {'status': False,'error': 'Maaf, Url yang anda masukan salah!'}
+			except:return {'status': False,'error': 'Maaf, url yang anda masukan salah!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter url'}
 
