@@ -1080,12 +1080,8 @@ def zmoddroid():
 					dl = info.find('a', class_='btn btn-secondary btn-block mb-3')['href']
 					dl2 = bsoup(dl)
 					txt = info.findAll('tr')
-					app_name = txt[0].text.replace('App Name','').replace('\n','')
-					publisher = txt[1].text.replace('Publisher','').replace('\n','')
-					genre = txt[2].text.replace('Genre','').replace('\n','')
-					size = txt[3].text.replace('Size','').replace('\n','')
 					download = dl2.find('div', class_='collapse').a['href']
-					hasil = data.append({"title":title,"link":link,"image":image,"versi":versi,"publisher":publisher,"genre":genre,"size":size,"download":download})
+					hasil = data.append({"title":title,"link":link,"image":image,"versi":versi,"download":download})
 				return {
 					'status': 200,
 					'creator':'Tobz',
