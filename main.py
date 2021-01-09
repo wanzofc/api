@@ -1076,8 +1076,6 @@ def zhappymod():
 					link = "https://www.happymod.com"+tobz.a['href']
 					image = tobz.img['data-original']
 					url2 = bsoup(link)
-					info = url2.find('div', class_='pdt-app-box')
-					title = info.h1.text
 					dl = url2.find('div', class_='pdt-download')
 					download = "https://www.happymod.com"+dl.a['href']
 					dlshort = shorturl(download)
