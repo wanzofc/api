@@ -1,344 +1,160 @@
-*, *:before, *:after {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css?family=Dosis:300,400,700,800");
 
-* {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transform-style: preserve-3d;
-}
+/** Styles for the 403 Page **/
 
-*:focus {
-  outline: none !important;
-}
-
-body, html {
+.particle-error,
+.permission_denied,
+#particles-js {
+  width: 100%;
   height: 100%;
+  margin: 0px !important;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  padding: 12px;
-  background: #343434;
-  color: white;
-  font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-  font-size: 24px;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+#particles-js {
+  position: fixed !important;
+  opacity: 0.23;
 }
 
-::-moz-selection {
-  background: none;
+.permission_denied {
+  background: #24344c !important;
 }
 
-::selection {
-  background: none;
+.permission_denied a {
+  text-decoration: none;
 }
 
-a {
+.denied__wrapper {
+  max-width: 390px;
+  width: 100%;
+  height: 390px;
   display: block;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 8vh;
+}
+
+.permission_denied h1 {
+  text-align: center;
+  color: #fff;
+  font-family: "Dosis", sans-serif;
+  font-size: 100px;
+  margin-bottom: 0px;
+  font-weight: 800;
+}
+
+.permission_denied h3 {
+  text-align: center;
+  color: #fff;
+  font-size: 19px;
+  line-height: 23px;
+  max-width: 330px;
+  margin: 0px auto 30px auto;
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+}
+
+.permission_denied h3 span {
+  position: relative;
+  width: 65px;
+  display: inline-block;
+}
+
+.permission_denied h3 span:after {
+  content: "";
+  border-bottom: 3px solid #ffbb39;
+  position: absolute;
+  left: 0;
+  top: 43%;
+  width: 100%;
+}
+
+.denied__link {
+  background: none;
+  color: #fff;
+  padding: 12px 0px 10px 0px;
+  border: 1px solid #fff;
+  outline: none;
+  border-radius: 7px;
+  width: 150px;
+  font-size: 15px;
+  text-align: center;
+  margin: 0 auto;
+  vertical-align: middle;
+  display: block;
+  margin-bottom: 40px;
+  margin-top: 25px;
+  font-family: "Dosis", sans-serif;
+  font-weight: 400;
+}
+
+.denied__link:hover {
+  color: #ffbb39;
+  border-color: #ffbb39;
   cursor: pointer;
-  -webkit-animation: pulseColor 1000ms linear 3100ms forwards;
-          animation: pulseColor 1000ms linear 3100ms forwards;
-  font-weight: 500;
-}
-a:hover b, a:focus b {
-  color: #F04F54;
-}
-a:active b {
-  color: #43CB9D;
+  opacity: 1;
 }
 
-svg {
-  width: 50px;
-  height: auto;
+.permission_denied .stars {
+  animation: sparkle 1.6s infinite ease-in-out alternate;
 }
 
-.crack {
-  position: relative;
-  z-index: 4;
-  margin-left: -50px;
-}
-.crack polyline {
-  fill: none;
-  stroke: #F04F54;
-  stroke-width: 10px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1649.099;
-  stroke-dashoffset: 1649.099;
-  -webkit-animation: drawStroke 1500ms ease-out 500ms forwards;
-          animation: drawStroke 1500ms ease-out 500ms forwards;
-}
-
-main {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-main > div {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  position: relative;
-  overflow: hidden;
-}
-main > div svg {
-  position: relative;
-  z-index: 1;
-}
-main > div svg polygon {
-  fill: #343434;
-}
-main > div span {
-  display: block;
-  position: relative;
-  z-index: 0;
-  padding: 0 12px;
-  line-height: 1.4;
-}
-main > div:first-child {
-  text-align: right;
-  z-index: 1;
-}
-main > div:first-child span:first-child {
-  opacity: 0;
-  transform: translateX(100%);
-  -webkit-animation: translateLeft 1000ms linear 1250ms forwards;
-          animation: translateLeft 1000ms linear 1250ms forwards;
-}
-main > div:first-child span:last-child {
-  opacity: 0;
-  transform: translateX(100%);
-  -webkit-animation: translateLeft 1000ms linear 1450ms forwards;
-          animation: translateLeft 1000ms linear 1450ms forwards;
-}
-main > div:first-child svg polygon {
-  -webkit-animation: removeFill 10ms ease-out 1600ms forwards;
-          animation: removeFill 10ms ease-out 1600ms forwards;
-}
-main > div:last-child {
-  z-index: 0;
-  margin-left: -50px;
-}
-main > div:last-child span:first-child {
-  opacity: 0;
-  transform: translateX(-100%);
-  -webkit-animation: translateRight 1000ms linear 1650ms forwards;
-          animation: translateRight 1000ms linear 1650ms forwards;
-}
-main > div:last-child span:last-child {
-  opacity: 0;
-  transform: translateX(-100%);
-  -webkit-animation: translateRight 1000ms linear 1850ms forwards;
-          animation: translateRight 1000ms linear 1850ms forwards;
-}
-
-@-webkit-keyframes drawStroke {
+@keyframes sparkle {
   0% {
-    stroke-dashoffset: 1649.099;
+    opacity: 1;
   }
   100% {
-    stroke-dashoffset: 0;
+    opacity: 0.3;
   }
 }
 
-@keyframes drawStroke {
+#astronaut {
+  width: 43px;
+  position: absolute;
+  right: 20px;
+  top: 210px;
+  animation: spin 4.5s infinite linear;
+}
+
+@keyframes spin {
   0% {
-    stroke-dashoffset: 1649.099;
+    transform: rotateZ(0deg);
   }
   100% {
-    stroke-dashoffset: 0;
+    transform: rotateZ(360deg);
   }
 }
-@-webkit-keyframes removeFill {
-  0% {
-    fill: #343434;
+
+@media (max-width: 600px) {
+  .permission_denied h1 {
+    font-size: 75px;
   }
-  100% {
-    fill: rgba(52, 52, 52, 0);
+  .permission_denied h3 {
+    font-size: 16px;
+    width: 200px;
+    margin: 0 auto;
+    line-height: 23px;
   }
-}
-@keyframes removeFill {
-  0% {
-    fill: #343434;
+  .permission_denied h3 span {
+    width: 60px;
   }
-  100% {
-    fill: rgba(52, 52, 52, 0);
-  }
-}
-@-webkit-keyframes pulseColor {
-  0% {
-    color: white;
-  }
-  25% {
-    color: #43CB9D;
-  }
-  50% {
-    color: white;
-  }
-  75% {
-    color: #43CB9D;
-  }
-  100% {
-    color: white;
+  #astronaut {
+    width: 35px;
+    right: 40px;
+    top: 170px;
   }
 }
-@keyframes pulseColor {
-  0% {
-    color: white;
-  }
-  25% {
-    color: #43CB9D;
-  }
-  50% {
-    color: white;
-  }
-  75% {
-    color: #43CB9D;
-  }
-  100% {
-    color: white;
-  }
+
+.saturn,
+.saturn-2,
+.hover {
+  animation: hover 2s infinite ease-in-out alternate;
 }
-/* https://goo.gl/v323yz */
-@-webkit-keyframes translateLeft {
+
+@keyframes hover {
   0% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 150, 0, 0, 1);
-    opacity: 1;
-  }
-  7.61% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 69.561, 0, 0, 1);
-  }
-  11.41% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 39.355, 0, 0, 1);
-  }
-  15.12% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 17.801, 0, 0, 1);
-  }
-  18.92% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3.02, 0, 0, 1);
-  }
-  22.72% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -5.661, 0, 0, 1);
-  }
-  30.23% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -10.852, 0, 0, 1);
-  }
-  50.25% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.282, 0, 0, 1);
-  }
-  70.27% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.519, 0, 0, 1);
+    transform: translateY(3px);
   }
   100% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-    opacity: 1;
-  }
-}
-@keyframes translateLeft {
-  0% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 150, 0, 0, 1);
-    opacity: 1;
-  }
-  7.61% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 69.561, 0, 0, 1);
-  }
-  11.41% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 39.355, 0, 0, 1);
-  }
-  15.12% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 17.801, 0, 0, 1);
-  }
-  18.92% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3.02, 0, 0, 1);
-  }
-  22.72% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -5.661, 0, 0, 1);
-  }
-  30.23% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -10.852, 0, 0, 1);
-  }
-  50.25% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -2.282, 0, 0, 1);
-  }
-  70.27% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0.519, 0, 0, 1);
-  }
-  100% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-    opacity: 1;
-  }
-}
-/* https://goo.gl/p1Hnde */
-@-webkit-keyframes translateRight {
-  0% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -150, 0, 0, 1);
-    opacity: 1;
-  }
-  7.61% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -69.561, 0, 0, 1);
-  }
-  11.41% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -39.355, 0, 0, 1);
-  }
-  15.12% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -17.801, 0, 0, 1);
-  }
-  18.92% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3.02, 0, 0, 1);
-  }
-  22.72% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5.661, 0, 0, 1);
-  }
-  30.23% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.852, 0, 0, 1);
-  }
-  50.25% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2.282, 0, 0, 1);
-  }
-  70.27% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.519, 0, 0, 1);
-  }
-  100% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-    opacity: 1;
-  }
-}
-@keyframes translateRight {
-  0% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -150, 0, 0, 1);
-    opacity: 1;
-  }
-  7.61% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -69.561, 0, 0, 1);
-  }
-  11.41% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -39.355, 0, 0, 1);
-  }
-  15.12% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -17.801, 0, 0, 1);
-  }
-  18.92% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -3.02, 0, 0, 1);
-  }
-  22.72% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 5.661, 0, 0, 1);
-  }
-  30.23% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.852, 0, 0, 1);
-  }
-  50.25% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2.282, 0, 0, 1);
-  }
-  70.27% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -0.519, 0, 0, 1);
-  }
-  100% {
-    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-    opacity: 1;
+    transform: translateY(-3px);
   }
 }
