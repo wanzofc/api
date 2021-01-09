@@ -1075,6 +1075,7 @@ def zmoddroid():
 					title = tobz.a['title']
 					link = tobz.a['href']
 					image = tobz.img['src']
+					versi = tobz.find('div', class_='text-truncate text-muted d-flex align-items-center').text.replace('\n',' ')
 					info = bsoup(link)
 					dl = info.find('a', class_='btn btn-secondary btn-block mb-3')['href']
 					dl2 = bsoup(dl)
@@ -1083,10 +1084,8 @@ def zmoddroid():
 					publisher = txt[1].text.replace('Publisher','').replace('\n','')
 					genre = txt[2].text.replace('Genre','').replace('\n','')
 					size = txt[3].text.replace('Size','').replace('\n','')
-					latest_version = txt[4].text.replace('Latest Version','').replace('\n','')
-					mod_info = txt[5].text.replace('Mod Info','').replace('\n','')
 					download = dl2.find('div', class_='collapse').a['href']
-					hasil = data.append({"title":title,"link":link,"image":image,"publisher":publisher,"genre":genre,"size":size,"latest_version":latest_version,"mod_info":mod_info,"download":download})
+					hasil = data.append({"title":title,"link":link,"image":image,"versi":versi,"publisher":publisher,"genre":genre,"size":size,"download":download})
 				return {
 					'status': 200,
 					'creator':'Tobz',
