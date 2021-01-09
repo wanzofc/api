@@ -1101,10 +1101,7 @@ def zhappymoddl():
 				info = url.find('div', class_='pdt-app-box')
 				title = info.h1.text
 				dl = url.find('div', class_='pdt-download')
-				dl1 = "https://www.happymod.com"+dl.a['href']
-				dl2 = bsoup(dl1)
-				download = "https://www.happymod.com"+dl2.find('div', class_='new-down-title-box').a['href']
-				dlshort = shorturl(download)
+				download = "https://www.happymod.com"+dl.a['href']
 				tobz = url.find('div', class_='new-div-box new-pdt-bg-box')
 				txt = tobz.findAll('li')
 				version = txt[0].text.replace('- Version: ','')
