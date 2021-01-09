@@ -1115,7 +1115,7 @@ def zhappymoddl():
 					'creator':'Tobz',
 					'result': data
 				}
-			except:return {'status': False,'error': 'Maaf, url yang anda masukan salah!'}
+			except Exception as e:print(e);return {'status': False,'error': 'Maaf, Url yang anda masukan salah!'}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter url'}
 
