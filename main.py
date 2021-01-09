@@ -1058,6 +1058,70 @@ def zcuaca():
 			'msg': '[!] Masukkan parameter wilayah'
 		}
 
+@app.route('/api/happymod', methods=['GET','POST'])
+def zhappymod():
+	if request.args.get('q'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('q')
+				data = []
+				url = bsoup("https://www.happymod.com/search.html?q={}".format(query))
+				for tobz in url.findAll('div', class_='pdt-app-box'):
+					title = tobz.h3.text
+					link = "https://www.happymod.com"+tobz.a['href']
+					image = tobz.img['data-original']
+					data.append({"title":title,"link":link,"image":image})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except Exception as e:print(e);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter q'}
+
+@app.route('/api/happymoddl', methods=['GET','POST'])
+def zhappymoddl():
+	if request.args.get('url'):
+		if request.args.get('apikey') in keyMe:
+			try:
+				kekeyi = request.args.get('apikey')
+				if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+				a = keyMe[kekeyi]['limit'] -1
+				wkwk = arere(kekeyi, a)
+				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+				query = request.args.get('url')
+				data = []
+				url = bsoup("".format(query))
+				info = url.find('div', class_='pdt-app-box')
+				title = info.h1.text
+				dl = url.find('div', class_='pdt-download')
+				dl1 = "https://www.happymod.com"+dl.a['href']
+				dl2 = bsoup(dl1)
+				download = "https://www.happymod.com"+dl2.find('div', class_='new-down-title-box').a['href']
+				dlshort = shorturl(download)
+				tobz = url.find('div', class_='new-div-box new-pdt-bg-box')
+				txt = tobz.findAll('li')
+				version = txt[0].text.replace('- Version: ','')
+				size = txt[1].text.replace('- Size: ','')
+				price = txt[2].text.replace('- Price: ','')
+				root = txt[3].text.replace('- Root needed: ','')
+				purchase = txt[4].text.replace('- Offers In-App Purchase: ','')
+				data.append({"title":title,"version":version,"size":size,"price":price,"root":root,"purchase":purchase,"download":dlshort})
+				return {
+					'status': 200,
+					'creator':'Tobz',
+					'result': data
+				}
+			except:return {'status': False,'error': 'Maaf, url yang anda masukan salah!'}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': 'input parameter url'}
+
 @app.route('/api/film', methods=['GET','POST'])
 def zfilm():
 	if request.args.get('q'):
@@ -1085,7 +1149,7 @@ def zfilm():
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as e:print(e);return {'status': False,'error': 'Url %s Tidak di temukan!' % unquote(query)}
+			except Exception as e:print(e);return {'status': False,'error': 'Film %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
@@ -1129,16 +1193,9 @@ def zfilmzs():
 							'boxoffice': film2['BoxOffice']
 						}
 					}
-			except:
-				return {
-					'status': False,
-					'error': '[❗] Maaf, Text yang anda masukan salah!'
-				}
-	else:
-		return {
-			'status': False,
-			'msg': '[!] Masukkan parameter wilayah'
-		}
+			except Exception as e:print(e);return {'status': False,'error': 'Film %s Tidak di temukan!' % unquote(query)}
+		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
+	else:return {'status': False,'msg': '[!] Masukkan parameter wilayah'}
 
 @app.route('/api/jamdunia', methods=['GET','POST'])
 def zjamdunia():
