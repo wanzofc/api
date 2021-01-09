@@ -1011,7 +1011,7 @@ def simi():
 				query = request.args.get('text')
 				url = f'https://secureapp.simsimi.com/v1/simsimi/talkset?uid=297971048&av=6.9.3.4&lc=id&cc=ID&tz=Asia%2FJakarta&os=a&ak=quS%2FxiW%2Bb8ys5agzpljUdoPdLH8%3D&message_sentence={query}&normalProb=2&isFilter=1&talkCnt=6&talkCntTotal=6&reqFilter=0&session=nSt8PSSmKRbcR7quUkfhXYpmDYgErtBefVbkkri9CrGSVjm4Cj2e2zBFjvdxSijp56WjyK6g2EWTj3KxKz65DL22&traceSentenceLinkId=91165864&triggerKeywords=%5B%5D'
 				sim = get(url).json()
-				kata = sim['simsimi_talk_set']['message']['sentence']
+				kata = sim['simsimi_talk_set']['message']['answers'][0]['sentence']
 				return {
 					'status': 200,
 					'result': kata,
