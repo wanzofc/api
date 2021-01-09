@@ -1085,7 +1085,7 @@ def zhappymod():
 					'creator':'Tobz',
 					'result': data
 				}
-			except Exception as e:print(e);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
+			except Exception as err:print(err);return {'status': False,'error': 'Apk %s Tidak di temukan!' % unquote(query)}
 		else:return {'creator': 'Tobz','status': False,'message': 'APIKEY LU INVALID TOD'}
 	else:return {'status': False,'msg': 'input parameter q'}
 
