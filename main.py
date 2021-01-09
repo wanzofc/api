@@ -1100,19 +1100,19 @@ def zmoddroiddl():
 				data = []
 				urlz = f"{query}"
 				url = bsoup(urlz)
-				for tobz in url.findAll('main', class_='col-12 col-lg-8 content-area'):
-					image = tobz.img['src']
-					txt = tobz.findAll('tr')
-					app_name = txt[0].text.replace('App Name','').replace('\n','')
-					publisher = txt[1].text.replace('Publisher','').replace('\n','')
-					genre = txt[2].text.replace('Genre','').replace('\n','')
-					size = txt[3].text.replace('Size','').replace('\n','')
-					latest_version = txt[4].text.replace('Latest Version','').replace('\n','')
-					mod_info = txt[5].text.replace('Mod Info','').replace('\n','')
-					ps_link = txt[6].text.replace('Get it On','').replace('\n','')+txt[6].a['href']
-					update = txt[7].text.replace('Update','').replace('\n','')
-					download = tobz.find('a', class_='btn btn-secondary btn-block mb-3')['href']
-					hasil = data.append({"app_name":app_name,"image":image,"publisher":publisher,"genre":genre,"size":size,"latest_version":latest_version,"mod_info":mod_info,"ps_link":ps_link,"update":update,"download":download})
+				tobz = url.find('main', class_='col-12 col-lg-8 content-area')
+				image = tobz.img['src']
+				txt = tobz.findAll('tr')
+				app_name = txt[0].text.replace('App Name','').replace('\n','')
+				publisher = txt[1].text.replace('Publisher','').replace('\n','')
+				genre = txt[2].text.replace('Genre','').replace('\n','')
+				size = txt[3].text.replace('Size','').replace('\n','')
+				latest_version = txt[4].text.replace('Latest Version','').replace('\n','')
+				mod_info = txt[5].text.replace('Mod Info','').replace('\n','')
+				ps_link = txt[6].text.replace('Get it On','').replace('\n','')+txt[6].a['href']
+				update = txt[7].text.replace('Update','').replace('\n','')
+				download = tobz.find('a', class_='btn btn-secondary btn-block mb-3')['href']
+				hasil = data.append({"app_name":app_name,"image":image,"publisher":publisher,"genre":genre,"size":size,"latest_version":latest_version,"mod_info":mod_info,"ps_link":ps_link,"update":update,"download":download})
 				return {
 					'status': 200,
 					'creator':'Tobz',
