@@ -1111,9 +1111,7 @@ def zmoddroiddl():
 					mod_info = txt[5].text.replace('Mod Info','').replace('\n','')
 					ps_link = txt[6].text.replace('Get it On','').replace('\n','')+txt[6].a['href']
 					update = txt[7].text.replace('Update','').replace('\n','')
-					dl = tobz.find('a', class_='btn btn-secondary btn-block mb-3')['href']
-					dl2 = bsoup(dl)
-					download = dl2.find('div', class_='collapse').a['href']
+					download = tobz.find('a', class_='btn btn-secondary btn-block mb-3')['href']
 					hasil = data.append({"app_name":app_name,"image":image,"publisher":publisher,"genre":genre,"size":size,"latest_version":latest_version,"mod_info":mod_info,"ps_link":ps_link,"update":update,"download":download})
 				return {
 					'status': 200,
