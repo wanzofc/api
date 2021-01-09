@@ -1070,7 +1070,7 @@ def zmoddroid():
 				keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
 				query = request.args.get('q')
 				data = []
-				url = bsoup("https://moddroid.com/?s{}".format(query))
+				url = bsoup("https://moddroid.com/?s={}".format(query))
 				for tobz in url.findAll('div', class_='col-12 col-md-6 mb-4'):
 					title = tobz.a['title']
 					link = tobz.a['href']
