@@ -1774,17 +1774,19 @@ def randomanime():
 		}
 
 @app.route('/api/randomshota', methods=['GET','POST'])
-def randomshota():
+def shota():
 	if request.args.get('apikey') in keyMe:
 		kekeyi = request.args.get('apikey')
 		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		loli = get('http://tobz-js.herokuapp.com/randomshota').json()['result']['url']
+		shota_file = json.loads(open('./manual/shota.json').read())
+		result = random.choice(shota_file)
+		print(result)
 		return {
 			'status': 200,
-			'result': loli
+			'result': result
 		}
 	else:
 		return {
@@ -1794,17 +1796,19 @@ def randomshota():
 		}
 
 @app.route('/api/randomloli', methods=['GET','POST'])
-def randomloli():
+def loli():
 	if request.args.get('apikey') in keyMe:
 		kekeyi = request.args.get('apikey')
 		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		loli = get('http://tobz-js.herokuapp.com/randomloli').json()['result']['url']
+		loli_file = json.loads(open('./manual/loli.json').read())
+		result = random.choice(loli_file)
+		print(result)
 		return {
 			'status': 200,
-			'result': loli
+			'result': result
 		}
 	else:
 		return {
@@ -2009,6 +2013,29 @@ def daerah():
 			'message': 'APIKEY LU INVALID TOD'
 		}
 
+@app.route('/api/husbu', methods=['GET','POST'])
+def husbu():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		quotes_file = json.loads(open('./manual/hsubu.json').read())
+		result = random.choice(quotes_file)
+		print(result)
+		return {
+			'status': 200,
+			'name': result['name'],
+			'image': result['image']
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
+
 @app.route('/api/waifu', methods=['GET','POST'])
 def waifu():
 	if request.args.get('apikey') in keyMe:
@@ -2072,6 +2099,29 @@ def infogempa():
 			'message': 'APIKEY LU INVALID TOD'
 		}
 
+@app.route('/api/randomkpop', methods=['GET','POST'])
+def kpop():
+	if request.args.get('apikey') in keyMe:
+		kekeyi = request.args.get('apikey')
+		if keyMe[kekeyi]['limit'] < 1:return {'creator':'Tobz','status': False,'error': 'APIKEY LU DAH MAX HARI INI'}
+		a = keyMe[kekeyi]['limit'] -1
+		wkwk = arere(kekeyi, a)
+		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
+		kpop_file = json.loads(open('./manual/kpop.json').read())
+		result = random.choice(kpop_file)
+		print(result)
+		return {
+			'status': 200,
+			'result': result
+		}
+	else:
+		return {
+			'creator': 'Tobz',
+			'status': False,
+			'message': 'APIKEY LU INVALID TOD'
+		}
+
+
 @app.route('/api/randomquotes', methods=['GET','POST'])
 def quotes():
 	if request.args.get('apikey') in keyMe:
@@ -2080,7 +2130,7 @@ def quotes():
 		a = keyMe[kekeyi]['limit'] -1
 		wkwk = arere(kekeyi, a)
 		keyMe.update({kekeyi: {'limit': wkwk[0], 'from': wkwk[1], 'exp': wkwk[2], 'status': wkwk[3]}})
-		quotes_file = json.loads(open('quotes.json').read())
+		quotes_file = json.loads(open('./manual/quotes.json').read())
 		result = random.choice(quotes_file)
 		print(result)
 		return {
@@ -2156,7 +2206,6 @@ def cuihh(e):
 	})
 	response.content_type = "application/json"
 	return response
-@app.route('/', methods=['GET','POST'])
 
 @app.route('/', methods=['GET','POST'])
 def index():
